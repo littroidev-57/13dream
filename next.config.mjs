@@ -46,6 +46,26 @@ const nextConfig = {
         destination: '/contact',
         permanent: true,
       },
+      {
+        source: '/about.php',
+        destination: '/about-us',
+        permanent: true,
+      },
+      {
+        source: '/about',
+        destination: '/about-us',
+        permanent: true,
+      },
+      {
+        source: '/apply.php',
+        destination: '/apply',
+        permanent: true,
+      },
+      {
+        source: '/study-in-:slug.php',
+        destination: '/study/:slug',
+        permanent: true,
+      },
       // ── Old service pages → /service/[slug] ──────────────────────
       { source: '/comprehensive-counselling', destination: '/service/comprehensive-counselling', permanent: true },
       { source: '/application-processing', destination: '/service/application-processing', permanent: true },

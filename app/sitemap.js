@@ -1,37 +1,42 @@
-import { destinationsData, servicesData, initialBlogs } from '@/lib/seedData';
+import { servicesData, initialBlogs } from '@/lib/seedData';
 import { countryPageData } from '@/lib/pageData';
+import { siteConfig } from '@/lib/siteConfig';
 
 export default function sitemap() {
-  const baseUrl = 'https://13dreamsconsultants.com';
+  const baseUrl = siteConfig.siteUrl;
 
   const staticRoutes = [
-    '',
-    '/about-us',
-    '/service',
-    '/countries',
-    '/story',
-    '/story/ielts',
-    '/story/pte',
-    '/blog',
-    '/contact',
-    '/quick-query',
-    '/events',
+    { path: '', priority: 1.0, changeFrequency: 'weekly' },
+    { path: '/apply', priority: 0.95, changeFrequency: 'weekly' },
+    { path: '/study-abroad', priority: 0.9, changeFrequency: 'weekly' },
+    { path: '/student-visa', priority: 0.9, changeFrequency: 'weekly' },
+    { path: '/universities', priority: 0.85, changeFrequency: 'weekly' },
+    { path: '/courses', priority: 0.85, changeFrequency: 'weekly' },
+    { path: '/countries', priority: 0.85, changeFrequency: 'weekly' },
+    { path: '/service', priority: 0.85, changeFrequency: 'weekly' },
+    { path: '/about-us', priority: 0.8, changeFrequency: 'monthly' },
+    { path: '/contact', priority: 0.8, changeFrequency: 'monthly' },
+    { path: '/story', priority: 0.8, changeFrequency: 'weekly' },
+    { path: '/story/ielts', priority: 0.8, changeFrequency: 'weekly' },
+    { path: '/story/pte', priority: 0.8, changeFrequency: 'weekly' },
+    { path: '/blog', priority: 0.8, changeFrequency: 'daily' },
+    { path: '/events', priority: 0.7, changeFrequency: 'monthly' },
   ].map((route) => ({
-    url: `${baseUrl}${route}`,
+    url: `${baseUrl}${route.path}`,
     lastModified: new Date(),
-    changeFrequency: 'weekly',
-    priority: route === '' ? 1.0 : 0.8,
+    changeFrequency: route.changeFrequency,
+    priority: route.priority,
   }));
 
-  // /study/[slug] — uses country id keys e.g. /study/australia
+  // /study/[slug]
   const countryRoutes = Object.keys(countryPageData).map((slug) => ({
     url: `${baseUrl}/study/${slug}`,
     lastModified: new Date(),
     changeFrequency: 'weekly',
-    priority: 0.8,
+    priority: 0.85,
   }));
 
-  // /service/[slug] — uses service slugs e.g. /service/comprehensive-counselling
+  // /service/[slug]
   const serviceRoutes = servicesData.map((s) => ({
     url: `${baseUrl}/service/${s.slug}`,
     lastModified: new Date(),
@@ -39,12 +44,14 @@ export default function sitemap() {
     priority: 0.8,
   }));
 
+  // /blog/[slug]
   const blogRoutes = initialBlogs.map((b) => ({
     url: `${baseUrl}/blog/${b.slug}`,
     lastModified: new Date(b.publishedAt || Date.now()),
     changeFrequency: 'monthly',
-    priority: 0.7,
+    priority: 0.75,
   }));
 
   return [...staticRoutes, ...countryRoutes, ...serviceRoutes, ...blogRoutes];
 }
+

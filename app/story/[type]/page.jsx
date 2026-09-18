@@ -31,11 +31,29 @@ const storyConfig = {
   },
 };
 
+import { siteConfig, getCanonicalUrl } from '@/lib/siteConfig';
+
 export async function generateMetadata({ params }) {
   const { type } = await params;
   const config = storyConfig[type];
   if (!config) return { title: 'Not Found' };
-  return { title: config.metaTitle, description: config.metaDesc };
+  
+  const canonical = getCanonicalUrl(`/story/${type}`);
+
+  return {
+    title: config.metaTitle,
+    description: config.metaDesc,
+    alternates: {
+      canonical,
+    },
+    openGraph: {
+      title: config.metaTitle,
+      description: config.metaDesc,
+      url: canonical,
+      siteName: siteConfig.siteName,
+      type: 'website',
+    },
+  };
 }
 
 export default async function StoryTypePage({ params }) {

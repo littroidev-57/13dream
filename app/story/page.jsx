@@ -1,37 +1,32 @@
 import StoryTemplate from '@/components/UI/StoryTemplate';
-import dbConnect from '@/lib/dbConnect';
-import SuccessStory from '@/models/SuccessStory';
-import { initialSuccessStories } from '@/lib/seedData';
+import { instagramReelsData } from '@/lib/instagramReelsData';
+import { siteConfig, getCanonicalUrl } from '@/lib/siteConfig';
 
 export const metadata = {
-  title: 'Visa Success Stories | 13 Dreams Consultants',
+  title: 'Visa Success Stories (Instagram Reels) | 13 Dreams Consultants',
   description:
-    'Hear directly from our successful students who received their study visas for Canada, Australia, UK, and Europe with 13 Dreams Consultants.',
+    'Watch real student celebrations, visa handover moments, and study visa grant reels directly from 13 Dreams Consultants Instagram.',
+  alternates: {
+    canonical: getCanonicalUrl('/story'),
+  },
+  openGraph: {
+    title: 'Visa Success Stories | 13 Dreams Consultants',
+    description:
+      'Real student visa approvals, happiness moments, and visa grant celebrations from 13 Dreams Consultants.',
+    url: getCanonicalUrl('/story'),
+    siteName: siteConfig.siteName,
+    type: 'website',
+  },
 };
 
 export const revalidate = 60;
 
 export default async function VisaSuccessStoriesPage() {
-  let visaStories = [];
-  try {
-    await dbConnect();
-    const docs = await SuccessStory.find({ category: 'visa' }).sort({ createdAt: -1 }).lean();
-    if (docs && docs.length > 0) {
-      visaStories = JSON.parse(JSON.stringify(docs));
-    }
-  } catch (err) {
-    console.warn('MongoDB fetch error, falling back to seed stories:', err.message);
-  }
-
-  if (visaStories.length === 0) {
-    visaStories = initialSuccessStories.filter((s) => s.category === 'visa');
-  }
-
   return (
     <StoryTemplate
       title="Visa Success Stories"
       breadcrumbLabel={null}
-      stories={visaStories}
+      stories={instagramReelsData}
       activeType="visa"
       badgeLabel={null}
     />

@@ -5,10 +5,23 @@ import dbConnect from '@/lib/dbConnect';
 import Blog from '@/models/Blog';
 import { initialBlogs } from '@/lib/seedData';
 
+import { siteConfig, getCanonicalUrl } from '@/lib/siteConfig';
+
 export const metadata = {
   title: 'Blog & Study Abroad News | 13 Dreams Consultants',
   description:
-    'Stay updated with latest study visa policies, European PR options, IELTS/PTE preparation tips, and university updates.',
+    'Stay updated with latest study visa policies, European PR options, IELTS/PTE preparation tips, and overseas university updates.',
+  alternates: {
+    canonical: getCanonicalUrl('/blog'),
+  },
+  openGraph: {
+    title: 'Blog & Study Abroad News | 13 Dreams Consultants',
+    description:
+      'Latest insights on student visas, university rankings, and scholarship announcements.',
+    url: getCanonicalUrl('/blog'),
+    siteName: siteConfig.siteName,
+    type: 'website',
+  },
 };
 
 async function getBlogs() {

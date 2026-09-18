@@ -101,7 +101,12 @@ export default function JourneyCtaBanner() {
 
               {/* Sleek, Decreased Height CTA Action Controls */}
               <div className="mt-7 flex flex-wrap items-center gap-3.5">
-                {/* Contact Us Button: Sleek 40px Height (hidden when already on /contact) */}
+                <Link
+                  href="/apply"
+                  className="inline-flex items-center justify-center px-6 sm:px-7 py-2.5 rounded-full bg-red-600 text-white font-bold text-xs sm:text-sm shadow-md hover:bg-white hover:text-gray-900 active:scale-95 transition-all duration-300 transform hover:scale-105"
+                >
+                  Apply Online Now
+                </Link>
                 {!isContactPage && (
                   <Link
                     href="/contact"

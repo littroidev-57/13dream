@@ -93,6 +93,9 @@ export async function generateStaticParams() {
   return allServices.map((s) => ({ slug: s.slug }));
 }
 
+import JsonLd from '@/components/SEO/JsonLd';
+import { siteConfig, getCanonicalUrl } from '@/lib/siteConfig';
+
 // Dynamic metadata per service
 export async function generateMetadata({ params }) {
   const { slug } = await params;
@@ -102,16 +105,29 @@ export async function generateMetadata({ params }) {
     return { title: 'Service Not Found | 13 Dreams Consultants' };
   }
 
+  const canonical = getCanonicalUrl(`/service/${slug}`);
+
   return {
     title: service.metaTitle || `${service.title} | 13 Dreams Consultants`,
     description:
       service.metaDesc ||
       service.subtitle ||
       `Professional ${service.title} services by 13 Dreams Consultants Bareilly.`,
+    alternates: {
+      canonical,
+    },
     openGraph: {
       title: service.metaTitle || `${service.title} | 13 Dreams Consultants`,
       description: service.metaDesc || service.subtitle,
-      images: service.image ? [service.image] : [],
+      url: canonical,
+      siteName: siteConfig.siteName,
+      type: 'article',
+      images: service.image ? [{ url: service.image }] : [],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: service.metaTitle || `${service.title} | 13 Dreams Consultants`,
+      description: service.metaDesc || service.subtitle,
     },
   };
 }
@@ -125,18 +141,62 @@ export default async function ServiceSlugPage({ params }) {
   }
 
   const allServices = await getAllServices();
+  const canonicalUrl = getCanonicalUrl(`/service/${slug}`);
+
+  const serviceSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: service.title,
+    description: service.subtitle || service.description || service.overview,
+    provider: {
+      '@type': 'EducationalOrganization',
+      name: siteConfig.siteName,
+      url: siteConfig.siteUrl,
+    },
+    serviceType: 'Overseas Education & Student Visa Consulting',
+    areaServed: 'India',
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: siteConfig.siteUrl,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Services',
+        item: getCanonicalUrl('/service'),
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: service.title,
+        item: canonicalUrl,
+      },
+    ],
+  };
 
   return (
-    <ServiceDetailTemplate
-      service={service}
-      currentSlug={slug}
-      allServices={allServices}
-      // Support legacy props if present
-      title={service.title}
-      subtitle={service.subtitle}
-      overview={service.overview}
-      keyOfferings={service.keyOfferings}
-      processSteps={service.processSteps}
-    />
+    <>
+      <JsonLd data={serviceSchema} />
+      <JsonLd data={breadcrumbSchema} />
+      <ServiceDetailTemplate
+        service={service}
+        currentSlug={slug}
+        allServices={allServices}
+        // Support legacy props if present
+        title={service.title}
+        subtitle={service.subtitle}
+        overview={service.overview}
+        keyOfferings={service.keyOfferings}
+        processSteps={service.processSteps}
+      />
+    </>
   );
 }

@@ -53,10 +53,10 @@ a:hover {
   color: var(--primary-red);
 }
 
-a[class*="text-white"]:hover,
-a[class*="bg-"]:hover,
-button[class*="text-white"]:hover {
-  color: inherit !important;
+a[class*="text-white"]:not([class*="hover:text-"]):not([class*="hover:!text-"]):hover,
+a[class*="bg-"]:not([class*="hover:text-"]):not([class*="hover:!text-"]):hover,
+button[class*="text-white"]:not([class*="hover:text-"]):not([class*="hover:!text-"]):hover {
+  color: inherit;
 }
 
 ul {

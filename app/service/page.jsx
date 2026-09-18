@@ -7,10 +7,23 @@ import { servicesData } from '@/lib/seedData';
 import fs from 'fs';
 import path from 'path';
 
+import { siteConfig, getCanonicalUrl } from '@/lib/siteConfig';
+
 export const metadata = {
   title: 'Our Overseas Education & Visa Services | 13 Dreams Consultants',
   description:
     'Explore the full suite of overseas education services by 13 Dreams Consultants: course counseling, university admissions, visa processing, scholarships, and pre-departure assistance.',
+  alternates: {
+    canonical: getCanonicalUrl('/service'),
+  },
+  openGraph: {
+    title: 'Our Overseas Education & Visa Services | 13 Dreams Consultants',
+    description:
+      'Explore comprehensive overseas education counseling, admission filing, and student visa processing services.',
+    url: getCanonicalUrl('/service'),
+    siteName: siteConfig.siteName,
+    type: 'website',
+  },
 };
 
 async function getServices() {

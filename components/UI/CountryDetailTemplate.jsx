@@ -94,6 +94,36 @@ export default function CountryDetailTemplate({
                   </ul>
                 </div>
               )}
+
+              {/* In-content Admission Application Callout */}
+              <div style={{ background: 'linear-gradient(135deg, #fff5f5 0%, #ffffff 100%)', border: '1px solid #fed7d7', borderRadius: '12px', padding: '28px', marginBottom: '35px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                  <span style={{ fontSize: '12px', fontWeight: '800', color: 'var(--primary-red)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                    Admissions Open for {countryName}
+                  </span>
+                  <h3 style={{ fontSize: '20px', fontWeight: '800', color: '#111827', margin: 0 }}>
+                    Plan Your Study Journey to {countryName}
+                  </h3>
+                  <p style={{ fontSize: '14px', color: '#4b5563', lineHeight: '1.6', margin: 0 }}>
+                    Receive personalized university shortlisting, fast-track offer letter assistance, scholarship evaluation, and student visa filing support with our certified counselors.
+                  </p>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', marginTop: '8px' }}>
+                    <Link
+                      href={`/apply?destination=${encodeURIComponent(countryName)}`}
+                      className="bizwheel-btn"
+                      style={{ padding: '10px 24px', fontSize: '14px' }}
+                    >
+                      Start Online Application <span>&rarr;</span>
+                    </Link>
+                    <a
+                      href="#enquiry-form"
+                      style={{ padding: '10px 20px', fontSize: '14px', fontWeight: '600', color: '#4b5563', border: '1px solid #d1d5db', borderRadius: '6px', background: '#fff', textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}
+                    >
+                      Quick Callback Form
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* Right Sidebar */}
@@ -134,9 +164,13 @@ export default function CountryDetailTemplate({
                 <p style={{ fontSize: '13px', color: '#ccc', lineHeight: '1.6', marginBottom: '20px' }}>
                   Get custom course options, fee breakdowns, and admission timelines for {countryName}.
                 </p>
-                <a href="#enquiry-form" className="bizwheel-btn" style={{ width: '100%', textAlign: 'center', display: 'block' }}>
+                <Link
+                  href={`/apply?destination=${encodeURIComponent(countryName)}`}
+                  className="bizwheel-btn"
+                  style={{ width: '100%', textAlign: 'center', display: 'block' }}
+                >
                   Apply For {countryName}
-                </a>
+                </Link>
               </div>
             </aside>
           </div>

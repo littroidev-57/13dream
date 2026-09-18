@@ -50,6 +50,9 @@ export default function MobileMenu({ isOpen, onClose }) {
             </div>
             {openSubmenu === 'services' && (
               <ul style={{ listStyle: 'none', paddingLeft: '15px', paddingBottom: '10px', fontSize: '13px' }}>
+                <li style={{ ...subItem, fontWeight: '700', color: 'var(--primary-red)' }}><Link href="/student-visa" onClick={onClose}>Student Visa Guide</Link></li>
+                <li style={subItem}><Link href="/universities" onClick={onClose}>Partner Universities</Link></li>
+                <li style={subItem}><Link href="/courses" onClick={onClose}>In-Demand Courses</Link></li>
                 <li style={subItem}><Link href="/service/comprehensive-counselling" onClick={onClose}>Comprehensive Counselling</Link></li>
                 <li style={subItem}><Link href="/service/application-processing" onClick={onClose}>Application Processing</Link></li>
                 <li style={subItem}><Link href="/events" onClick={onClose}>Our Events</Link></li>
@@ -76,6 +79,7 @@ export default function MobileMenu({ isOpen, onClose }) {
             </div>
             {openSubmenu === 'countries' && (
               <ul style={{ listStyle: 'none', paddingLeft: '15px', paddingBottom: '10px', fontSize: '13px' }}>
+                <li style={{ ...subItem, fontWeight: '700', color: 'var(--primary-red)' }}><Link href="/study-abroad" onClick={onClose}>Study Abroad Guide</Link></li>
                 <li style={subItem}><Link href="/study/australia" onClick={onClose}>Study in Australia</Link></li>
                 <li style={subItem}><Link href="/study/canada" onClick={onClose}>Study in Canada</Link></li>
                 <li style={subItem}><Link href="/study/uk" onClick={onClose}>Study in UK</Link></li>
@@ -109,12 +113,19 @@ export default function MobileMenu({ isOpen, onClose }) {
             <Link href="/blog" onClick={onClose} style={linkBase}>Blog</Link>
           </li>
           <li style={menuItem}>
-            <Link href="/#enquiry-form" onClick={onClose} style={{ ...linkBase, color: 'var(--primary-red)' }}>Enquire Now</Link>
+            <Link href="/apply" onClick={onClose} style={{ ...linkBase, color: 'var(--primary-red)', fontWeight: '700' }}>
+              Apply Online
+            </Link>
           </li>
         </ul>
 
         <div style={{ marginTop: '25px' }}>
-          <Link href="/contact" onClick={onClose} className="bizwheel-btn" style={{ display: 'block', width: '100%', textAlign: 'center' }}>
+          <Link
+            href="/contact"
+            onClick={onClose}
+            className="bizwheel-btn"
+            style={{ display: 'block', width: '100%', textAlign: 'center' }}
+          >
             Contact Us
           </Link>
         </div>

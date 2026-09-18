@@ -1,10 +1,13 @@
+import { siteConfig } from '@/lib/siteConfig';
+
 export default function robots() {
   return {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: '/api/',
+      disallow: ['/api/', '/quick-query'],
     },
-    sitemap: 'https://13dreamsconsultants.com/sitemap.xml',
+    sitemap: `${siteConfig.siteUrl}/sitemap.xml`,
   };
 }
+

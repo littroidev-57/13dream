@@ -1,27 +1,21 @@
 import React from 'react';
 import AboutUsContent from '@/components/About/AboutUsContent';
 
+import { siteConfig, getCanonicalUrl } from '@/lib/siteConfig';
+
 export const metadata = {
-  title: 'Best Abroad Education Consultants in India | Expert Guidance | 13 Dreams',
+  title: 'About 13 Dreams Consultants | 15+ Years Overseas Education Legacy',
   description:
-    'Looking for the best study abroad consultants in India? Get expert guidance on overseas education, visa assistance, and scholarships from top consultants.',
-  keywords:
-    'Study Abroad Consultants in Bareilly, Study Abroad, Overseas Education Consultants, Higher Education, Foreign Education, Study Consultants, Abroad Education Consultants, Top Abroad Education Consultants, Foreign Education Consultants, Study Abroad Counseling',
+    'Learn about 13 Dreams Consultants, led by Mr. Harpreet Singh. 15+ years of excellence, 150+ partner universities, and a 99% visa success rate for Indian students.',
+  alternates: {
+    canonical: getCanonicalUrl('/about-us'),
+  },
   openGraph: {
-    title: 'About us | 13 Dreams Consultants Private Limited',
+    title: 'About 13 Dreams Consultants | Study Abroad Leadership',
     description:
-      '13 Dream Consultants is a leading overseas education consultancy in Bareilly that has established its name across India through its professionalism.',
-    url: 'https://13dreamsconsultants.com/about-us',
-    siteName: '13 Dreams Consultants Private Limited',
-    images: [
-      {
-        url: 'https://13dreamsconsultants.com/img/BHH.jpg',
-        width: 1200,
-        height: 630,
-        alt: '13 Dreams Consultants Building & Leadership',
-      },
-    ],
-    locale: 'en_US',
+      'Discover our 15-year history of transforming overseas education aspirations into reality with ethical, transparent guidance.',
+    url: getCanonicalUrl('/about-us'),
+    siteName: siteConfig.siteName,
     type: 'website',
   },
 };

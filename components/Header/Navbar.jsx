@@ -55,6 +55,9 @@ export default function Navbar({ onToggleMobileNav, isScrolled }) {
                     Our Services <i className="fa fa-angle-down" style={{ fontSize: '11px' }}></i>
                   </Link>
                   <ul className="sub-menu">
+                    <li><Link href="/student-visa" style={{ fontWeight: '700', color: 'var(--primary-red)' }}>Student Visa Guide</Link></li>
+                    <li><Link href="/universities">Partner Universities</Link></li>
+                    <li><Link href="/courses">In-Demand Courses</Link></li>
                     <li><Link href="/service/comprehensive-counselling">Comprehensive Counselling</Link></li>
                     <li><Link href="/service/application-processing">Application Processing</Link></li>
                     <li><Link href="/events">Our Events</Link></li>
@@ -78,6 +81,7 @@ export default function Navbar({ onToggleMobileNav, isScrolled }) {
                     Countries <i className="fa fa-angle-down" style={{ fontSize: '11px' }}></i>
                   </Link>
                   <ul className="sub-menu">
+                    <li><Link href="/study-abroad" style={{ fontWeight: '700', color: 'var(--primary-red)' }}>Study Abroad Guide</Link></li>
                     <li><Link href="/study/australia">Study in Australia</Link></li>
                     <li><Link href="/study/canada">Study in Canada</Link></li>
                     <li><Link href="/study/uk">Study in UK</Link></li>
@@ -106,15 +110,17 @@ export default function Navbar({ onToggleMobileNav, isScrolled }) {
                 <li>
                   <Link href="/blog">Blog</Link>
                 </li>
+
+                {/* <li>
+                  <Link href="/apply">Apply Online</Link>
+                </li> */}
               </ul>
             </nav>
 
             <div className="right-button" style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
-              {!isContactPage && (
-                <Link href="/contact" className="bizwheel-btn">
-                  Contact Us
-                </Link>
-              )}
+              <Link href="/contact" className="bizwheel-btn">
+                Contact Us
+              </Link>
               <button
                 className="mobile-nav-toggle"
                 onClick={onToggleMobileNav}

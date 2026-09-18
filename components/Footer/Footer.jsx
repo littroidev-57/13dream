@@ -44,16 +44,18 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* 2. Company */}
+            {/* 2. Quick Links */}
             <div className="single-widget f-link">
-              <h3 className="widget-title">Company</h3>
+              <h3 className="widget-title">Quick Links</h3>
               <ul className="links">
-                <li><Link href="/">Home</Link></li>
-                <li><Link href="/about-us">About Us</Link></li>
-                <li><Link href="/events">Our Events</Link></li>
+                <li><Link href="/apply" > Apply Online</Link></li>
+                <li><Link href="/study-abroad">Study Abroad Guide</Link></li>
+                <li><Link href="/student-visa">Student Visa Assistance</Link></li>
+                <li><Link href="/universities">Top Universities</Link></li>
+                <li><Link href="/courses">In-Demand Courses</Link></li>
+                <li><Link href="/countries">Destinations</Link></li>
                 <li><Link href="/service">Our Services</Link></li>
-                <li><Link href="/countries">Countries</Link></li>
-                <li><Link href="/story">Success Story</Link></li>
+                <li><Link href="/about-us">About Us</Link></li>
                 <li><Link href="/contact">Contact Us</Link></li>
               </ul>
             </div>

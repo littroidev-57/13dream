@@ -6,6 +6,9 @@ import dbConnect from '@/lib/dbConnect';
 import Blog from '@/models/Blog';
 import { initialBlogs } from '@/lib/seedData';
 
+import JsonLd from '@/components/SEO/JsonLd';
+import { siteConfig, getCanonicalUrl } from '@/lib/siteConfig';
+
 async function getBlog(slug) {
   try {
     await dbConnect();
@@ -27,13 +30,28 @@ export async function generateMetadata({ params }) {
     return { title: 'Article Not Found | 13 Dreams Consultants' };
   }
 
+  const canonical = getCanonicalUrl(`/blog/${slug}`);
+
   return {
     title: `${blog.title} | 13 Dreams Consultants`,
     description: blog.excerpt,
+    alternates: {
+      canonical,
+    },
     openGraph: {
       title: blog.title,
       description: blog.excerpt,
-      images: [blog.image],
+      url: canonical,
+      siteName: siteConfig.siteName,
+      type: 'article',
+      publishedTime: blog.publishedAt ? new Date(blog.publishedAt).toISOString() : undefined,
+      images: blog.image ? [{ url: blog.image }] : [],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: blog.title,
+      description: blog.excerpt,
+      images: blog.image ? [blog.image] : [],
     },
   };
 }
@@ -47,9 +65,62 @@ export default async function BlogPostPage({ params }) {
   }
 
   const otherBlogs = initialBlogs.filter((b) => b.slug !== slug).slice(0, 3);
+  const canonicalUrl = getCanonicalUrl(`/blog/${slug}`);
+
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: blog.title,
+    description: blog.excerpt,
+    image: blog.image,
+    datePublished: blog.publishedAt ? new Date(blog.publishedAt).toISOString() : new Date().toISOString(),
+    author: {
+      '@type': 'Organization',
+      name: siteConfig.siteName,
+      url: siteConfig.siteUrl,
+    },
+    publisher: {
+      '@type': 'EducationalOrganization',
+      name: siteConfig.siteName,
+      url: siteConfig.siteUrl,
+      logo: `${siteConfig.siteUrl}/img/13d-logo.webp`,
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': canonicalUrl,
+    },
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: siteConfig.siteUrl,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Blog',
+        item: getCanonicalUrl('/blog'),
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: blog.title,
+        item: canonicalUrl,
+      },
+    ],
+  };
 
   return (
     <>
+      <JsonLd data={articleSchema} />
+      <JsonLd data={breadcrumbSchema} />
+
       <PageBanner
         title={blog.title}
         breadcrumbs={[
@@ -93,8 +164,8 @@ export default async function BlogPostPage({ params }) {
                 <p style={{ fontSize: '14px', color: '#666', marginBottom: '16px' }}>
                   Speak directly with an accredited counselor to receive customized shortlisting of colleges, fees estimate, and visa requirements.
                 </p>
-                <Link href="/contact" className="bizwheel-btn">
-                  Book Free Counseling Session
+                <Link href="/apply" className="bizwheel-btn">
+                  Start Your Free Application
                 </Link>
               </div>
             </article>
@@ -134,8 +205,8 @@ export default async function BlogPostPage({ params }) {
                 <p style={{ fontSize: '13px', color: '#ccc', lineHeight: '1.6', marginBottom: '20px' }}>
                   Drop your details and our team will get in touch to assist with admissions and visa filing.
                 </p>
-                <Link href="/#enquiry-form" className="bizwheel-btn" style={{ width: '100%', textAlign: 'center', display: 'block' }}>
-                  Enquire Now
+                <Link href="/apply" className="bizwheel-btn" style={{ width: '100%', textAlign: 'center', display: 'block' }}>
+                  Apply Online Now
                 </Link>
               </div>
             </aside>

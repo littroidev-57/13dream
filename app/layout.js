@@ -1,69 +1,123 @@
 import './globals.css';
-import HeaderWrapper from '@/components/Header/HeaderWrapper';
-import Footer from '@/components/Footer/Footer';
-import WhatsAppButton from '@/components/UI/WhatsAppButton';
-import JourneyCtaBanner from '@/components/UI/JourneyCtaBanner';
+import LayoutChrome from '@/components/UI/LayoutChrome';
+import JsonLd from '@/components/SEO/JsonLd';
+import { siteConfig } from '@/lib/siteConfig';
 
 export const metadata = {
-  title: 'Best Study Abroad Consultants in India | Visa Consultant',
+  metadataBase: new URL(siteConfig.siteUrl),
+  title: {
+    default: 'Best Study Abroad Consultants in India | 13 Dreams Consultants',
+    template: '%s',
+  },
   description:
-    'Get expert guidance from the best study visa consultant in India. 13Dreams Consultants helps you achieve your dream of studying abroad with complete support.',
-  keywords:
-    'Study Abroad Consultants in Bareilly, Study Abroad, Overseas Education Consultants, Higher Education, Foreign Education, Study Consultants, Abroad Education Consultants, IELTS, PTE, Canada Visa, UK Visa, Australia Visa, Germany Visa',
-  authors: [{ name: '13 Dreams Consultants Private Limited' }],
-  metadataBase: new URL('https://13dreamsconsultants.com'),
+    'Get expert guidance from 13 Dreams Consultants, India\'s trusted overseas education and study visa specialists. Comprehensive guidance for Canada, UK, USA, Australia, and Europe.',
+  keywords: [
+    'Study Abroad Consultants',
+    'Overseas Education Consultants',
+    'Student Visa Guidance',
+    'Study in Canada',
+    'Study in UK',
+    'Study in Australia',
+    'Study in USA',
+    'Study in Germany',
+    'IELTS Coaching',
+    'PTE Training',
+    'Study Abroad Consultants in Bareilly',
+    'Study Visa Consultants in Bareilly',
+  ],
+  authors: [{ name: siteConfig.siteName, url: siteConfig.siteUrl }],
+  creator: siteConfig.siteName,
+  publisher: siteConfig.siteName,
   alternates: {
-    canonical: 'https://13dreamsconsultants.com/',
+    canonical: siteConfig.siteUrl,
   },
   openGraph: {
-    title: '13 Dreams Consultants Private Limited',
+    title: '13 Dreams Consultants Private Limited | Study Abroad & Visa Experts',
     description:
-      'Looking for the best Study Abroad Consultants? 13 Dream Consultants – Trusted Study Visa Consultants in Bareilly and Khatima providing end-to-end assistance to study in Canada, Australia, New Zealand, the USA and UK.',
-    url: 'https://13dreamsconsultants.com/',
-    siteName: '13 Dreams Consultants Private Limited',
+      'Trusted Study Abroad & Student Visa Consultants in Bareilly and Khatima. Assisting Indian students with global admissions to Canada, Australia, UK, USA, and Europe.',
+    url: siteConfig.siteUrl,
+    siteName: siteConfig.siteName,
     images: [
       {
-        url: 'https://13dreamsconsultants.com/img/dreams/about-1.png',
+        url: `${siteConfig.siteUrl}/img/13dreamsconsultants-main.webp`,
         width: 1200,
         height: 630,
-        alt: '13 Dreams Consultants',
+        alt: '13 Dreams Consultants - Best Study Abroad Advisors',
       },
     ],
-    locale: 'en_US',
+    locale: 'en_IN',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: '13 Dreams Consultants Private Limited',
-    creator: '@13dreamsconsultants',
-    images: ['https://13dreamsconsultants.com/img/dreams/about-1.png'],
+    title: '13 Dreams Consultants | Study Abroad & Visa Guidance',
+    description:
+      'End-to-end university admissions, scholarships, and student visa guidance with a 99% visa success rate.',
+    images: [`${siteConfig.siteUrl}/img/13dreamsconsultants-main.webp`],
   },
   icons: {
     icon: [
       { url: '/icon.png', type: 'image/png' },
       { url: '/favicon.ico' },
     ],
-    apple: [
-      { url: '/icon.png' },
-    ],
+    apple: [{ url: '/icon.png' }],
   },
 };
 
 export default function RootLayout({ children }) {
+  // Organization & LocalBusiness JSON-LD
+  const organizationSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'EducationalOrganization',
+    '@id': `${siteConfig.siteUrl}/#organization`,
+    name: siteConfig.siteName,
+    alternateName: siteConfig.shortName,
+    url: siteConfig.siteUrl,
+    logo: `${siteConfig.siteUrl}/img/13d-logo.webp`,
+    telephone: siteConfig.phone,
+    email: siteConfig.email,
+    founder: {
+      '@type': 'Person',
+      name: siteConfig.director,
+    },
+    foundingDate: '2011',
+    sameAs: [
+      siteConfig.socials.instagram,
+      siteConfig.socials.youtube,
+      siteConfig.socials.facebook,
+    ],
+    address: siteConfig.offices.map((office) => ({
+      '@type': 'PostalAddress',
+      streetAddress: office.streetAddress,
+      addressLocality: office.addressLocality,
+      addressRegion: office.addressRegion,
+      postalCode: office.postalCode,
+      addressCountry: office.addressCountry,
+    })),
+  };
+
+  const websiteSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': `${siteConfig.siteUrl}/#website`,
+    url: siteConfig.siteUrl,
+    name: siteConfig.siteName,
+    description: siteConfig.tagline,
+    publisher: {
+      '@id': `${siteConfig.siteUrl}/#organization`,
+    },
+  };
+
   return (
     <html lang="en">
       <head>
         <link rel="icon" type="image/png" href="/icon.png" />
         <link rel="apple-touch-icon" href="/icon.png" />
+        <JsonLd data={organizationSchema} />
+        <JsonLd data={websiteSchema} />
       </head>
       <body id="bg">
-        <div id="page" className="site">
-          <HeaderWrapper />
-          <main>{children}</main>
-          <JourneyCtaBanner />
-          <Footer />
-          <WhatsAppButton />
-        </div>
+        <LayoutChrome>{children}</LayoutChrome>
       </body>
     </html>
   );

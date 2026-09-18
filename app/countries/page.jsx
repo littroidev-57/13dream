@@ -3,10 +3,23 @@ import PageBanner from '@/components/UI/PageBanner';
 import Link from 'next/link';
 import { destinationsData } from '@/lib/seedData';
 
+import { siteConfig, getCanonicalUrl } from '@/lib/siteConfig';
+
 export const metadata = {
   title: 'Top Study Abroad Countries | 13 Dreams Consultants',
   description:
     'Explore study abroad destinations worldwide with 13 Dreams Consultants: Canada, Australia, United Kingdom, USA, New Zealand, Germany, Malta, and Singapore.',
+  alternates: {
+    canonical: getCanonicalUrl('/countries'),
+  },
+  openGraph: {
+    title: 'Top Study Abroad Countries | 13 Dreams Consultants',
+    description:
+      'Compare global overseas education destinations by work permits, university rankings, and tuition costs.',
+    url: getCanonicalUrl('/countries'),
+    siteName: siteConfig.siteName,
+    type: 'website',
+  },
 };
 
 export default function CountriesPage() {
