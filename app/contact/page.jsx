@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import PageBanner from '@/components/UI/PageBanner';
+import toast from 'react-hot-toast';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -23,22 +24,27 @@ export default function ContactPage() {
     e.preventDefault();
 
     if (!formData.name.trim()) {
+      toast.error('Please fill the name !');
       setFeedback({ text: 'Please fill the name !', type: 'error' });
       return;
     }
     if (!formData.phone.trim() || !/^\d{10}$/.test(formData.phone.trim())) {
+      toast.error('Phone number must be 10 digits only!');
       setFeedback({ text: 'Phone number must be 10 digits only!', type: 'error' });
       return;
     }
     if (!formData.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
+      toast.error('Please fill a valid email address !');
       setFeedback({ text: 'Please fill a valid email address !', type: 'error' });
       return;
     }
     if (!formData.subject.trim()) {
+      toast.error('Please fill the subject !');
       setFeedback({ text: 'Please fill the subject !', type: 'error' });
       return;
     }
     if (!formData.message.trim()) {
+      toast.error('Please fill the message !');
       setFeedback({ text: 'Please fill the message !', type: 'error' });
       return;
     }
@@ -55,13 +61,19 @@ export default function ContactPage() {
       const data = await res.json();
 
       if (data.msg || data.success) {
-        setFeedback({ text: 'We will get back to you shortly', type: 'success' });
+        const apiReturnText = data.message || 'We will get back to you shortly';
+        toast.success(apiReturnText, { duration: 6000 });
+        setFeedback({ text: apiReturnText, type: 'success' });
         setFormData({ name: '', phone: '', email: '', subject: '', message: '' });
       } else {
-        setFeedback({ text: data.error || 'Something went wrong', type: 'error' });
+        const apiError = data.error || 'Something went wrong';
+        toast.error(apiError);
+        setFeedback({ text: apiError, type: 'error' });
       }
     } catch (err) {
-      setFeedback({ text: 'Server error. Please try again later.', type: 'error' });
+      const serverErr = 'Server error. Please try again later.';
+      toast.error(serverErr);
+      setFeedback({ text: serverErr, type: 'error' });
     } finally {
       setLoading(false);
       setTimeout(() => setFeedback({ text: '', type: '' }), 6000);

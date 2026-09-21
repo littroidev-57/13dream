@@ -7,7 +7,7 @@ export default function sitemap() {
 
   const staticRoutes = [
     { path: '', priority: 1.0, changeFrequency: 'weekly' },
-    { path: '/apply', priority: 0.95, changeFrequency: 'weekly' },
+    { path: '/apply', priority: 1.0, changeFrequency: 'daily' },
     { path: '/study-abroad', priority: 0.9, changeFrequency: 'weekly' },
     { path: '/student-visa', priority: 0.9, changeFrequency: 'weekly' },
     { path: '/universities', priority: 0.85, changeFrequency: 'weekly' },

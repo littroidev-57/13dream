@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import toast from 'react-hot-toast';
 
 const destinationsList = [
   'Australia',
@@ -66,26 +67,32 @@ export default function HomeEnquiryForm({ defaultDestination = '' }) {
 
     // Client validation matching original script
     if (!formData.name.trim()) {
+      toast.error('Please fill the name');
       setStatusMsg({ text: 'Please fill the name', type: 'error' });
       return;
     }
     if (!formData.phone.trim() || !/^\d{10}$/.test(formData.phone.trim())) {
+      toast.error('Phone number must be 10 digits only');
       setStatusMsg({ text: 'Phone number must be 10 digits only', type: 'error' });
       return;
     }
     if (!formData.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
+      toast.error('Invalid email format');
       setStatusMsg({ text: 'Invalid email format', type: 'error' });
       return;
     }
     if (!formData.LastQualification.trim()) {
+      toast.error('Please fill your qualification');
       setStatusMsg({ text: 'Please fill your qualification', type: 'error' });
       return;
     }
     if (!formData.preferred_destination) {
+      toast.error('Please select a preferred destination');
       setStatusMsg({ text: 'Please select a preferred destination', type: 'error' });
       return;
     }
     if (!formData.preferredintake) {
+      toast.error('Please select preferred intake');
       setStatusMsg({ text: 'Please select preferred intake', type: 'error' });
       return;
     }
@@ -103,7 +110,9 @@ export default function HomeEnquiryForm({ defaultDestination = '' }) {
       const data = await res.json();
 
       if (data.msg || data.success) {
-        setStatusMsg({ text: 'We will get back to you shortly', type: 'success' });
+        const returnText = data.message || 'We will get back to you shortly';
+        toast.success(returnText, { duration: 6000 });
+        setStatusMsg({ text: returnText, type: 'success' });
         setFormData({
           name: '',
           phone: '',
@@ -114,10 +123,14 @@ export default function HomeEnquiryForm({ defaultDestination = '' }) {
           check: true,
         });
       } else {
-        setStatusMsg({ text: data.error || 'Something went wrong', type: 'error' });
+        const errorText = data.error || 'Something went wrong';
+        toast.error(errorText);
+        setStatusMsg({ text: errorText, type: 'error' });
       }
     } catch (err) {
-      setStatusMsg({ text: 'Error connecting to server. Please try again.', type: 'error' });
+      const netError = 'Error connecting to server. Please try again.';
+      toast.error(netError);
+      setStatusMsg({ text: netError, type: 'error' });
     } finally {
       setLoading(false);
       setTimeout(() => {

@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/dbConnect';
 import Contact from '@/models/Contact';
+import { sendContactNotification, sendStudentContactGreeting } from '@/lib/email';
 
 export async function GET() {
   try {
@@ -32,24 +33,30 @@ export async function POST(request) {
       );
     }
 
+    let savedContact = null;
     try {
       await dbConnect();
-      const contact = await Contact.create(formattedData);
-      return NextResponse.json({
-        success: true,
-        msg: true,
-        message: 'We will get back to you shortly',
-        data: contact,
-      });
+      savedContact = await Contact.create(formattedData);
     } catch (dbError) {
       console.warn('Database write fallback:', dbError.message);
-      return NextResponse.json({
-        success: true,
-        msg: true,
-        message: 'We will get back to you shortly (Local Mode)',
-        data: formattedData,
-      });
     }
+
+    // Trigger Resend email notifications (Admin alert + Sender confirmation)
+    try {
+      await Promise.allSettled([
+        sendContactNotification(formattedData),
+        sendStudentContactGreeting(formattedData),
+      ]);
+    } catch (emailError) {
+      console.error('Email notification error (non-blocking):', emailError);
+    }
+
+    return NextResponse.json({
+      success: true,
+      msg: true,
+      message: 'We will get back to you shortly',
+      data: savedContact || formattedData,
+    });
   } catch (error) {
     console.error('Error submitting contact form:', error);
     return NextResponse.json({ success: false, msg: false, error: error.message }, { status: 500 });

@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/dbConnect';
 import Enquiry from '@/models/Enquiry';
+import { sendEnquiryNotification, sendStudentEnquiryGreeting } from '@/lib/email';
 
 export async function GET() {
   try {
@@ -42,25 +43,30 @@ export async function POST(request) {
       );
     }
 
+    let savedRecord = null;
     try {
       await dbConnect();
-      const enquiry = await Enquiry.create(formattedData);
-      return NextResponse.json({
-        success: true,
-        msg: true,
-        message: 'We will get back to you shortly',
-        data: enquiry,
-      });
+      savedRecord = await Enquiry.create(formattedData);
     } catch (dbError) {
       console.warn('Database write bypassed or local MongoDB not running. Logging submission:', dbError.message);
-      // Return success gracefully so user forms remain functional even when local DB service isn't active
-      return NextResponse.json({
-        success: true,
-        msg: true,
-        message: 'We will get back to you shortly (Local Mode)',
-        data: formattedData,
-      });
     }
+
+    // Trigger Resend email notifications (Admin alert + Student greeting)
+    try {
+      await Promise.allSettled([
+        sendEnquiryNotification(formattedData),
+        sendStudentEnquiryGreeting(formattedData),
+      ]);
+    } catch (emailError) {
+      console.error('Email notification error (non-blocking):', emailError);
+    }
+
+    return NextResponse.json({
+      success: true,
+      msg: true,
+      message: 'We will get back to you shortly',
+      data: savedRecord || formattedData,
+    });
   } catch (error) {
     console.error('Error in enquiry submission:', error);
     return NextResponse.json({ success: false, msg: false, error: error.message }, { status: 500 });

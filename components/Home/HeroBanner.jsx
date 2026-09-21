@@ -12,30 +12,29 @@ export default function HeroBanner() {
           <div className="lg:col-span-7 flex flex-col items-start space-y-6">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-50 text-red-600 border border-red-200 text-xs font-bold tracking-wider uppercase shadow-sm">
               <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span>
-              <span>100% FREE VIRTUAL COUNSELING & VISA GUIDANCE</span>
+              <span>100% FREE COUNSELING & VISA GUIDANCE</span>
             </div>
 
             <h1 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-gray-900 tracking-tight leading-[1.2]">
-              Meet with <strong className="text-gray-900">80+ Universities</strong> at the World{' '}
-              <span className="text-red-600 bg-red-100/60 px-2 py-0.5 rounded-md inline-block">Education Fair</span>
-              <br />
-              In Your City!
+              Realise Your <strong className="text-gray-900">Study Abroad Dreams</strong> with Expert{' '}
+              <span className="text-red-600 bg-red-100/60 px-2 py-0.5 rounded-md inline-block">IELTS, PTE & Visa</span>{' '}
+              Filing!
             </h1>
 
             <p className="text-sm sm:text-base text-gray-600 leading-relaxed max-w-2xl">
-              Connect 1-on-1 with official university delegates and expert study abroad mentors. Get instant virtual counseling, spot assessments, application fee waivers, and guaranteed student visa assistance for <strong className="text-gray-800">UK, USA, Australia, Germany, Canada, New Zealand & Singapore</strong>.
+              Get end-to-end guidance from India’s trusted overseas education consultancy. From score-boosting <strong className="text-gray-800">IELTS & PTE coaching</strong> to university admissions and hassle-free <strong className="text-gray-800">Student Visa Filing</strong> for UK, Canada, Australia, USA, Germany, New Zealand & Singapore.
             </p>
 
             {/* Feature Chips */}
             <div className="flex flex-wrap gap-2.5 pt-1">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white border border-gray-200/90 text-xs font-semibold text-gray-800 shadow-sm hover:border-red-200 transition-colors">
-                <i className="fa-solid fa-circle-check text-green-600"></i> Free* Guidance For Student Visa
+                <i className="fa-solid fa-circle-check text-green-600"></i> IELTS & PTE Coaching
               </div>
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white border border-gray-200/90 text-xs font-semibold text-gray-800 shadow-sm hover:border-red-200 transition-colors">
-                <i className="fa-solid fa-circle-check text-green-600"></i> Instant Virtual Counseling
+                <i className="fa-solid fa-circle-check text-green-600"></i> Complete Visa Filing Assistance
               </div>
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white border border-gray-200/90 text-xs font-semibold text-gray-800 shadow-sm hover:border-red-200 transition-colors">
-                <i className="fa-solid fa-circle-check text-green-600"></i> Schedule 1-on-1 Sessions
+                <i className="fa-solid fa-circle-check text-green-600"></i> 1-on-1 Free Profile Assessment
               </div>
             </div>
 
@@ -50,7 +49,7 @@ export default function HeroBanner() {
                 <i className="fa-solid fa-arrow-right text-white text-sm transition-transform duration-300 group-hover:translate-x-1" style={{ color: '#ffffff' }}></i>
               </a>
               <a
-                href="https://wa.me/+919759053463?text=Hi%2C%20I%20want%20to%20schedule%20free%20virtual%20counseling%20for%20study%20abroad"
+                href="https://wa.me/+919759053463?text=Hi%2C%20I%20want%20to%20know%20about%20IELTS%2FPTE%20coaching%20and%20study%20visa%20services"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#1faa52] active:bg-[#168a42] text-white font-bold text-sm sm:text-base shadow-lg shadow-emerald-500/25 hover:shadow-xl hover:shadow-emerald-500/40 transition-all duration-300 transform hover:-translate-y-0.5"
@@ -80,7 +79,7 @@ export default function HeroBanner() {
             <div className="relative w-full max-w-[460px] rounded-t-[260px] rounded-b-[24px] p-2.5 bg-gradient-to-b from-red-100/60 via-white to-slate-100 shadow-2xl transition-transform duration-500 hover:-translate-y-1">
               <img
                 src="/img/homepage/virtual-counseling.jpg"
-                alt="Free Guidance For Student Visa & Instant Virtual Counseling - 13 Dreams Consultants"
+                alt="13 Dreams Consultants - IELTS, PTE & Study Visa Guidance"
                 className="w-full h-[520px] sm:h-[580px] object-cover rounded-t-[250px] rounded-b-[18px] shadow-sm block"
               />
             </div>

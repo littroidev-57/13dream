@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import toast from 'react-hot-toast';
 
 const stepsData = [
   {
@@ -155,7 +156,9 @@ export default function StepProcessSection() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name.trim() || !formData.phone.trim() || !formData.email.trim()) {
-      setStatusMsg({ text: 'Please complete all required fields', type: 'error' });
+      const valError = 'Please complete all required fields';
+      toast.error(valError);
+      setStatusMsg({ text: valError, type: 'error' });
       return;
     }
     setLoading(true);
@@ -175,8 +178,10 @@ export default function StepProcessSection() {
       });
       const data = await res.json();
       if (data.success || data.msg) {
+        const returnText = data.message || 'We will get back to you shortly';
+        toast.success(returnText, { duration: 6000 });
         setStatusMsg({
-          text: 'Thank you! Our country specialist will contact you shortly.',
+          text: returnText,
           type: 'success',
         });
         setFormData({ name: '', phone: '', email: '', country: 'Australia' });
@@ -185,10 +190,14 @@ export default function StepProcessSection() {
           setStatusMsg({ text: '', type: '' });
         }, 2500);
       } else {
-        setStatusMsg({ text: data.error || 'Failed to submit enquiry', type: 'error' });
+        const apiError = data.error || 'Failed to submit enquiry';
+        toast.error(apiError);
+        setStatusMsg({ text: apiError, type: 'error' });
       }
     } catch (err) {
-      setStatusMsg({ text: 'Error connecting to server. Please try again.', type: 'error' });
+      const netError = 'Error connecting to server. Please try again.';
+      toast.error(netError);
+      setStatusMsg({ text: netError, type: 'error' });
     } finally {
       setLoading(false);
     }

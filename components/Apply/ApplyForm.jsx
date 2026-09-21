@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import toast from 'react-hot-toast';
 
 export default function ApplyForm({ defaultCountry = '' }) {
   const router = useRouter();
@@ -27,6 +28,38 @@ export default function ApplyForm({ defaultCountry = '' }) {
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [statusMsg, setStatusMsg] = useState({ text: '', type: '' });
+  const [openFaq, setOpenFaq] = useState(null);
+
+  const toggleFaq = (idx) => {
+    setOpenFaq((prev) => (prev === idx ? null : idx));
+  };
+
+  const studentFaqs = [
+    {
+      q: 'Is the study abroad counselling at 13 Dreams Consultants really 100% free?',
+      a: 'Yes! Our initial profile assessment, university shortlisting, and career counselling sessions are 100% free with no hidden charges. We help you choose the right course and destination tailored to your career goals and budget.',
+    },
+    {
+      q: 'Which countries can I apply to for student visas?',
+      a: 'We provide end-to-end student visa guidance for Australia, Canada, United Kingdom (UK), United States (USA), Germany, New Zealand, Ireland, Singapore, Switzerland, and Malta.',
+    },
+    {
+      q: 'What is the visa approval success rate of 13 Dreams Consultants?',
+      a: '13 Dreams Consultants maintains an industry-leading 99% student visa grant rate backed by 15+ years of operational excellence, rigorous documentation audits, and dedicated mock embassy interview prep.',
+    },
+    {
+      q: 'Do you help with IELTS / PTE coaching and test preparation?',
+      a: 'Yes, we provide certified classroom and online IELTS and PTE coaching with mock tests, master trainers, and band score improvement strategies at our Bareilly & Khatima centres.',
+    },
+    {
+      q: 'What documents are required to apply for a student visa?',
+      a: 'Essential documents include academic transcripts, passport, English test scorecards (IELTS / PTE / TOEFL), Statement of Purpose (SOP), Letters of Recommendation (LOR), financial bank statements, and university acceptance letters (Offer Letter / CoE / CAS / I-20).',
+    },
+    {
+      q: 'Can I apply for a student visa with an education gap?',
+      a: 'Yes! Study gaps are accepted by many foreign universities and embassies when supported with relevant work experience certificates, skill credentials, or genuine explanations. Our experts guide you with flawless gap documentation.',
+    },
+  ];
 
   const handleClose = () => {
     if (typeof window !== 'undefined' && window.history.length > 1) {
@@ -105,8 +138,10 @@ export default function ApplyForm({ defaultCountry = '' }) {
     setStatusMsg({ text: '', type: '' });
 
     if (!validate()) {
+      const valError = 'Please complete all required fields marked with *.';
+      toast.error(valError);
       setStatusMsg({
-        text: 'Please complete all required fields marked with *.',
+        text: valError,
         type: 'error',
       });
       return;
@@ -136,8 +171,12 @@ export default function ApplyForm({ defaultCountry = '' }) {
       const data = await res.json();
 
       if (data.success || data.msg) {
+        const apiReturnText = data.message || 'We will get back to you shortly';
+        toast.success(apiReturnText, {
+          duration: 6000,
+        });
         setStatusMsg({
-          text: '🎉 Thank you! Your request for FREE counselling has been received. Our senior study abroad advisor will contact you within 24 hours.',
+          text: `🎉 ${apiReturnText}. Our senior study abroad advisor will contact you within 24 hours.`,
           type: 'success',
         });
         setFormData({
@@ -158,15 +197,19 @@ export default function ApplyForm({ defaultCountry = '' }) {
         });
         setErrors({});
       } else {
+        const apiError = data.error || 'Something went wrong. Please check your details and try again.';
+        toast.error(apiError);
         setStatusMsg({
-          text: data.error || 'Something went wrong. Please check your details and try again.',
+          text: apiError,
           type: 'error',
         });
       }
     } catch (err) {
       console.error('Apply form submission error:', err);
+      const netErr = 'Network error submitting application. Please call +91 9759053463 or try again.';
+      toast.error(netErr);
       setStatusMsg({
-        text: 'Network error submitting application. Please call +91 9759053463 or try again.',
+        text: netErr,
         type: 'error',
       });
     } finally {
@@ -251,12 +294,15 @@ export default function ApplyForm({ defaultCountry = '' }) {
               
               {/* Heading & Red Accent Bar */}
               <div>
+                <span className="inline-block text-xs font-bold uppercase tracking-wider text-red-600 bg-red-50 border border-red-200 px-3 py-1 rounded-full mb-3">
+                  100% Free Consultation • 99% Visa Grant Rate
+                </span>
                 <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#1f242e] tracking-tight">
-                  Get FREE Counselling Today!
+                  Visa Application Assistance &amp; Free Study Abroad Counselling
                 </h1>
-                <span className="block bg-red-600 w-8 h-1.5 rounded-full mt-2.5 mb-3.5"></span>
+                <span className="block bg-red-600 w-12 h-1.5 rounded-full mt-2.5 mb-3.5"></span>
                 <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
-                  Enter your details and our expert will reach out to you to discuss your plans. By the way, all our services are free!
+                  Enter your details to connect with a certified overseas education expert. We provide end-to-end university shortlisting, documentation guidance, and student visa assistance with ₹0 service fee!
                 </p>
               </div>
 
@@ -621,6 +667,349 @@ export default function ApplyForm({ defaultCountry = '' }) {
             </div>
 
           </div>
+
+          {/* ── SEO Authority & Trust Bar ── */}
+          <div className="mt-12 sm:mt-16 bg-white rounded-2xl p-6 sm:p-8 border border-gray-200/80 shadow-sm grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div className="p-2">
+              <div className="text-2xl sm:text-3xl font-black text-red-600 mb-1">15+</div>
+              <div className="text-xs sm:text-sm font-bold text-gray-900">Years Experience</div>
+              <p className="text-[11px] sm:text-xs text-gray-500 mt-0.5">Trusted by thousands of students</p>
+            </div>
+            <div className="p-2 border-l border-gray-100">
+              <div className="text-2xl sm:text-3xl font-black text-red-600 mb-1">99%</div>
+              <div className="text-xs sm:text-sm font-bold text-gray-900">Visa Grant Rate</div>
+              <p className="text-[11px] sm:text-xs text-gray-500 mt-0.5">Meticulous file auditing</p>
+            </div>
+            <div className="p-2 md:border-l border-gray-100">
+              <div className="text-2xl sm:text-3xl font-black text-red-600 mb-1">150+</div>
+              <div className="text-xs sm:text-sm font-bold text-gray-900">Global Partners</div>
+              <p className="text-[11px] sm:text-xs text-gray-500 mt-0.5">Top universities &amp; colleges</p>
+            </div>
+            <div className="p-2 border-l border-gray-100">
+              <div className="text-2xl sm:text-3xl font-black text-red-600 mb-1">₹0</div>
+              <div className="text-xs sm:text-sm font-bold text-gray-900">Counselling Fee</div>
+              <p className="text-[11px] sm:text-xs text-gray-500 mt-0.5">100% Free profile assessment</p>
+            </div>
+          </div>
+
+          {/* ── Section: 4-Step Application Process (SEO Keyword Rich) ── */}
+          <section className="mt-14 sm:mt-20">
+            <div className="text-center max-w-3xl mx-auto mb-10">
+              <span className="text-xs font-bold uppercase tracking-wider text-red-600 bg-red-50 border border-red-200 px-3 py-1 rounded-full">
+                Simple &amp; Transparent
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1f242e] mt-3">
+                How Your Free Study Abroad Application Works
+              </h2>
+              <p className="text-gray-600 text-sm sm:text-base mt-2">
+                From initial profile assessment to embassy visa stamping, our team guides you at every single step with zero confusion.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+              <div className="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm relative hover:-translate-y-1 transition-transform">
+                <span className="absolute -top-3.5 left-6 bg-red-600 text-white text-xs font-black px-2.5 py-1 rounded-full shadow">
+                  Step 01
+                </span>
+                <div className="w-12 h-12 rounded-xl bg-red-50 text-red-600 flex items-center justify-center text-xl font-bold mb-4 mt-2">
+                  <i className="fa-solid fa-clipboard-check"></i>
+                </div>
+                <h3 className="text-base font-bold text-gray-900 mb-2">Free Profile Evaluation</h3>
+                <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                  We analyze your academic marks, backlogs, gaps, and IELTS/PTE scores to identify eligible high-visa-success countries.
+                </p>
+              </div>
+
+              <div className="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm relative hover:-translate-y-1 transition-transform">
+                <span className="absolute -top-3.5 left-6 bg-red-600 text-white text-xs font-black px-2.5 py-1 rounded-full shadow">
+                  Step 02
+                </span>
+                <div className="w-12 h-12 rounded-xl bg-red-50 text-red-600 flex items-center justify-center text-xl font-bold mb-4 mt-2">
+                  <i className="fa-solid fa-graduation-cap"></i>
+                </div>
+                <h3 className="text-base font-bold text-gray-900 mb-2">Course &amp; University Shortlisting</h3>
+                <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                  Select from 150+ accredited global institutions offering scholarships, high employability, and post-study work rights.
+                </p>
+              </div>
+
+              <div className="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm relative hover:-translate-y-1 transition-transform">
+                <span className="absolute -top-3.5 left-6 bg-red-600 text-white text-xs font-black px-2.5 py-1 rounded-full shadow">
+                  Step 03
+                </span>
+                <div className="w-12 h-12 rounded-xl bg-red-50 text-red-600 flex items-center justify-center text-xl font-bold mb-4 mt-2">
+                  <i className="fa-solid fa-file-signature"></i>
+                </div>
+                <h3 className="text-base font-bold text-gray-900 mb-2">SOP &amp; Document Filing</h3>
+                <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                  Our professional editors refine your Statement of Purpose (SOP), recommendation letters, and financial paper trails.
+                </p>
+              </div>
+
+              <div className="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm relative hover:-translate-y-1 transition-transform">
+                <span className="absolute -top-3.5 left-6 bg-red-600 text-white text-xs font-black px-2.5 py-1 rounded-full shadow">
+                  Step 04
+                </span>
+                <div className="w-12 h-12 rounded-xl bg-red-50 text-red-600 flex items-center justify-center text-xl font-bold mb-4 mt-2">
+                  <i className="fa-solid fa-plane-departure"></i>
+                </div>
+                <h3 className="text-base font-bold text-gray-900 mb-2">Visa Grant &amp; Pre-Departure</h3>
+                <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                  Embassy visa file submission, biometric booking, mock interview sessions, and pre-departure accommodation guidance.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* ── Section: Top Study Abroad Destinations ── */}
+          <section className="mt-14 sm:mt-20">
+            <div className="text-center max-w-3xl mx-auto mb-10">
+              <span className="text-xs font-bold uppercase tracking-wider text-red-600 bg-red-50 border border-red-200 px-3 py-1 rounded-full">
+                Global Opportunities
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1f242e] mt-3">
+                Top Student Visa &amp; Study Abroad Destinations
+              </h2>
+              <p className="text-gray-600 text-sm sm:text-base mt-2">
+                Explore popular international education hubs with high PR opportunities, generous scholarships, and top-tier universities.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              
+              {/* Australia */}
+              <div className="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:border-red-300 transition-colors">
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="text-2xl">🇦🇺</span>
+                  <div>
+                    <h3 className="font-bold text-gray-900">Study in Australia</h3>
+                    <span className="text-xs text-gray-500">Subclass 500 Student Visa</span>
+                  </div>
+                </div>
+                <p className="text-xs sm:text-sm text-gray-600 mb-4 leading-relaxed">
+                  World-renowned Group of Eight (Go8) universities, high minimum wages, and 2-4 years Post-Study Work rights (PSW).
+                </p>
+                <div className="flex flex-wrap gap-1.5 text-[11px] font-semibold text-gray-600">
+                  <span className="bg-gray-100 px-2 py-0.5 rounded">Fast CoE Issuance</span>
+                  <span className="bg-gray-100 px-2 py-0.5 rounded">Part-Time Work Allowed</span>
+                </div>
+              </div>
+
+              {/* Canada */}
+              <div className="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:border-red-300 transition-colors">
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="text-2xl">🇨🇦</span>
+                  <div>
+                    <h3 className="font-bold text-gray-900">Study in Canada</h3>
+                    <span className="text-xs text-gray-500">Study Permit &amp; SDS Category</span>
+                  </div>
+                </div>
+                <p className="text-xs sm:text-sm text-gray-600 mb-4 leading-relaxed">
+                  Affordable tuition fees, safe multicultural cities, and up to 3-year Post-Graduation Work Permits (PGWP) leading to PR.
+                </p>
+                <div className="flex flex-wrap gap-1.5 text-[11px] font-semibold text-gray-600">
+                  <span className="bg-gray-100 px-2 py-0.5 rounded">SDS Stream</span>
+                  <span className="bg-gray-100 px-2 py-0.5 rounded">Co-op Programs</span>
+                </div>
+              </div>
+
+              {/* UK */}
+              <div className="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:border-red-300 transition-colors">
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="text-2xl">🇬🇧</span>
+                  <div>
+                    <h3 className="font-bold text-gray-900">Study in the United Kingdom</h3>
+                    <span className="text-xs text-gray-500">Student Route Visa</span>
+                  </div>
+                </div>
+                <p className="text-xs sm:text-sm text-gray-600 mb-4 leading-relaxed">
+                  Prestigious 1-year Master’s degrees, globally ranked Russell Group institutions, and 2-year Graduate Route visa.
+                </p>
+                <div className="flex flex-wrap gap-1.5 text-[11px] font-semibold text-gray-600">
+                  <span className="bg-gray-100 px-2 py-0.5 rounded">1-Year Masters</span>
+                  <span className="bg-gray-100 px-2 py-0.5 rounded">No IELTS Options</span>
+                </div>
+              </div>
+
+              {/* USA */}
+              <div className="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:border-red-300 transition-colors">
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="text-2xl">🇺🇸</span>
+                  <div>
+                    <h3 className="font-bold text-gray-900">Study in the United States</h3>
+                    <span className="text-xs text-gray-500">F-1 Student Visa &amp; STEM OPT</span>
+                  </div>
+                </div>
+                <p className="text-xs sm:text-sm text-gray-600 mb-4 leading-relaxed">
+                  Unmatched research facilities, Fortune 500 internship opportunities, and up to 36-month STEM OPT work extensions.
+                </p>
+                <div className="flex flex-wrap gap-1.5 text-[11px] font-semibold text-gray-600">
+                  <span className="bg-gray-100 px-2 py-0.5 rounded">STEM OPT</span>
+                  <span className="bg-gray-100 px-2 py-0.5 rounded">Scholarships Available</span>
+                </div>
+              </div>
+
+              {/* Germany & Europe */}
+              <div className="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:border-red-300 transition-colors">
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="text-2xl">🇩🇪</span>
+                  <div>
+                    <h3 className="font-bold text-gray-900">Study in Germany &amp; Europe</h3>
+                    <span className="text-xs text-gray-500">Schengen Student Visa</span>
+                  </div>
+                </div>
+                <p className="text-xs sm:text-sm text-gray-600 mb-4 leading-relaxed">
+                  Low or zero tuition fees at public universities, strong engineering hub, and 18-month post-study job search visa.
+                </p>
+                <div className="flex flex-wrap gap-1.5 text-[11px] font-semibold text-gray-600">
+                  <span className="bg-gray-100 px-2 py-0.5 rounded">Zero Tuition Fees</span>
+                  <span className="bg-gray-100 px-2 py-0.5 rounded">Schengen Travel</span>
+                </div>
+              </div>
+
+              {/* New Zealand & Ireland */}
+              <div className="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:border-red-300 transition-colors">
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="text-2xl">🇳🇿</span>
+                  <div>
+                    <h3 className="font-bold text-gray-900">Study in New Zealand &amp; Ireland</h3>
+                    <span className="text-xs text-gray-500">Fee Paying Student Visa</span>
+                  </div>
+                </div>
+                <p className="text-xs sm:text-sm text-gray-600 mb-4 leading-relaxed">
+                  High quality of life, peaceful environment, booming European tech hub in Dublin, and straightforward work routes.
+                </p>
+                <div className="flex flex-wrap gap-1.5 text-[11px] font-semibold text-gray-600">
+                  <span className="bg-gray-100 px-2 py-0.5 rounded">European Silicon Valley</span>
+                  <span className="bg-gray-100 px-2 py-0.5 rounded">Post-Study Visa</span>
+                </div>
+              </div>
+
+            </div>
+          </section>
+
+          {/* ── Section: Student FAQs (Rich Schema Matching) ── */}
+          <section className="mt-14 sm:mt-20">
+            <div className="text-center max-w-3xl mx-auto mb-10">
+              <span className="text-xs font-bold uppercase tracking-wider text-red-600 bg-red-50 border border-red-200 px-3 py-1 rounded-full">
+                Got Questions?
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1f242e] mt-3">
+                Frequently Asked Questions by Students
+              </h2>
+              <p className="text-gray-600 text-sm sm:text-base mt-2">
+                Everything you need to know about study abroad counselling, document preparation, and visa applications.
+              </p>
+            </div>
+
+            <div className="max-w-4xl mx-auto space-y-4">
+              {studentFaqs.map((faq, idx) => (
+                <div
+                  key={idx}
+                  className="bg-white rounded-2xl border border-gray-200/80 overflow-hidden shadow-sm transition-all"
+                >
+                  <button
+                    type="button"
+                    onClick={() => toggleFaq(idx)}
+                    className="w-full text-left px-5 sm:px-6 py-4 sm:py-5 flex justify-between items-center gap-4 hover:bg-gray-50/60 transition-colors cursor-pointer"
+                    aria-expanded={openFaq === idx}
+                  >
+                    <span className="font-bold text-sm sm:text-base text-gray-900">
+                      {faq.q}
+                    </span>
+                    <span
+                      className={`w-7 h-7 rounded-full flex items-center justify-center bg-gray-100 text-gray-600 text-xs flex-shrink-0 transition-transform duration-300 ${
+                        openFaq === idx ? 'rotate-180 bg-red-50 text-red-600' : ''
+                      }`}
+                    >
+                      <i className="fa-solid fa-chevron-down"></i>
+                    </span>
+                  </button>
+                  {openFaq === idx && (
+                    <div className="px-5 sm:px-6 pb-5 pt-1 text-xs sm:text-sm text-gray-600 leading-relaxed border-t border-gray-100">
+                      {faq.a}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* ── Section: Nearest Office & Direct Support ── */}
+          <div className="mt-14 sm:mt-20 bg-gradient-to-br from-gray-900 to-[#181d24] text-white rounded-3xl p-6 sm:p-10 shadow-xl">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+              <div>
+                <span className="text-xs font-bold uppercase tracking-wider text-red-400 bg-red-950/60 border border-red-800/60 px-3 py-1 rounded-full">
+                  Visit Our Authorized Centres
+                </span>
+                <h2 className="text-2xl sm:text-3xl font-extrabold mt-3">
+                  Prefer In-Person Counselling?
+                </h2>
+                <p className="text-gray-300 text-sm mt-2 leading-relaxed">
+                  Walk in to any of our branch offices in Bareilly or Khatima for one-on-one document verification and face-to-face counselling with senior advisors.
+                </p>
+                <div className="mt-6 flex flex-wrap gap-3">
+                  <a
+                    href="tel:+919759053463"
+                    className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-bold px-5 py-2.5 rounded-xl text-sm transition-colors shadow"
+                  >
+                    <i className="fa-solid fa-phone"></i>
+                    <span>Call +91 9759053463</span>
+                  </a>
+                  <a
+                    href="https://wa.me/919759053463?text=Hi%2013%20Dreams,%20I%20want%20to%20apply%20for%20study%20abroad%20counselling"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-5 py-2.5 rounded-xl text-sm transition-colors shadow"
+                  >
+                    <i className="fa-brands fa-whatsapp"></i>
+                    <span>Chat on WhatsApp</span>
+                  </a>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                <div className="bg-white/10 backdrop-blur-sm p-4 sm:p-5 rounded-2xl border border-white/10">
+                  <h4 className="font-bold text-white text-sm sm:text-base flex items-center gap-2">
+                    <i className="fa-solid fa-location-dot text-red-400"></i> Bareilly Head Office
+                  </h4>
+                  <p className="text-gray-300 text-xs sm:text-sm mt-1">
+                    Luthra Tower 2nd Floor C 56 Ekta Nagar, Opp. LIC Office, Model Town, Bareilly, UP 243005
+                  </p>
+                </div>
+
+                <div className="bg-white/10 backdrop-blur-sm p-4 sm:p-5 rounded-2xl border border-white/10">
+                  <h4 className="font-bold text-white text-sm sm:text-base flex items-center gap-2">
+                    <i className="fa-solid fa-location-dot text-red-400"></i> Khatima Branch Office
+                  </h4>
+                  <p className="text-gray-300 text-xs sm:text-sm mt-1">
+                    Tanakpur Road, Opp. Canara Bank, Khatima, Uttarakhand 262308
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* ── Footer Trust Links ── */}
+          <footer className="mt-12 sm:mt-16 pt-8 border-t border-gray-200 text-center text-xs text-gray-500 flex flex-col sm:flex-row items-center justify-between gap-4 pb-6">
+            <div>
+              &copy; {new Date().getFullYear()} 13 Dreams Consultants. All rights reserved.
+            </div>
+            <div className="flex items-center gap-4 font-medium">
+              <Link href="/privacy-policy" className="hover:text-red-600 transition-colors">
+                Privacy Policy
+              </Link>
+              <span>•</span>
+              <Link href="/terms" className="hover:text-red-600 transition-colors">
+                Terms of Service
+              </Link>
+              <span>•</span>
+              <Link href="/contact" className="hover:text-red-600 transition-colors">
+                Contact Us
+              </Link>
+            </div>
+          </footer>
+
         </div>
       </main>
     </div>

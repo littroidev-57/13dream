@@ -7,6 +7,8 @@ import Footer from '@/components/Footer/Footer';
 import WhatsAppButton from '@/components/UI/WhatsAppButton';
 import JourneyCtaBanner from '@/components/UI/JourneyCtaBanner';
 
+import ToastProvider from '@/components/UI/ToastProvider';
+
 export default function LayoutChrome({ children }) {
   const pathname = usePathname();
   const isApplyPage = pathname === '/apply' || pathname?.startsWith('/apply');
@@ -14,6 +16,7 @@ export default function LayoutChrome({ children }) {
   if (isApplyPage) {
     return (
       <div id="page" className="site min-h-screen bg-[#f6f8fa]">
+        <ToastProvider />
         <main>{children}</main>
       </div>
     );
@@ -21,6 +24,7 @@ export default function LayoutChrome({ children }) {
 
   return (
     <div id="page" className="site">
+      <ToastProvider />
       <HeaderWrapper />
       <main>{children}</main>
       <JourneyCtaBanner />
