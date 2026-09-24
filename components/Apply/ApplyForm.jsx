@@ -746,7 +746,11 @@ export default function ApplyForm({ defaultCountry = '' }) {
                 className="group bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:border-red-500 hover:shadow-md transition-all block"
               >
                 <div className="flex items-center gap-3 mb-3">
-                  <span className="text-2xl">🇦🇺</span>
+                  <img
+                    src="/img/flags/au.svg"
+                    alt="Australia Flag"
+                    className="w-8 h-5.5 object-cover rounded shadow-sm border border-gray-200 shrink-0"
+                  />
                   <div>
                     <h3 className="font-bold text-gray-900 group-hover:text-red-600 transition-colors">Study in Australia</h3>
                     <span className="text-xs text-gray-500">Subclass 500 Student Visa</span>
@@ -770,7 +774,11 @@ export default function ApplyForm({ defaultCountry = '' }) {
                 className="group bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:border-red-500 hover:shadow-md transition-all block"
               >
                 <div className="flex items-center gap-3 mb-3">
-                  <span className="text-2xl">🇨🇦</span>
+                  <img
+                    src="/img/flags/ca.svg"
+                    alt="Canada Flag"
+                    className="w-8 h-5.5 object-cover rounded shadow-sm border border-gray-200 shrink-0"
+                  />
                   <div>
                     <h3 className="font-bold text-gray-900 group-hover:text-red-600 transition-colors">Study in Canada</h3>
                     <span className="text-xs text-gray-500">Study Permit &amp; SDS Category</span>
@@ -794,7 +802,11 @@ export default function ApplyForm({ defaultCountry = '' }) {
                 className="group bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:border-red-500 hover:shadow-md transition-all block"
               >
                 <div className="flex items-center gap-3 mb-3">
-                  <span className="text-2xl">🇬🇧</span>
+                  <img
+                    src="/img/flags/gb.svg"
+                    alt="United Kingdom Flag"
+                    className="w-8 h-5.5 object-cover rounded shadow-sm border border-gray-200 shrink-0"
+                  />
                   <div>
                     <h3 className="font-bold text-gray-900 group-hover:text-red-600 transition-colors">Study in the United Kingdom</h3>
                     <span className="text-xs text-gray-500">Student Route Visa</span>
@@ -818,7 +830,11 @@ export default function ApplyForm({ defaultCountry = '' }) {
                 className="group bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:border-red-500 hover:shadow-md transition-all block"
               >
                 <div className="flex items-center gap-3 mb-3">
-                  <span className="text-2xl">🇺🇸</span>
+                  <img
+                    src="/img/flags/us.svg"
+                    alt="USA Flag"
+                    className="w-8 h-5.5 object-cover rounded shadow-sm border border-gray-200 shrink-0"
+                  />
                   <div>
                     <h3 className="font-bold text-gray-900 group-hover:text-red-600 transition-colors">Study in the United States</h3>
                     <span className="text-xs text-gray-500">F-1 Student Visa &amp; STEM OPT</span>
@@ -842,7 +858,11 @@ export default function ApplyForm({ defaultCountry = '' }) {
                 className="group bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:border-red-500 hover:shadow-md transition-all block"
               >
                 <div className="flex items-center gap-3 mb-3">
-                  <span className="text-2xl">🇩🇪</span>
+                  <img
+                    src="/img/flags/de.svg"
+                    alt="Germany Flag"
+                    className="w-8 h-5.5 object-cover rounded shadow-sm border border-gray-200 shrink-0"
+                  />
                   <div>
                     <h3 className="font-bold text-gray-900 group-hover:text-red-600 transition-colors">Study in Germany &amp; Europe</h3>
                     <span className="text-xs text-gray-500">Schengen Student Visa</span>
@@ -866,7 +886,11 @@ export default function ApplyForm({ defaultCountry = '' }) {
                 className="group bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:border-red-500 hover:shadow-md transition-all block"
               >
                 <div className="flex items-center gap-3 mb-3">
-                  <span className="text-2xl">🇳🇿</span>
+                  <img
+                    src="/img/flags/nz.svg"
+                    alt="New Zealand Flag"
+                    className="w-8 h-5.5 object-cover rounded shadow-sm border border-gray-200 shrink-0"
+                  />
                   <div>
                     <h3 className="font-bold text-gray-900 group-hover:text-red-600 transition-colors">Study in New Zealand &amp; Ireland</h3>
                     <span className="text-xs text-gray-500">Fee Paying Student Visa</span>
