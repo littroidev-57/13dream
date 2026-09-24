@@ -331,7 +331,10 @@ export default function ApplyForm({ defaultCountry = '' }) {
               <div className="relative w-full max-w-[440px] lg:max-w-none rounded-3xl overflow-hidden shadow-2xl border border-gray-200 bg-white">
                 <img
                   src="/img/apply-student-girl.jpg"
-                  alt="Student holding passport and books for study abroad"
+                  alt="Student applying for overseas education visa at 13 Dreams Consultants Bareilly"
+                  width={640}
+                  height={800}
+                  loading="eager"
                   className="w-full h-auto max-h-[520px] lg:max-h-[640px] object-cover object-top hover:scale-102 transition-transform duration-700"
                 />
                 {/* Floating Bottom Badge */}
@@ -361,11 +364,11 @@ export default function ApplyForm({ defaultCountry = '' }) {
                   100% Free Consultation • 99% Visa Grant Rate
                 </span>
                 <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#1f242e] tracking-tight">
-                  Visa Application Assistance &amp; Free Study Abroad Counselling
+                  Apply Online for Study Visa Assistance &amp; Free Overseas Counselling
                 </h1>
                 <span className="block bg-red-600 w-12 h-1.5 rounded-full mt-2.5 mb-3.5"></span>
                 <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
-                  Enter your details to connect with a certified overseas education expert. We provide end-to-end university shortlisting, documentation guidance, and student visa assistance with ₹0 service fee!
+                  Enter your details to connect with a certified overseas education expert in Bareilly. We provide end-to-end university shortlisting, documentation guidance, and student visa assistance with ₹0 service fee!
                 </p>
               </div>
 
@@ -738,112 +741,148 @@ export default function ApplyForm({ defaultCountry = '' }) {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
               {/* Australia */}
-              <div className="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:border-red-300 transition-colors">
+              <Link
+                href="/study/australia"
+                className="group bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:border-red-500 hover:shadow-md transition-all block"
+              >
                 <div className="flex items-center gap-3 mb-3">
                   <span className="text-2xl">🇦🇺</span>
                   <div>
-                    <h3 className="font-bold text-gray-900">Study in Australia</h3>
+                    <h3 className="font-bold text-gray-900 group-hover:text-red-600 transition-colors">Study in Australia</h3>
                     <span className="text-xs text-gray-500">Subclass 500 Student Visa</span>
                   </div>
                 </div>
                 <p className="text-xs sm:text-sm text-gray-600 mb-4 leading-relaxed">
                   World-renowned Group of Eight (Go8) universities, high minimum wages, and 2-4 years Post-Study Work rights (PSW).
                 </p>
-                <div className="flex flex-wrap gap-1.5 text-[11px] font-semibold text-gray-600">
+                <div className="flex flex-wrap gap-1.5 text-[11px] font-semibold text-gray-600 mb-3">
                   <span className="bg-gray-100 px-2 py-0.5 rounded">Fast CoE Issuance</span>
                   <span className="bg-gray-100 px-2 py-0.5 rounded">Part-Time Work Allowed</span>
                 </div>
-              </div>
+                <span className="text-xs font-bold text-red-600 inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                  Explore Australia Guide →
+                </span>
+              </Link>
 
               {/* Canada */}
-              <div className="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:border-red-300 transition-colors">
+              <Link
+                href="/study/canada"
+                className="group bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:border-red-500 hover:shadow-md transition-all block"
+              >
                 <div className="flex items-center gap-3 mb-3">
                   <span className="text-2xl">🇨🇦</span>
                   <div>
-                    <h3 className="font-bold text-gray-900">Study in Canada</h3>
+                    <h3 className="font-bold text-gray-900 group-hover:text-red-600 transition-colors">Study in Canada</h3>
                     <span className="text-xs text-gray-500">Study Permit &amp; SDS Category</span>
                   </div>
                 </div>
                 <p className="text-xs sm:text-sm text-gray-600 mb-4 leading-relaxed">
                   Affordable tuition fees, safe multicultural cities, and up to 3-year Post-Graduation Work Permits (PGWP) leading to PR.
                 </p>
-                <div className="flex flex-wrap gap-1.5 text-[11px] font-semibold text-gray-600">
+                <div className="flex flex-wrap gap-1.5 text-[11px] font-semibold text-gray-600 mb-3">
                   <span className="bg-gray-100 px-2 py-0.5 rounded">SDS Stream</span>
                   <span className="bg-gray-100 px-2 py-0.5 rounded">Co-op Programs</span>
                 </div>
-              </div>
+                <span className="text-xs font-bold text-red-600 inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                  Explore Canada Guide →
+                </span>
+              </Link>
 
               {/* UK */}
-              <div className="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:border-red-300 transition-colors">
+              <Link
+                href="/study/uk"
+                className="group bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:border-red-500 hover:shadow-md transition-all block"
+              >
                 <div className="flex items-center gap-3 mb-3">
                   <span className="text-2xl">🇬🇧</span>
                   <div>
-                    <h3 className="font-bold text-gray-900">Study in the United Kingdom</h3>
+                    <h3 className="font-bold text-gray-900 group-hover:text-red-600 transition-colors">Study in the United Kingdom</h3>
                     <span className="text-xs text-gray-500">Student Route Visa</span>
                   </div>
                 </div>
                 <p className="text-xs sm:text-sm text-gray-600 mb-4 leading-relaxed">
                   Prestigious 1-year Master’s degrees, globally ranked Russell Group institutions, and 2-year Graduate Route visa.
                 </p>
-                <div className="flex flex-wrap gap-1.5 text-[11px] font-semibold text-gray-600">
+                <div className="flex flex-wrap gap-1.5 text-[11px] font-semibold text-gray-600 mb-3">
                   <span className="bg-gray-100 px-2 py-0.5 rounded">1-Year Masters</span>
                   <span className="bg-gray-100 px-2 py-0.5 rounded">No IELTS Options</span>
                 </div>
-              </div>
+                <span className="text-xs font-bold text-red-600 inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                  Explore UK Guide →
+                </span>
+              </Link>
 
               {/* USA */}
-              <div className="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:border-red-300 transition-colors">
+              <Link
+                href="/study/usa"
+                className="group bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:border-red-500 hover:shadow-md transition-all block"
+              >
                 <div className="flex items-center gap-3 mb-3">
                   <span className="text-2xl">🇺🇸</span>
                   <div>
-                    <h3 className="font-bold text-gray-900">Study in the United States</h3>
+                    <h3 className="font-bold text-gray-900 group-hover:text-red-600 transition-colors">Study in the United States</h3>
                     <span className="text-xs text-gray-500">F-1 Student Visa &amp; STEM OPT</span>
                   </div>
                 </div>
                 <p className="text-xs sm:text-sm text-gray-600 mb-4 leading-relaxed">
                   Unmatched research facilities, Fortune 500 internship opportunities, and up to 36-month STEM OPT work extensions.
                 </p>
-                <div className="flex flex-wrap gap-1.5 text-[11px] font-semibold text-gray-600">
+                <div className="flex flex-wrap gap-1.5 text-[11px] font-semibold text-gray-600 mb-3">
                   <span className="bg-gray-100 px-2 py-0.5 rounded">STEM OPT</span>
                   <span className="bg-gray-100 px-2 py-0.5 rounded">Scholarships Available</span>
                 </div>
-              </div>
+                <span className="text-xs font-bold text-red-600 inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                  Explore USA Guide →
+                </span>
+              </Link>
 
               {/* Germany & Europe */}
-              <div className="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:border-red-300 transition-colors">
+              <Link
+                href="/study/germany"
+                className="group bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:border-red-500 hover:shadow-md transition-all block"
+              >
                 <div className="flex items-center gap-3 mb-3">
                   <span className="text-2xl">🇩🇪</span>
                   <div>
-                    <h3 className="font-bold text-gray-900">Study in Germany &amp; Europe</h3>
+                    <h3 className="font-bold text-gray-900 group-hover:text-red-600 transition-colors">Study in Germany &amp; Europe</h3>
                     <span className="text-xs text-gray-500">Schengen Student Visa</span>
                   </div>
                 </div>
                 <p className="text-xs sm:text-sm text-gray-600 mb-4 leading-relaxed">
                   Low or zero tuition fees at public universities, strong engineering hub, and 18-month post-study job search visa.
                 </p>
-                <div className="flex flex-wrap gap-1.5 text-[11px] font-semibold text-gray-600">
+                <div className="flex flex-wrap gap-1.5 text-[11px] font-semibold text-gray-600 mb-3">
                   <span className="bg-gray-100 px-2 py-0.5 rounded">Zero Tuition Fees</span>
                   <span className="bg-gray-100 px-2 py-0.5 rounded">Schengen Travel</span>
                 </div>
-              </div>
+                <span className="text-xs font-bold text-red-600 inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                  Explore Germany Guide →
+                </span>
+              </Link>
 
               {/* New Zealand & Ireland */}
-              <div className="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:border-red-300 transition-colors">
+              <Link
+                href="/study/new-zealand"
+                className="group bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:border-red-500 hover:shadow-md transition-all block"
+              >
                 <div className="flex items-center gap-3 mb-3">
                   <span className="text-2xl">🇳🇿</span>
                   <div>
-                    <h3 className="font-bold text-gray-900">Study in New Zealand &amp; Ireland</h3>
+                    <h3 className="font-bold text-gray-900 group-hover:text-red-600 transition-colors">Study in New Zealand &amp; Ireland</h3>
                     <span className="text-xs text-gray-500">Fee Paying Student Visa</span>
                   </div>
                 </div>
                 <p className="text-xs sm:text-sm text-gray-600 mb-4 leading-relaxed">
                   High quality of life, peaceful environment, booming European tech hub in Dublin, and straightforward work routes.
                 </p>
-                <div className="flex flex-wrap gap-1.5 text-[11px] font-semibold text-gray-600">
+                <div className="flex flex-wrap gap-1.5 text-[11px] font-semibold text-gray-600 mb-3">
                   <span className="bg-gray-100 px-2 py-0.5 rounded">European Silicon Valley</span>
                   <span className="bg-gray-100 px-2 py-0.5 rounded">Post-Study Visa</span>
                 </div>
-              </div>
+                <span className="text-xs font-bold text-red-600 inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                  Explore New Zealand Guide →
+                </span>
+              </Link>
 
             </div>
           </section>

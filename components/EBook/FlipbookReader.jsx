@@ -391,19 +391,6 @@ export default function FlipbookReader({ brochure, onClose }) {
             <i className={`fa-solid ${isFullscreen ? 'fa-compress' : 'fa-expand'}`}></i>
           </button>
 
-          {/* Download Original PDF Button */}
-          <a
-            href={brochure.pdfUrl}
-            download
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-red-600 hover:bg-red-700 text-white text-xs sm:text-sm font-semibold transition-all shadow-md shadow-red-600/30"
-            title="Download Official PDF"
-          >
-            <i className="fa-solid fa-download"></i>
-            <span className="hidden sm:inline">Download PDF</span>
-          </a>
-
           {/* Close Modal Button */}
           <button
             onClick={onClose}

@@ -10,6 +10,7 @@ export default function sitemap() {
     { path: '/apply', priority: 1.0, changeFrequency: 'daily' },
     { path: '/study-abroad', priority: 0.9, changeFrequency: 'weekly' },
     { path: '/student-visa', priority: 0.9, changeFrequency: 'weekly' },
+    { path: '/e-magazine', priority: 0.9, changeFrequency: 'weekly' },
     { path: '/universities', priority: 0.85, changeFrequency: 'weekly' },
     { path: '/courses', priority: 0.85, changeFrequency: 'weekly' },
     { path: '/countries', priority: 0.85, changeFrequency: 'weekly' },
@@ -21,6 +22,8 @@ export default function sitemap() {
     { path: '/story/pte', priority: 0.8, changeFrequency: 'weekly' },
     { path: '/blog', priority: 0.8, changeFrequency: 'daily' },
     { path: '/events', priority: 0.7, changeFrequency: 'monthly' },
+    { path: '/privacy-policy', priority: 0.5, changeFrequency: 'monthly' },
+    { path: '/terms', priority: 0.5, changeFrequency: 'monthly' },
   ].map((route) => ({
     url: `${baseUrl}${route.path}`,
     lastModified: new Date(),
