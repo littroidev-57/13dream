@@ -1,12 +1,15 @@
 import React from 'react';
 import HeroBanner from '@/components/Home/HeroBanner';
 import GloriousSection from '@/components/Home/GloriousSection';
+import EligibilityCalculator from '@/components/Home/EligibilityCalculator';
+import CoachingSection from '@/components/Home/CoachingSection';
 import HomeEnquiryForm from '@/components/Home/HomeEnquiryForm';
 import TopDestinations from '@/components/Home/TopDestinations';
 import StepProcessSection from '@/components/Home/StepProcessSection';
 import VideoSuccessStories from '@/components/Home/VideoSuccessStories';
 import VideoFeatureAbout from '@/components/Home/VideoFeatureAbout';
 import ServicesSection from '@/components/Home/ServicesSection';
+import FaqAccordion from '@/components/Home/FaqAccordion';
 import StatisticsCounter from '@/components/Home/StatisticsCounter';
 import { siteConfig, getCanonicalUrl } from '@/lib/siteConfig';
 
@@ -30,31 +33,40 @@ export const metadata = {
 export default function HomePage() {
   return (
     <>
-      {/* 1. Main Hero Banner */}
+      {/* 1. Main Hero Banner with Corporate Counselor & Google 4.9★ Badge */}
       <HeroBanner />
 
       {/* 2. Glorious Experience Highlights (15 Years / Best Agency / Partners) */}
       <GloriousSection />
 
-      {/* 3. Enquiry Form Section */}
+      {/* 3. Interactive Visa & IELTS Eligibility Calculator (Interactive Engagement) */}
+      <EligibilityCalculator />
+
+      {/* 4. Dedicated IELTS & PTE Coaching Showcase (Score 7.5+ & 65+) */}
+      <CoachingSection />
+
+      {/* 5. Enquiry Form Section */}
       <HomeEnquiryForm />
 
-      {/* 4. Top Education Destinations */}
+      {/* 6. Top Education Destinations */}
       <TopDestinations />
 
-      {/* 6. Success Stories (Student Video Reviews) */}
+      {/* 7. Success Stories (Student Video Reviews) */}
       <VideoSuccessStories />
 
-      {/* 5. 4-Step Overseas Education Process (Stacking Cards & Student Travel) */}
+      {/* 8. 4-Step Overseas Education Process */}
       <StepProcessSection />
 
-      {/* 6. Video Feature About 13 Dreams Consultants */}
+      {/* 9. Video Feature About 13 Dreams Consultants */}
       <VideoFeatureAbout />
 
-      {/* 7. Our Services Section */}
+      {/* 10. Our Services Section */}
       <ServicesSection />
 
-      {/* 8. Statistics Counterup (50+ Countries / 150+ Univs / 99% Satisfaction) */}
+      {/* 11. Google FAQ Rich Snippet Accordion with Schema.org */}
+      <FaqAccordion />
+
+      {/* 12. Statistics Counterup (50+ Countries / 150+ Univs / 99% Satisfaction) */}
       <StatisticsCounter />
     </>
   );

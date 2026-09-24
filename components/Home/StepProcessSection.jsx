@@ -2,6 +2,18 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import toast from 'react-hot-toast';
+import ResponsiveSelectField from '@/components/UI/ResponsiveSelectField';
+
+const STEP_DESTINATION_OPTIONS = [
+  { value: 'Australia', label: 'Australia' },
+  { value: 'Canada', label: 'Canada' },
+  { value: 'United Kingdom', label: 'United Kingdom' },
+  { value: 'United States', label: 'United States' },
+  { value: 'Germany', label: 'Germany' },
+  { value: 'New Zealand', label: 'New Zealand' },
+  { value: 'Ireland', label: 'Ireland' },
+  { value: 'Malta', label: 'Malta' },
+];
 
 const stepsData = [
   {
@@ -79,7 +91,7 @@ export default function StepProcessSection() {
   const [loading, setLoading] = useState(false);
   const [statusMsg, setStatusMsg] = useState({ text: '', type: '' });
 
-  // ── True Scroll-Linked Bottom-to-Top Card Overlap ──
+  // ── True Scroll-Linked Bottom-to-Top Card Overlap for Laptop/Desktop ──
   useEffect(() => {
     let targetProgress = 0;
     let currentProgress = 0;
@@ -87,10 +99,11 @@ export default function StepProcessSection() {
     let isRunning = true;
 
     const onScroll = () => {
+      if (typeof window !== 'undefined' && window.innerWidth < 1024) return;
       if (containerRef.current) {
         const rect = containerRef.current.getBoundingClientRect();
         const winH = window.innerHeight;
-        const stickyTop = 125;
+        const stickyTop = 110;
         const totalScrollDistance = containerRef.current.offsetHeight - winH;
 
         if (totalScrollDistance > 0) {
@@ -103,8 +116,8 @@ export default function StepProcessSection() {
     const renderLoop = () => {
       if (!isRunning) return;
 
-      // Smooth damping interpolation (0.12 factor for responsive momentum)
-      currentProgress += (targetProgress - currentProgress) * 0.12;
+      // Smooth damping interpolation (0.16 for responsive momentum)
+      currentProgress += (targetProgress - currentProgress) * 0.16;
 
       // Card 1 (Step 2) slides from bottom (105%) to top (0%) over Card 0
       if (card1Ref.current) {
@@ -115,14 +128,14 @@ export default function StepProcessSection() {
 
       // Card 2 (Step 3) slides from bottom (105%) to top (0%) over Card 1
       if (card2Ref.current) {
-        const p2 = Math.max(0, Math.min(1, (currentProgress - 0.36) / 0.28));
+        const p2 = Math.max(0, Math.min(1, (currentProgress - 0.35) / 0.28));
         const y2 = (1 - p2) * 105;
         card2Ref.current.style.transform = `translate3d(0px, ${y2.toFixed(2)}%, 0px)`;
       }
 
       // Card 3 (Step 4) slides from bottom (105%) to top (0%) over Card 2
       if (card3Ref.current) {
-        const p3 = Math.max(0, Math.min(1, (currentProgress - 0.67) / 0.28));
+        const p3 = Math.max(0, Math.min(1, (currentProgress - 0.65) / 0.28));
         const y3 = (1 - p3) * 105;
         card3Ref.current.style.transform = `translate3d(0px, ${y3.toFixed(2)}%, 0px)`;
       }
@@ -226,7 +239,7 @@ export default function StepProcessSection() {
         </p>
 
         {/* Key Highlights / Feature Checkmarks in Theme Red */}
-        <div className="space-y-2 mb-4">
+        <div className="space-y-2.5 mb-5">
           {step.highlights.map((highlight, hIdx) => (
             <div key={hIdx} className="flex items-start gap-2.5 text-xs sm:text-[13px] text-gray-700">
               <span className="flex-shrink-0 w-4 h-4 rounded-full bg-red-600 text-white flex items-center justify-center mt-0.5 text-[10px]">
@@ -239,7 +252,7 @@ export default function StepProcessSection() {
       </div>
 
       {/* Card Bottom: Roomy Bottom Padding with Brand Red Button */}
-      <div className="pt-3.5 pb-1 border-t border-slate-200/90 flex flex-wrap items-center justify-between gap-3">
+      <div className="pt-4 pb-1 border-t border-slate-200/90 flex flex-wrap items-center justify-between gap-3">
         <button
           type="button"
           id={`openPopup${step.step}`}
@@ -264,24 +277,82 @@ export default function StepProcessSection() {
 
   return (
     <>
-      {/* ── Scroll Track: Keeps screen locked in the viewport across 4 steps ── */}
+      {/* ── Mobile & Tablet View: Natural stacked sequence (Loved on Mobile) ── */}
+      <section className="relative bg-gradient-to-b from-white via-slate-50 to-white block lg:hidden py-12 sm:py-16">
+        <div className="container mx-auto px-4 max-w-xl">
+          {/* Section Header */}
+          <div className="text-center mb-8">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight leading-tight">
+              <span className="text-red-600">4 Steps</span> to Your Dream Destination
+            </h2>
+            <p className="mt-2 text-xs sm:text-sm text-gray-600">
+              Our proven step-by-step roadmap turns your study abroad aspiration into an official university acceptance.
+            </p>
+          </div>
+
+          {/* Stacked Cards */}
+          <div className="space-y-5">
+            {stepsData.map((step) => (
+              <div
+                key={step.step}
+                className="rounded-3xl p-6 sm:p-7 flex flex-col justify-between shadow-md border-2 border-[#dce5f0]"
+                style={{
+                  background: 'linear-gradient(145deg, #f8fafc 0%, #edf3f9 100%)',
+                }}
+              >
+                {renderCardContent(step)}
+              </div>
+            ))}
+          </div>
+
+          {/* Mobile Student Journey Hero Card */}
+          <div className="mt-6 rounded-3xl overflow-hidden border-2 border-[#dce5f0] shadow-xl relative h-[260px]">
+            <img
+              src="/img/homepage/study-abroad-student-journey.jpg"
+              alt="International student ready for study abroad journey"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent pointer-events-none" />
+            <div className="absolute top-4 right-4 z-10">
+              <div className="bg-red-600 text-white px-3 py-1 rounded-full text-[11px] font-bold flex items-center gap-1.5 shadow-md">
+                <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
+                13 Dreams Journey
+              </div>
+            </div>
+            <div className="absolute bottom-4 left-4 right-4 z-10">
+              <div className="bg-white/95 backdrop-blur-md px-4 py-3 rounded-2xl shadow-lg border border-white/60 flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-red-50 text-red-600 flex items-center justify-center text-base flex-shrink-0">
+                  <i className="fa-solid fa-passport"></i>
+                </div>
+                <div>
+                  <div className="text-sm font-extrabold text-gray-900 leading-none mb-1">99% Success</div>
+                  <div className="text-[11px] text-gray-500 font-medium leading-tight">Visa Approvals for 150+ Universities</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Laptop / Desktop View (lg+): True Scroll-Triggered Overlapping Cards Animation ── */}
       <section
+        id="step-process-section"
         ref={containerRef}
-        className="relative bg-gradient-to-b from-white via-slate-50 to-white"
-        style={{ height: '360vh' }}
+        className="relative bg-gradient-to-b from-white via-slate-50 to-white hidden lg:block"
+        style={{ height: '200vh' }}
       >
-        {/* ── Sticky Pinned Viewport: Screen stays fixed showing Title + Cards + Image ── */}
+        {/* ── Sticky Pinned Viewport: Stays fixed showing Title + Cards + Image while user scrolls ── */}
         <div
           className="sticky flex flex-col justify-center"
           style={{
-            top: '125px',
-            height: 'calc(100vh - 125px)',
-            minHeight: '620px',
-            maxHeight: '940px',
+            top: '110px',
+            height: 'calc(100vh - 110px)',
+            minHeight: '560px',
+            maxHeight: '820px',
           }}
         >
           <div className="container mx-auto px-4 max-w-7xl">
-            {/* ── Section Header (Permanently Visible in the Viewport) ── */}
+            {/* Section Header */}
             <div className="text-center max-w-3xl mx-auto mb-6 lg:mb-8">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 tracking-tight leading-tight">
                 <span className="text-red-600">4 Steps</span> to Your Dream Destination
@@ -291,19 +362,19 @@ export default function StepProcessSection() {
               </p>
             </div>
 
-            {/* ── Main Two-Column Layout ── */}
-            <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12 relative max-w-6xl mx-auto">
-              {/* ── Left Column: Overlapping Cards with Height 430px & Roomy Padding ── */}
+            {/* Main Two-Column Layout */}
+            <div className="flex items-center gap-8 lg:gap-12 relative max-w-6xl mx-auto w-full">
+              {/* Left Column: Overlapping Cards Stack with Height 440px */}
               <div
-                className="w-full lg:w-1/2 relative rounded-3xl overflow-hidden"
+                className="w-1/2 relative rounded-3xl overflow-hidden"
                 style={{
-                  height: '430px',
+                  height: '440px',
                   boxShadow: '0 16px 36px -6px rgba(15, 23, 42, 0.12)',
                 }}
               >
-                {/* ── Card 0: Base Step 1 ── */}
+                {/* ── Card 0: Base Step 1 (01 Counseling) ── */}
                 <div
-                  className="absolute inset-0 w-full h-full rounded-3xl p-7 md:p-8 pb-7 md:pb-8 flex flex-col justify-between"
+                  className="absolute inset-0 w-full h-full rounded-3xl p-8 flex flex-col justify-between"
                   style={{
                     background: 'linear-gradient(145deg, #f8fafc 0%, #edf3f9 100%)',
                     border: '2px solid #dce5f0',
@@ -314,10 +385,10 @@ export default function StepProcessSection() {
                   {renderCardContent(stepsData[0])}
                 </div>
 
-                {/* ── Card 1: Step 2 ── */}
+                {/* ── Card 1: Step 2 (02 Admissions) ── */}
                 <div
                   ref={card1Ref}
-                  className="absolute inset-0 w-full h-full rounded-3xl p-7 md:p-8 pb-7 md:pb-8 flex flex-col justify-between will-change-transform"
+                  className="absolute inset-0 w-full h-full rounded-3xl p-8 flex flex-col justify-between will-change-transform"
                   style={{
                     background: 'linear-gradient(145deg, #f8fafc 0%, #edf3f9 100%)',
                     border: '2px solid #dce5f0',
@@ -329,10 +400,10 @@ export default function StepProcessSection() {
                   {renderCardContent(stepsData[1])}
                 </div>
 
-                {/* ── Card 2: Step 3 ── */}
+                {/* ── Card 2: Step 3 (03 Financial Aid) ── */}
                 <div
                   ref={card2Ref}
-                  className="absolute inset-0 w-full h-full rounded-3xl p-7 md:p-8 pb-7 md:pb-8 flex flex-col justify-between will-change-transform"
+                  className="absolute inset-0 w-full h-full rounded-3xl p-8 flex flex-col justify-between will-change-transform"
                   style={{
                     background: 'linear-gradient(145deg, #f8fafc 0%, #edf3f9 100%)',
                     border: '2px solid #dce5f0',
@@ -344,10 +415,10 @@ export default function StepProcessSection() {
                   {renderCardContent(stepsData[2])}
                 </div>
 
-                {/* ── Card 3: Step 4 ── */}
+                {/* ── Card 3: Step 4 (04 Visa & Travel) ── */}
                 <div
                   ref={card3Ref}
-                  className="absolute inset-0 w-full h-full rounded-3xl p-7 md:p-8 pb-7 md:pb-8 flex flex-col justify-between will-change-transform"
+                  className="absolute inset-0 w-full h-full rounded-3xl p-8 flex flex-col justify-between will-change-transform"
                   style={{
                     background: 'linear-gradient(145deg, #f8fafc 0%, #edf3f9 100%)',
                     border: '2px solid #dce5f0',
@@ -360,28 +431,24 @@ export default function StepProcessSection() {
                 </div>
               </div>
 
-              {/* ── Right Column: Matching Height 430px Sticky Hero Image ── */}
-              <div
-                className="w-full lg:w-1/2 relative"
-                style={{ height: '430px' }}
-              >
+              {/* Right Column: Matching Height 440px Student Journey Hero Image */}
+              <div className="w-1/2 relative" style={{ height: '440px' }}>
                 <div
                   className="relative w-full h-full rounded-3xl overflow-hidden border-2 border-[#dce5f0] shadow-2xl flex flex-col justify-end"
                   style={{
                     background: '#0c1a30',
                   }}
                 >
-                  {/* Background Student Journey Image */}
                   <img
                     src="/img/homepage/study-abroad-student-journey.jpg"
                     alt="International student ready for study abroad journey with travel luggage and passport"
                     className="absolute inset-0 w-full h-full object-cover object-center"
                   />
 
-                  {/* Subtle Gradient Overlays for High Contrast */}
+                  {/* Gradient Overlays */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-black/30 pointer-events-none" />
 
-                  {/* Top-Right Floating Badge (Cross-Side 1) */}
+                  {/* Top-Right Floating Badge */}
                   <div className="absolute top-5 right-5 pointer-events-none z-10">
                     <div className="bg-red-600 text-white backdrop-blur-md px-3.5 py-1.5 rounded-full shadow-lg text-[11px] font-bold border border-red-400/30 flex items-center gap-1.5">
                       <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
@@ -389,7 +456,7 @@ export default function StepProcessSection() {
                     </div>
                   </div>
 
-                  {/* Bottom-Left Floating Stat Card (Cross-Side 2) */}
+                  {/* Bottom-Left Floating Stat Card */}
                   <div className="absolute bottom-5 left-5 pointer-events-none z-10">
                     <div className="bg-white/95 backdrop-blur-md px-4 py-3 rounded-2xl shadow-xl border border-white/60 flex items-center gap-3">
                       <div className="w-10 h-10 rounded-xl bg-red-50 text-red-600 flex items-center justify-center text-base flex-shrink-0">
@@ -486,23 +553,18 @@ export default function StepProcessSection() {
                 />
               </div>
 
-              <div>
-                <label className="block text-xs font-semibold text-gray-700 mb-1">Preferred Destination</label>
-                <select
-                  value={formData.country}
-                  onChange={(e) => setFormData({ ...formData, country: e.target.value })}
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 text-sm text-gray-900 bg-white focus:outline-none focus:border-red-600 focus:ring-2 focus:ring-red-100 transition-all"
-                >
-                  <option value="Australia">Australia</option>
-                  <option value="Canada">Canada</option>
-                  <option value="United Kingdom">United Kingdom</option>
-                  <option value="United States">United States</option>
-                  <option value="Germany">Germany</option>
-                  <option value="New Zealand">New Zealand</option>
-                  <option value="Ireland">Ireland</option>
-                  <option value="Malta">Malta</option>
-                </select>
-              </div>
+              <ResponsiveSelectField
+                id="step-preferred-country"
+                name="country"
+                label="Preferred Destination"
+                value={formData.country}
+                onChange={(e) => setFormData({ ...formData, country: e.target.value })}
+                options={STEP_DESTINATION_OPTIONS}
+                placeholder=""
+                labelClassName="block text-xs font-semibold text-gray-700 mb-1"
+                selectClassName="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 text-sm text-gray-900 bg-white focus:outline-none focus:border-red-600 focus:ring-2 focus:ring-red-100 transition-all cursor-pointer"
+                buttonClassName="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 text-sm text-gray-900 bg-white flex items-center justify-between text-left transition-all cursor-pointer active:bg-gray-50"
+              />
 
               <button
                 type="submit"

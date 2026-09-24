@@ -4,6 +4,69 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
+import ResponsiveSelectField from '@/components/UI/ResponsiveSelectField';
+
+const COUNTRY_OPTIONS = [
+  { value: '', label: 'Select' },
+  { value: 'Australia', label: 'Australia' },
+  { value: 'Canada', label: 'Canada' },
+  { value: 'Ireland', label: 'Ireland' },
+  { value: 'United Kingdom', label: 'United Kingdom' },
+  { value: 'United States', label: 'United States' },
+  { value: 'New Zealand', label: 'New Zealand' },
+  { value: 'Germany', label: 'Germany' },
+  { value: 'France', label: 'France' },
+  { value: 'Italy', label: 'Italy' },
+  { value: 'Singapore', label: 'Singapore' },
+  { value: 'Dubai (UAE)', label: 'Dubai (UAE)' },
+  { value: 'Malaysia', label: 'Malaysia' },
+];
+
+const TIMELINE_OPTIONS = [
+  { value: '', label: 'Select' },
+  { value: 'Now', label: 'Now' },
+  { value: '3 months', label: '3 months' },
+  { value: '6 months', label: '6 months' },
+  { value: '12 months', label: '12 months' },
+  { value: 'More than 12 months', label: 'More than 12 months' },
+  { value: 'Not sure yet', label: 'Not sure yet' },
+];
+
+const OFFICE_OPTIONS = [
+  { value: '', label: 'Select' },
+  { value: 'Bareilly Office', label: 'Bareilly (Ekta Nagar)' },
+  { value: 'Khatima Office', label: 'Khatima (Tanakpur Road)' },
+  { value: 'Virtual / Online', label: 'Virtual / Online (Pan India)' },
+];
+
+const COUNSELLING_MODE_OPTIONS = [
+  { value: '', label: 'Select' },
+  { value: 'In-person', label: 'In-person' },
+  { value: 'Virtual Counselling', label: 'Virtual Counselling' },
+];
+
+const STUDY_LEVEL_OPTIONS = [
+  { value: '', label: 'Select' },
+  { value: 'Undergraduate', label: "Undergraduate (Bachelor's)" },
+  { value: 'Postgraduate', label: "Postgraduate (Master's)" },
+  { value: 'Doctorate', label: 'Doctorate / PhD' },
+  { value: 'Vocational', label: 'Vocational / Diploma' },
+  { value: 'School', label: 'School / High School' },
+  { value: 'English Language', label: 'English Language (IELTS / PTE)' },
+  { value: 'University Preparation', label: 'University Preparation' },
+];
+
+const FINANCIAL_SOURCE_OPTIONS = [
+  { value: '', label: 'Select' },
+  { value: 'Self-Funded', label: 'Self-Funded' },
+  { value: 'Parents', label: 'Parents' },
+  { value: 'Seeking Scholarship', label: 'Seeking Scholarship' },
+  { value: 'Seeking Government Scholarship', label: 'Seeking Government Scholarship' },
+  { value: 'Have Government Scholarship', label: 'Have Government Scholarship' },
+  { value: 'Bank Loan', label: 'Bank Loan' },
+  { value: 'Employer Scholarship', label: 'Employer Scholarship' },
+  { value: 'Other', label: 'Other' },
+];
 
 export default function ApplyForm({ defaultCountry = '' }) {
   const router = useRouter();
@@ -218,7 +281,7 @@ export default function ApplyForm({ defaultCountry = '' }) {
   };
 
   return (
-    <div className="min-h-screen bg-[#f6f8fa] flex flex-col">
+    <div className="min-h-screen bg-[#f6f8fa] flex flex-col overflow-x-hidden">
       {/* ── Top Bar with Logo & Right Side Cross (X) Back Button ── */}
       <header className="bg-white border-b border-gray-200 sticky top-0 z-40 shadow-sm">
         <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
@@ -262,7 +325,7 @@ export default function ApplyForm({ defaultCountry = '' }) {
       <main className="flex-1 py-6 sm:py-10 lg:py-12">
         <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
           <div className="grid grid-cols-12 gap-8 lg:gap-12 items-center lg:items-start">
-            
+
             {/* Left Column: Brand New Study Abroad Student Girl Image */}
             <div className="col-span-12 lg:col-span-5 flex justify-center items-center order-2 lg:order-1">
               <div className="relative w-full max-w-[440px] lg:max-w-none rounded-3xl overflow-hidden shadow-2xl border border-gray-200 bg-white">
@@ -290,8 +353,8 @@ export default function ApplyForm({ defaultCountry = '' }) {
             </div>
 
             {/* Right Column: The Form */}
-            <div className="col-span-12 lg:col-span-7 bg-white rounded-3xl p-6 sm:p-8 lg:p-10 shadow-sm border border-gray-200/80 order-1 lg:order-2">
-              
+            <div className="col-span-12 lg:col-span-7 bg-white rounded-3xl p-5 sm:p-8 lg:p-10 shadow-sm border border-gray-200/80 order-1 lg:order-2">
+
               {/* Heading & Red Accent Bar */}
               <div>
                 <span className="inline-block text-xs font-bold uppercase tracking-wider text-red-600 bg-red-50 border border-red-200 px-3 py-1 rounded-full mb-3">
@@ -309,11 +372,10 @@ export default function ApplyForm({ defaultCountry = '' }) {
               {/* Status Message */}
               {statusMsg.text && (
                 <div
-                  className={`p-4 rounded-xl my-5 text-sm font-medium border ${
-                    statusMsg.type === 'success'
+                  className={`p-4 rounded-xl my-5 text-sm font-medium border ${statusMsg.type === 'success'
                       ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
                       : 'bg-red-50 text-red-800 border-red-200'
-                  }`}
+                    }`}
                   role="alert"
                 >
                   {statusMsg.text}
@@ -322,7 +384,7 @@ export default function ApplyForm({ defaultCountry = '' }) {
 
               {/* Form Grid */}
               <form onSubmit={handleSubmit} className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 mt-6 sm:mt-8">
-                
+
                 {/* 1. First Name */}
                 <div>
                   <label htmlFor="enquiry-first_name" className="block text-xs sm:text-sm font-semibold text-gray-800 mb-1.5">
@@ -334,9 +396,8 @@ export default function ApplyForm({ defaultCountry = '' }) {
                     id="enquiry-first_name"
                     value={formData.first_name}
                     onChange={handleChange}
-                    className={`w-full px-3.5 py-2.5 sm:py-3 bg-white border ${
-                      errors.first_name ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-300'
-                    } rounded-md text-sm text-gray-900 focus:outline-none focus:border-red-600 focus:ring-1 focus:ring-red-600 transition-colors placeholder:text-gray-400`}
+                    className={`w-full px-3.5 py-2.5 sm:py-3 bg-white border ${errors.first_name ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-300'
+                      } rounded-md text-sm text-gray-900 focus:outline-none focus:border-red-600 focus:ring-1 focus:ring-red-600 transition-colors placeholder:text-gray-400`}
                   />
                   {errors.first_name && (
                     <p className="text-red-600 text-xs mt-1">{errors.first_name}</p>
@@ -354,9 +415,8 @@ export default function ApplyForm({ defaultCountry = '' }) {
                     id="enquiry-last_name"
                     value={formData.last_name}
                     onChange={handleChange}
-                    className={`w-full px-3.5 py-2.5 sm:py-3 bg-white border ${
-                      errors.last_name ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-300'
-                    } rounded-md text-sm text-gray-900 focus:outline-none focus:border-red-600 focus:ring-1 focus:ring-red-600 transition-colors placeholder:text-gray-400`}
+                    className={`w-full px-3.5 py-2.5 sm:py-3 bg-white border ${errors.last_name ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-300'
+                      } rounded-md text-sm text-gray-900 focus:outline-none focus:border-red-600 focus:ring-1 focus:ring-red-600 transition-colors placeholder:text-gray-400`}
                   />
                   {errors.last_name && (
                     <p className="text-red-600 text-xs mt-1">{errors.last_name}</p>
@@ -374,9 +434,8 @@ export default function ApplyForm({ defaultCountry = '' }) {
                     id="enquiry-primary_email"
                     value={formData.primary_email}
                     onChange={handleChange}
-                    className={`w-full px-3.5 py-2.5 sm:py-3 bg-white border ${
-                      errors.primary_email ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-300'
-                    } rounded-md text-sm text-gray-900 focus:outline-none focus:border-red-600 focus:ring-1 focus:ring-red-600 transition-colors placeholder:text-gray-400`}
+                    className={`w-full px-3.5 py-2.5 sm:py-3 bg-white border ${errors.primary_email ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-300'
+                      } rounded-md text-sm text-gray-900 focus:outline-none focus:border-red-600 focus:ring-1 focus:ring-red-600 transition-colors placeholder:text-gray-400`}
                   />
                   {errors.primary_email && (
                     <p className="text-red-600 text-xs mt-1">{errors.primary_email}</p>
@@ -405,9 +464,8 @@ export default function ApplyForm({ defaultCountry = '' }) {
                       value={formData.primary_mobile_number}
                       onChange={handleChange}
                       placeholder="Enter 10-digit mobile number"
-                      className={`flex-1 px-3.5 py-2.5 sm:py-3 bg-white border ${
-                        errors.primary_mobile_number ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-300'
-                      } rounded-md text-sm text-gray-900 focus:outline-none focus:border-red-600 focus:ring-1 focus:ring-red-600 transition-colors placeholder:text-gray-400`}
+                      className={`flex-1 min-w-0 px-3.5 py-2.5 sm:py-3 bg-white border ${errors.primary_mobile_number ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-300'
+                        } rounded-md text-sm text-gray-900 focus:outline-none focus:border-red-600 focus:ring-1 focus:ring-red-600 transition-colors placeholder:text-gray-400`}
                     />
                   </div>
                   {errors.primary_mobile_number && (
@@ -416,168 +474,70 @@ export default function ApplyForm({ defaultCountry = '' }) {
                 </div>
 
                 {/* 5. Preferred Study Destination */}
-                <div>
-                  <label htmlFor="enquiry-preferredCountryCode" className="block text-xs sm:text-sm font-semibold text-gray-800 mb-1.5">
-                    Your preferred study destination*
-                  </label>
-                  <select
-                    id="enquiry-preferredCountryCode"
-                    name="preferredCountryCode"
-                    value={formData.preferredCountryCode}
-                    onChange={handleChange}
-                    className={`w-full px-3.5 py-2.5 sm:py-3 bg-white border ${
-                      errors.preferredCountryCode ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-300'
-                    } rounded-md text-sm text-gray-900 focus:outline-none focus:border-red-600 focus:ring-1 focus:ring-red-600 transition-colors cursor-pointer`}
-                  >
-                    <option value="">Select</option>
-                    <option value="Australia">Australia</option>
-                    <option value="Canada">Canada</option>
-                    <option value="Ireland">Ireland</option>
-                    <option value="United Kingdom">United Kingdom</option>
-                    <option value="United States">United States</option>
-                    <option value="New Zealand">New Zealand</option>
-                    <option value="Germany">Germany</option>
-                    <option value="France">France</option>
-                    <option value="Italy">Italy</option>
-                    <option value="Singapore">Singapore</option>
-                    <option value="Dubai (UAE)">Dubai (UAE)</option>
-                    <option value="Malaysia">Malaysia</option>
-                  </select>
-                  {errors.preferredCountryCode && (
-                    <p className="text-red-600 text-xs mt-1">{errors.preferredCountryCode}</p>
-                  )}
-                </div>
+                <ResponsiveSelectField
+                  id="enquiry-preferredCountryCode"
+                  name="preferredCountryCode"
+                  label="Your preferred study destination*"
+                  value={formData.preferredCountryCode}
+                  onChange={handleChange}
+                  error={errors.preferredCountryCode}
+                  options={COUNTRY_OPTIONS}
+                />
 
                 {/* 6. When would you like to start? */}
-                <div>
-                  <label htmlFor="enquiry-studyPlanTimeline" className="block text-xs sm:text-sm font-semibold text-gray-800 mb-1.5">
-                    When would you like to start?*
-                  </label>
-                  <select
-                    id="enquiry-studyPlanTimeline"
-                    name="studyPlanTimeline"
-                    value={formData.studyPlanTimeline}
-                    onChange={handleChange}
-                    className={`w-full px-3.5 py-2.5 sm:py-3 bg-white border ${
-                      errors.studyPlanTimeline ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-300'
-                    } rounded-md text-sm text-gray-900 focus:outline-none focus:border-red-600 focus:ring-1 focus:ring-red-600 transition-colors cursor-pointer`}
-                  >
-                    <option value="">Select</option>
-                    <option value="Now">Now</option>
-                    <option value="3 months">3 months</option>
-                    <option value="6 months">6 months</option>
-                    <option value="12 months">12 months</option>
-                    <option value="More than 12 months">More than 12 months</option>
-                    <option value="Not sure yet">Not sure yet</option>
-                  </select>
-                  {errors.studyPlanTimeline && (
-                    <p className="text-red-600 text-xs mt-1">{errors.studyPlanTimeline}</p>
-                  )}
-                </div>
+                <ResponsiveSelectField
+                  id="enquiry-studyPlanTimeline"
+                  name="studyPlanTimeline"
+                  label="When would you like to start?*"
+                  value={formData.studyPlanTimeline}
+                  onChange={handleChange}
+                  error={errors.studyPlanTimeline}
+                  options={TIMELINE_OPTIONS}
+                />
 
                 {/* 7. Nearest 13 Dreams Office */}
-                <div>
-                  <label htmlFor="enquiry-nearestOffice" className="block text-xs sm:text-sm font-semibold text-gray-800 mb-1.5">
-                    Nearest 13 Dreams Office*
-                  </label>
-                  <select
-                    id="enquiry-nearestOffice"
-                    name="nearestOffice"
-                    value={formData.nearestOffice}
-                    onChange={handleChange}
-                    className={`w-full px-3.5 py-2.5 sm:py-3 bg-white border ${
-                      errors.nearestOffice ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-300'
-                    } rounded-md text-sm text-gray-900 focus:outline-none focus:border-red-600 focus:ring-1 focus:ring-red-600 transition-colors cursor-pointer`}
-                  >
-                    <option value="">Select</option>
-                    <option value="Bareilly Office">Bareilly (Civil Lines)</option>
-                    <option value="Khatima Office">Khatima (Tanakpur Road)</option>
-                    <option value="Virtual / Online">Virtual / Online (Pan India)</option>
-                  </select>
-                  {errors.nearestOffice && (
-                    <p className="text-red-600 text-xs mt-1">{errors.nearestOffice}</p>
-                  )}
-                </div>
+                <ResponsiveSelectField
+                  id="enquiry-nearestOffice"
+                  name="nearestOffice"
+                  label="Nearest 13 Dreams Office*"
+                  value={formData.nearestOffice}
+                  onChange={handleChange}
+                  error={errors.nearestOffice}
+                  options={OFFICE_OPTIONS}
+                />
 
                 {/* 8. Preferred Mode of Counselling */}
-                <div>
-                  <label htmlFor="enquiry-modeOfCounselling" className="block text-xs sm:text-sm font-semibold text-gray-800 mb-1.5">
-                    Preferred mode of counselling*
-                  </label>
-                  <select
-                    id="enquiry-modeOfCounselling"
-                    name="modeOfCounselling"
-                    value={formData.modeOfCounselling}
-                    onChange={handleChange}
-                    className={`w-full px-3.5 py-2.5 sm:py-3 bg-white border ${
-                      errors.modeOfCounselling ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-300'
-                    } rounded-md text-sm text-gray-900 focus:outline-none focus:border-red-600 focus:ring-1 focus:ring-red-600 transition-colors cursor-pointer`}
-                  >
-                    <option value="">Select</option>
-                    <option value="In-person">In-person</option>
-                    <option value="Virtual Counselling">Virtual Counselling</option>
-                  </select>
-                  {errors.modeOfCounselling && (
-                    <p className="text-red-600 text-xs mt-1">{errors.modeOfCounselling}</p>
-                  )}
-                </div>
+                <ResponsiveSelectField
+                  id="enquiry-modeOfCounselling"
+                  name="modeOfCounselling"
+                  label="Preferred mode of counselling*"
+                  value={formData.modeOfCounselling}
+                  onChange={handleChange}
+                  error={errors.modeOfCounselling}
+                  options={COUNSELLING_MODE_OPTIONS}
+                />
 
                 {/* 9. Preferred Study Level */}
-                <div>
-                  <label htmlFor="enquiry-preferredStudyLevel" className="block text-xs sm:text-sm font-semibold text-gray-800 mb-1.5">
-                    Preferred study level*
-                  </label>
-                  <select
-                    id="enquiry-preferredStudyLevel"
-                    name="preferredStudyLevel"
-                    value={formData.preferredStudyLevel}
-                    onChange={handleChange}
-                    className={`w-full px-3.5 py-2.5 sm:py-3 bg-white border ${
-                      errors.preferredStudyLevel ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-300'
-                    } rounded-md text-sm text-gray-900 focus:outline-none focus:border-red-600 focus:ring-1 focus:ring-red-600 transition-colors cursor-pointer`}
-                  >
-                    <option value="">Select</option>
-                    <option value="Undergraduate">Undergraduate (Bachelor's)</option>
-                    <option value="Postgraduate">Postgraduate (Master's)</option>
-                    <option value="Doctorate">Doctorate / PhD</option>
-                    <option value="Vocational">Vocational / Diploma</option>
-                    <option value="School">School / High School</option>
-                    <option value="English Language">English Language (IELTS / PTE)</option>
-                    <option value="University Preparation">University Preparation</option>
-                  </select>
-                  {errors.preferredStudyLevel && (
-                    <p className="text-red-600 text-xs mt-1">{errors.preferredStudyLevel}</p>
-                  )}
-                </div>
+                <ResponsiveSelectField
+                  id="enquiry-preferredStudyLevel"
+                  name="preferredStudyLevel"
+                  label="Preferred study level*"
+                  value={formData.preferredStudyLevel}
+                  onChange={handleChange}
+                  error={errors.preferredStudyLevel}
+                  options={STUDY_LEVEL_OPTIONS}
+                />
 
                 {/* 10. How would you fund your education? */}
-                <div>
-                  <label htmlFor="enquiry-primaryFinancialSource" className="block text-xs sm:text-sm font-semibold text-gray-800 mb-1.5">
-                    How would you fund your education?*
-                  </label>
-                  <select
-                    id="enquiry-primaryFinancialSource"
-                    name="primaryFinancialSource"
-                    value={formData.primaryFinancialSource}
-                    onChange={handleChange}
-                    className={`w-full px-3.5 py-2.5 sm:py-3 bg-white border ${
-                      errors.primaryFinancialSource ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-300'
-                    } rounded-md text-sm text-gray-900 focus:outline-none focus:border-red-600 focus:ring-1 focus:ring-red-600 transition-colors cursor-pointer`}
-                  >
-                    <option value="">Select</option>
-                    <option value="Self-Funded">Self-Funded</option>
-                    <option value="Parents">Parents</option>
-                    <option value="Seeking Scholarship">Seeking Scholarship</option>
-                    <option value="Seeking Government Scholarship">Seeking Government Scholarship</option>
-                    <option value="Have Government Scholarship">Have Government Scholarship</option>
-                    <option value="Bank Loan">Bank Loan</option>
-                    <option value="Employer Scholarship">Employer Scholarship</option>
-                    <option value="Other">Other</option>
-                  </select>
-                  {errors.primaryFinancialSource && (
-                    <p className="text-red-600 text-xs mt-1">{errors.primaryFinancialSource}</p>
-                  )}
-                </div>
+                <ResponsiveSelectField
+                  id="enquiry-primaryFinancialSource"
+                  name="primaryFinancialSource"
+                  label="How would you fund your education?*"
+                  value={formData.primaryFinancialSource}
+                  onChange={handleChange}
+                  error={errors.primaryFinancialSource}
+                  options={FINANCIAL_SOURCE_OPTIONS}
+                />
 
                 {/* Checkbox 1: Terms & Privacy Policy */}
                 <div className="sm:col-span-2 pt-2">
@@ -776,7 +736,7 @@ export default function ApplyForm({ defaultCountry = '' }) {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              
+
               {/* Australia */}
               <div className="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:border-red-300 transition-colors">
                 <div className="flex items-center gap-3 mb-3">
@@ -918,9 +878,8 @@ export default function ApplyForm({ defaultCountry = '' }) {
                       {faq.q}
                     </span>
                     <span
-                      className={`w-7 h-7 rounded-full flex items-center justify-center bg-gray-100 text-gray-600 text-xs flex-shrink-0 transition-transform duration-300 ${
-                        openFaq === idx ? 'rotate-180 bg-red-50 text-red-600' : ''
-                      }`}
+                      className={`w-7 h-7 rounded-full flex items-center justify-center bg-gray-100 text-gray-600 text-xs flex-shrink-0 transition-transform duration-300 ${openFaq === idx ? 'rotate-180 bg-red-50 text-red-600' : ''
+                        }`}
                     >
                       <i className="fa-solid fa-chevron-down"></i>
                     </span>

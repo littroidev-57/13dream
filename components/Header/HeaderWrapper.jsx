@@ -6,6 +6,7 @@ import AnnouncementBar from './AnnouncementBar';
 import Navbar from './Navbar';
 import SidebarPopup from './SidebarPopup';
 import MobileMenu from './MobileMenu';
+import SearchModal from './SearchModal';
 
 export default function HeaderWrapper() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -66,43 +67,7 @@ export default function HeaderWrapper() {
       <SidebarPopup isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       <MobileMenu isOpen={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)} />
 
-      {searchOpen && (
-        <div
-          style={{
-            position: 'fixed',
-            inset: 0,
-            backgroundColor: 'rgba(0,0,0,0.85)',
-            zIndex: 999999,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '20px',
-          }}
-          onClick={() => setSearchOpen(false)}
-        >
-          <div
-            style={{ width: '100%', maxWidth: '550px', position: 'relative' }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <form action="/blog" method="get">
-              <input
-                type="text"
-                name="s"
-                placeholder="Search courses, countries, or articles..."
-                style={{
-                  width: '100%',
-                  padding: '16px 20px',
-                  borderRadius: '30px',
-                  border: 'none',
-                  fontSize: '16px',
-                  outline: 'none',
-                }}
-                autoFocus
-              />
-            </form>
-          </div>
-        </div>
-      )}
+      <SearchModal isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
     </>
   );
 }

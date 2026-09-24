@@ -89,7 +89,7 @@ export default function ContactPage() {
 
       <section className="section-space">
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '40px' }}>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
             {/* Contact Information */}
             <div>
               <div className="section-title" style={{ textAlign: 'left', marginBottom: '30px' }}>

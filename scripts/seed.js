@@ -18,15 +18,19 @@ async function seed() {
     await mongoose.connect(MONGODB_URI);
     console.log('MongoDB connected successfully.');
 
-    // Seed Blogs
-    const existingBlogs = await Blog.countDocuments();
-    if (existingBlogs === 0) {
-      console.log('Seeding initial blogs...');
-      await Blog.insertMany(initialBlogs);
-      console.log(`Seeded ${initialBlogs.length} blogs.`);
-    } else {
-      console.log(`Found ${existingBlogs} existing blogs in database.`);
+    // Seed / Sync Blogs
+    console.log(`Syncing ${initialBlogs.length} blogs to MongoDB...`);
+    let syncedBlogsCount = 0;
+    for (const item of initialBlogs) {
+      await Blog.findOneAndUpdate(
+        { slug: item.slug },
+        { $set: item },
+        { upsert: true, returnDocument: 'after' }
+      );
+      syncedBlogsCount++;
     }
+    const totalBlogsInDb = await Blog.countDocuments();
+    console.log(`Successfully synced ${syncedBlogsCount} blogs! Total blogs in database: ${totalBlogsInDb}.`);
 
     // Seed / Sync Success Stories
     console.log(`Syncing ${initialSuccessStories.length} authentic success stories to MongoDB...`);
@@ -57,7 +61,7 @@ async function seed() {
           subtitle: item.subtitle || '',
           metaTitle: item.metaTitle || `${item.title} | 13 Dreams Consultants`,
           metaDesc: item.metaDesc || '',
-          image: item.localImage || item.image || '',
+          image: item.image || item.localImage || '',
           content: item.content,
           order: i + 1,
         };

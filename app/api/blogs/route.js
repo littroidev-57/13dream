@@ -9,12 +9,6 @@ export async function GET() {
       await dbConnect();
       let blogs = await Blog.find({}).sort({ publishedAt: -1 });
 
-      // Automatically seed initial articles if none exist
-      if (!blogs || blogs.length === 0) {
-        await Blog.insertMany(initialBlogs);
-        blogs = await Blog.find({}).sort({ publishedAt: -1 });
-      }
-
       return NextResponse.json({ success: true, count: blogs.length, data: blogs });
     } catch (dbError) {
       console.warn('MongoDB not available, returning seed blogs:', dbError.message);

@@ -13,11 +13,6 @@ export async function GET(request) {
       const filter = category ? { category } : {};
       let stories = await SuccessStory.find(filter).sort({ createdAt: -1 });
 
-      if (!stories || stories.length === 0) {
-        await SuccessStory.insertMany(initialSuccessStories);
-        stories = await SuccessStory.find(filter).sort({ createdAt: -1 });
-      }
-
       return NextResponse.json({ success: true, count: stories.length, data: stories });
     } catch (dbError) {
       console.warn('DB error, returning seed stories:', dbError.message);
