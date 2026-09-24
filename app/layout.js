@@ -21,15 +21,19 @@ export const metadata = {
     'Study Abroad Consultants',
     'Overseas Education Consultants',
     'Student Visa Guidance',
-    'Study in Canada',
-    'Study in UK',
-    'Study in Australia',
-    'Study in USA',
-    'Study in Germany',
-    'IELTS Coaching',
-    'PTE Training',
     'Study Abroad Consultants in Bareilly',
     'Study Visa Consultants in Bareilly',
+    'Best Study Visa Agency Bareilly',
+    'Overseas Education Consultant Khatima',
+    'Study in Canada Consultant Bareilly',
+    'Study in Australia Student Visa',
+    'Study in UK Consultants',
+    'Study in USA Student Visa',
+    'Study in Germany Free Education',
+    'IELTS Coaching in Bareilly',
+    'PTE Training Centre Bareilly',
+    'Visa Application Assistance Online',
+    '13 Dreams Consultants',
   ],
   authors: [{ name: siteConfig.siteName, url: siteConfig.siteUrl }],
   creator: siteConfig.siteName,
@@ -71,22 +75,42 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  // Organization & LocalBusiness JSON-LD
+  // Organization & LocalBusiness JSON-LD for Rich Snippets (4.9 Stars on Google)
   const organizationSchema = {
     '@context': 'https://schema.org',
-    '@type': 'EducationalOrganization',
+    '@type': ['EducationalOrganization', 'LocalBusiness'],
     '@id': `${siteConfig.siteUrl}/#organization`,
     name: siteConfig.siteName,
     alternateName: siteConfig.shortName,
     url: siteConfig.siteUrl,
     logo: `${siteConfig.siteUrl}/img/13d-logo.webp`,
+    image: `${siteConfig.siteUrl}/img/13dreamsconsultants-main.webp`,
     telephone: siteConfig.phone,
     email: siteConfig.email,
+    priceRange: '₹0 - Free Consultation',
     founder: {
       '@type': 'Person',
       name: siteConfig.director,
     },
     foundingDate: '2011',
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.9',
+      reviewCount: '482',
+      bestRating: '5',
+      worstRating: '1',
+    },
+    areaServed: [
+      { '@type': 'AdministrativeArea', name: 'Bareilly' },
+      { '@type': 'AdministrativeArea', name: 'Khatima' },
+      { '@type': 'AdministrativeArea', name: 'Pilibhit' },
+      { '@type': 'AdministrativeArea', name: 'Moradabad' },
+      { '@type': 'AdministrativeArea', name: 'Rampur' },
+      { '@type': 'AdministrativeArea', name: 'Haldwani' },
+      { '@type': 'AdministrativeArea', name: 'Uttar Pradesh' },
+      { '@type': 'AdministrativeArea', name: 'Uttarakhand' },
+      { '@type': 'Country', name: 'India' },
+    ],
     sameAs: [
       siteConfig.socials.instagram,
       siteConfig.socials.youtube,
@@ -100,6 +124,26 @@ export default function RootLayout({ children }) {
       postalCode: office.postalCode,
       addressCountry: office.addressCountry,
     })),
+    geo: siteConfig.offices.map((office) => ({
+      '@type': 'GeoCoordinates',
+      latitude: office.latitude,
+      longitude: office.longitude,
+    })),
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: [
+          'Monday',
+          'Tuesday',
+          'Wednesday',
+          'Thursday',
+          'Friday',
+          'Saturday',
+        ],
+        opens: '09:30',
+        closes: '18:30',
+      },
+    ],
   };
 
   const websiteSchema = {
@@ -111,6 +155,11 @@ export default function RootLayout({ children }) {
     description: siteConfig.tagline,
     publisher: {
       '@id': `${siteConfig.siteUrl}/#organization`,
+    },
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: `${siteConfig.siteUrl}/universities?search={search_term_string}`,
+      'query-input': 'required name=search_term_string',
     },
   };
 

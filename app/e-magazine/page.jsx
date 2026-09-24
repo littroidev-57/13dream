@@ -7,11 +7,11 @@ import { BROCHURES } from '@/lib/brochuresData';
 export const metadata = {
   title: 'Official Study Abroad E-Magazines & Visa Brochures 2025–2026 | 13 Dreams',
   description:
-    'Explore official Study Visa E-Magazines for Canada, Australia, UK, Germany, USA, and New Zealand. Interactive 3D flipbook reader, PR pathways, IELTS cutoffs, and free PDF downloads.',
+    'Explore official Study Visa E-Magazines for Canada, Australia, UK, Germany, USA, and New Zealand. Interactive 3D flipbook reader, PR pathways, IELTS cutoffs, and comprehensive country guides.',
   keywords: [
     'Study Visa E-Magazine',
-    'Study Abroad Brochure PDF',
-    'Canada Student Visa Guide PDF',
+    'Study Abroad Brochure',
+    'Canada Student Visa Guide',
     'Australia Study Visa Handbook',
     'Germany Free Education Brochure',
     'UK Student Route Guide',
@@ -25,7 +25,7 @@ export const metadata = {
   openGraph: {
     title: 'Study Abroad E-Magazines & Visa Brochures | 13 Dreams Consultants',
     description:
-      'Official country blueprints with interactive 3D page flipbook reader and instant free PDF downloads.',
+      'Official country blueprints with interactive 3D page flipbook reader.',
     url: getCanonicalUrl('/e-magazine'),
     siteName: siteConfig.siteName,
     images: [
