@@ -2,6 +2,15 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import toast from 'react-hot-toast';
+import ResponsiveSelectField from '@/components/UI/ResponsiveSelectField';
+
+const INTAKE_OPTIONS = [
+  { value: 'Immediately', label: 'Immediately' },
+  { value: 'In a week', label: 'In a week' },
+  { value: 'This month', label: 'This month' },
+  { value: 'Next month', label: 'Next month' },
+  { value: 'Not sure', label: 'Not sure' },
+];
 
 const destinationsList = [
   'Australia',
@@ -387,22 +396,16 @@ export default function HomeEnquiryForm({ defaultDestination = '' }) {
                   )}
                 </div>
 
-                <div>
-                  <select
-                    className="form-select"
-                    id="preferredintake"
-                    name="preferredintake"
-                    value={formData.preferredintake}
-                    onChange={handleChange}
-                  >
-                    <option value="">When do you plan to start?</option>
-                    <option value="Immediately">Immediately</option>
-                    <option value="In a week">In a week</option>
-                    <option value="This month">This month</option>
-                    <option value="Next month">Next month</option>
-                    <option value="Not sure">Not sure</option>
-                  </select>
-                </div>
+                <ResponsiveSelectField
+                  id="preferredintake"
+                  name="preferredintake"
+                  value={formData.preferredintake}
+                  onChange={handleChange}
+                  options={INTAKE_OPTIONS}
+                  placeholder="When do you plan to start?"
+                  buttonClassName="form-select flex items-center justify-between text-left cursor-pointer w-full text-sm"
+                  selectClassName="form-select"
+                />
 
                 <div className="full-col">
                   <div className="form-check">

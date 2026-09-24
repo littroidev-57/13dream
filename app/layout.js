@@ -3,6 +3,12 @@ import LayoutChrome from '@/components/UI/LayoutChrome';
 import JsonLd from '@/components/SEO/JsonLd';
 import { siteConfig } from '@/lib/siteConfig';
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+};
+
 export const metadata = {
   metadataBase: new URL(siteConfig.siteUrl),
   title: {
@@ -111,6 +117,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
         <link rel="icon" type="image/png" href="/icon.png" />
         <link rel="apple-touch-icon" href="/icon.png" />
         <JsonLd data={organizationSchema} />

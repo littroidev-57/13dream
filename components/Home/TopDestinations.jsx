@@ -130,10 +130,9 @@ export default function TopDestinations() {
       <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* ── Outer 13 Dreams Theme Obsidian & Deep Crimson Luxury Container ── */}
         <div
-          className="relative w-full rounded-[40px] md:rounded-[56px] overflow-hidden shadow-2xl shadow-red-950/20 border border-red-500/20"
+          className="relative w-full rounded-[40px] md:rounded-[56px] overflow-hidden shadow-2xl shadow-red-950/20 border border-red-500/20 md:min-h-[760px]"
           style={{
             background: 'linear-gradient(145deg, #111418 0%, #1f0a0e 40%, #2e0911 75%, #0c0e11 100%)',
-            minHeight: '760px',
           }}
         >
           {/* Ambient Lighting Orbs */}

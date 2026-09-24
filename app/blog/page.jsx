@@ -4,7 +4,6 @@ import Link from 'next/link';
 import dbConnect from '@/lib/dbConnect';
 import Blog from '@/models/Blog';
 import { initialBlogs } from '@/lib/seedData';
-
 import { siteConfig, getCanonicalUrl } from '@/lib/siteConfig';
 
 export const metadata = {
@@ -38,8 +37,18 @@ async function getBlogs() {
   }
 }
 
-export default async function BlogListingPage() {
-  const blogs = await getBlogs();
+export default async function BlogListingPage({ searchParams }) {
+  const resolvedParams = searchParams ? await searchParams : {};
+  const searchQuery = resolvedParams?.s ? String(resolvedParams.s).trim().toLowerCase() : '';
+  const allBlogs = await getBlogs();
+
+  const blogs = searchQuery
+    ? allBlogs.filter((b) =>
+        b.title?.toLowerCase().includes(searchQuery) ||
+        b.excerpt?.toLowerCase().includes(searchQuery) ||
+        b.category?.toLowerCase().includes(searchQuery)
+      )
+    : allBlogs;
 
   return (
     <>
@@ -50,73 +59,100 @@ export default async function BlogListingPage() {
 
       <section className="section-space">
         <div className="container">
-          <div className="section-title text-center">
+          <div className="section-title text-center mb-10">
             <h2>
-              <span>Latest </span>
-              <b>Articles &amp; Updates</b>
+              {searchQuery ? (
+                <>
+                  <span>Search Results for </span>
+                  <b>&ldquo;{resolvedParams.s}&rdquo;</b>
+                </>
+              ) : (
+                <>
+                  <span>Latest </span>
+                  <b>Articles &amp; Updates</b>
+                </>
+              )}
             </h2>
+            {searchQuery && (
+              <div className="mt-3">
+                <Link
+                  href="/blog"
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-red-600 hover:text-red-700 bg-red-50 border border-red-200 px-3 py-1 rounded-full transition-colors"
+                >
+                  ✕ Clear search &amp; view all {allBlogs.length} articles
+                </Link>
+              </div>
+            )}
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '35px' }}>
+          {blogs.length === 0 ? (
+            <div className="text-center py-12 bg-gray-50 rounded-2xl border border-gray-100 p-8 max-w-lg mx-auto">
+              <p className="text-gray-600 font-medium mb-4">No articles found matching &ldquo;{resolvedParams.s}&rdquo;.</p>
+              <Link
+                href="/blog"
+                className="inline-block px-5 py-2.5 rounded-xl bg-red-600 text-white font-semibold text-sm hover:bg-red-700 transition-colors shadow-sm"
+              >
+                View all articles
+              </Link>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {blogs.map((blog, idx) => (
               <div
                 key={idx}
-                style={{
-                  background: '#ffffff',
-                  borderRadius: '10px',
-                  overflow: 'hidden',
-                  boxShadow: '0 5px 25px rgba(0,0,0,0.06)',
-                  border: '1px solid #eee',
-                  display: 'flex',
-                  flexDirection: 'column',
-                }}
+                className="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col h-full group"
               >
-                <div style={{ height: '220px', width: '100%', overflow: 'hidden' }}>
-                  <Link href={`/blog/${blog.slug}`}>
+                <div className="h-52 sm:h-56 w-full overflow-hidden bg-gray-100 relative">
+                  <Link href={`/blog/${blog.slug}`} className="block w-full h-full">
                     <img
                       src={blog.image}
                       alt={blog.title}
-                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                   </Link>
+                  <span className="absolute top-3 right-3 bg-black/60 backdrop-blur-sm text-white text-[11px] font-semibold px-2.5 py-1 rounded-full">
+                    {blog.category || 'Study Abroad'}
+                  </span>
                 </div>
 
-                <div style={{ padding: '24px', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '12px', color: '#888', marginBottom: '10px' }}>
-                    <span><i className="fa-regular fa-clock" style={{ marginRight: '5px' }}></i> {new Date(blog.publishedAt || Date.now()).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
-                    <span>•</span>
-                    <span style={{ color: 'var(--primary-red)', fontWeight: '600' }}>{blog.category || 'Study Abroad'}</span>
+                <div className="p-5 sm:p-6 flex flex-col flex-1 justify-between">
+                  <div>
+                    <div className="flex items-center gap-2 text-xs text-gray-500 mb-2">
+                      <i className="fa-regular fa-clock text-red-500"></i>
+                      <span>
+                        {new Date(blog.publishedAt || Date.now()).toLocaleDateString('en-US', {
+                          month: 'short',
+                          day: 'numeric',
+                          year: 'numeric',
+                        })}
+                      </span>
+                    </div>
+
+                    <h3 className="text-base sm:text-lg font-bold text-gray-900 group-hover:text-red-600 transition-colors leading-snug mb-3">
+                      <Link href={`/blog/${blog.slug}`}>{blog.title}</Link>
+                    </h3>
+
+                    <p className="text-xs sm:text-sm text-gray-600 line-clamp-3 leading-relaxed mb-4">
+                      {blog.excerpt}
+                    </p>
                   </div>
 
-                  <h3 style={{ fontSize: '17px', fontWeight: '700', color: '#222', lineHeight: '1.4', marginBottom: '12px' }}>
-                    <Link href={`/blog/${blog.slug}`}>{blog.title}</Link>
-                  </h3>
-
-                  <p style={{ fontSize: '13.5px', color: '#666', lineHeight: '1.6', marginBottom: '20px', flexGrow: 1 }}>
-                    {blog.excerpt}
-                  </p>
-
-                  <div style={{ marginTop: 'auto' }}>
+                  <div className="pt-3 border-t border-gray-100 flex items-center justify-between">
                     <Link
                       href={`/blog/${blog.slug}`}
-                      style={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '6px',
-                        fontWeight: '700',
-                        fontSize: '13.5px',
-                        color: 'var(--primary-red)',
-                      }}
+                      className="inline-flex items-center gap-1.5 font-bold text-xs sm:text-sm text-red-600 group-hover:translate-x-1 transition-transform"
                     >
-                      Read Full Article <i className="fa-solid fa-arrow-right"></i>
+                      <span>Read Full Article</span>
+                      <i className="fa-solid fa-arrow-right text-[10px]"></i>
                     </Link>
                   </div>
                 </div>
               </div>
             ))}
           </div>
-        </div>
-      </section>
+        )}
+      </div>
+    </section>
     </>
   );
 }

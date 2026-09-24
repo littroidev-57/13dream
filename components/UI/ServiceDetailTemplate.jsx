@@ -17,6 +17,7 @@ export default function ServiceDetailTemplate({
   allServices = [],
 }) {
   const activeItemRef = useRef(null);
+  const containerRef = useRef(null);
 
   // Support either full service object or legacy individual props
   const displayTitle = service?.title || title || 'Service Detail';
@@ -29,8 +30,15 @@ export default function ServiceDetailTemplate({
   const serviceList = allServices && allServices.length > 0 ? allServices : servicesData;
 
   useEffect(() => {
-    if (activeItemRef.current) {
-      activeItemRef.current.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    // Always start at top of page on page load / slug change
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+
+    // Scroll only the internal sidebar container, NEVER the window
+    if (containerRef.current && activeItemRef.current) {
+      const container = containerRef.current;
+      const activeItem = activeItemRef.current;
+      const relativeTop = activeItem.offsetTop - container.offsetTop;
+      container.scrollTop = Math.max(0, relativeTop - 30);
     }
   }, [slug]);
 
@@ -307,6 +315,7 @@ export default function ServiceDetailTemplate({
                 </h4>
 
                 <div
+                  ref={containerRef}
                   className="custom-sidebar-scroll"
                   style={{
                     display: 'flex',

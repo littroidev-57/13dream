@@ -30,11 +30,7 @@ export default function Navbar({ onToggleMobileNav, isScrolled }) {
               <img
                 src="https://13dreamsconsultants.com/img/13d-logo.webp"
                 alt="13 Dreams Consultants Logo"
-                style={{
-                  height: isScrolled ? '50px' : '58px',
-                  width: 'auto',
-                  transition: 'height 0.3s ease',
-                }}
+                className="h-10 sm:h-12 lg:h-[58px] w-auto max-w-[170px] sm:max-w-none object-contain transition-all duration-300"
               />
             </Link>
           </div>
@@ -55,6 +51,7 @@ export default function Navbar({ onToggleMobileNav, isScrolled }) {
                     Our Services <i className="fa fa-angle-down" style={{ fontSize: '11px' }}></i>
                   </Link>
                   <ul className="sub-menu">
+                    <li><Link href="/e-magazine">Visa E-Books</Link></li>
                     <li><Link href="/student-visa">Student Visa Guide</Link></li>
                     <li><Link href="/universities">Partner Universities</Link></li>
                     <li><Link href="/courses">In-Demand Courses</Link></li>
@@ -107,22 +104,31 @@ export default function Navbar({ onToggleMobileNav, isScrolled }) {
                   </ul>
                 </li>
 
+                {/* <li>
+                  <Link href="/e-magazine" className="flex items-center gap-1">
+                    <span>E-Magazine</span>
+                    <span className="px-1.5 py-0.5 rounded-full bg-red-600 text-white text-[9px] font-bold leading-none">
+                      NEW
+                    </span>
+                  </Link>
+                </li> */}
+
                 <li>
                   <Link href="/blog">Blog</Link>
                 </li>
               </ul>
             </nav>
 
-            <div className="right-button" style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
-              <Link href="/contact" className="bizwheel-btn">
+            <div className="right-button flex items-center gap-3">
+              <Link href="/contact" className="bizwheel-btn !hidden md:!inline-block">
                 Contact Us
               </Link>
               <button
-                className="mobile-nav-toggle"
+                className="mobile-nav-toggle flex items-center justify-center w-11 h-11 rounded-xl bg-gray-100/80 hover:bg-red-50 text-gray-800 hover:text-red-600 border border-gray-200 transition-colors"
                 onClick={onToggleMobileNav}
                 aria-label="Toggle navigation menu"
               >
-                <i className="fa fa-bars"></i>
+                <i className="fa fa-bars text-lg"></i>
               </button>
             </div>
           </div>

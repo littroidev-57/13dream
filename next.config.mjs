@@ -27,6 +27,11 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: '/e-books',
+        destination: '/e-magazine',
+        permanent: true,
+      },
+      {
         source: '/countries.php',
         destination: '/countries',
         permanent: true,
