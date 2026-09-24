@@ -235,7 +235,11 @@ export default function EMagazineClient() {
                     : 'bg-white hover:bg-red-50 text-gray-700 hover:text-[#e20000] border border-gray-200 shadow-sm'
                   }`}
               >
-                <span>{b.flag}</span>
+                {b.flagImg ? (
+                  <img src={b.flagImg} alt={b.country} className="w-4 h-3 object-cover rounded shadow-xs shrink-0" />
+                ) : (
+                  <span>{b.flag}</span>
+                )}
                 <span>{b.country}</span>
               </button>
             ))}
@@ -322,7 +326,11 @@ export default function EMagazineClient() {
 
                       {/* Country Foil Badge */}
                       <div className="absolute top-3 left-3 flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/80 backdrop-blur-md text-white text-xs font-bold shadow-lg z-20 border border-white/10">
-                        <span>{brochure.flag}</span>
+                        {brochure.flagImg ? (
+                          <img src={brochure.flagImg} alt={brochure.country} className="w-4 h-3 object-cover rounded shadow-xs shrink-0" />
+                        ) : (
+                          <span>{brochure.flag}</span>
+                        )}
                         <span>{brochure.country}</span>
                       </div>
 
@@ -358,12 +366,15 @@ export default function EMagazineClient() {
                   {/* Below-Book Label for Layered Books */}
                   <div className="mt-4 text-center">
                     <span
-                      className={`text-xs font-bold transition-all px-2.5 py-0.5 rounded-full ${isActive
+                      className={`inline-flex items-center gap-1.5 text-xs font-bold transition-all px-2.5 py-0.5 rounded-full ${isActive
                           ? 'text-[#e20000] bg-red-50 border border-red-200'
                           : 'text-gray-500 bg-white/80 border border-gray-200'
                         }`}
                     >
-                      {brochure.flag} {brochure.country}
+                      {brochure.flagImg && (
+                        <img src={brochure.flagImg} alt="" className="w-3.5 h-2.5 object-cover rounded shadow-xs shrink-0" />
+                      )}
+                      <span>{brochure.country}</span>
                     </span>
                   </div>
                 </div>
@@ -473,7 +484,11 @@ export default function EMagazineClient() {
                   <div className="absolute inset-y-0 left-0 w-5 bg-gradient-to-r from-black/40 via-black/15 to-transparent pointer-events-none"></div>
 
                   <div className="absolute top-2.5 left-2.5 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/75 backdrop-blur-md text-white text-[11px] font-bold shadow">
-                    <span>{brochure.flag}</span>
+                    {brochure.flagImg ? (
+                      <img src={brochure.flagImg} alt={brochure.country} className="w-3.5 h-2.5 object-cover rounded shadow-xs shrink-0" />
+                    ) : (
+                      <span>{brochure.flag}</span>
+                    )}
                     <span>{brochure.country}</span>
                   </div>
 
@@ -486,7 +501,11 @@ export default function EMagazineClient() {
                 </div>
 
                 <h3 className="text-base font-extrabold text-gray-900 mt-4 group-hover:text-[#e20000] transition-colors flex items-center gap-2">
-                  <span>{brochure.flag}</span>
+                  {brochure.flagImg ? (
+                    <img src={brochure.flagImg} alt={brochure.country} className="w-5 h-3.5 object-cover rounded shadow-xs shrink-0" />
+                  ) : (
+                    <span>{brochure.flag}</span>
+                  )}
                   <span>{brochure.country}</span>
                 </h3>
 

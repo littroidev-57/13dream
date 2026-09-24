@@ -3,12 +3,12 @@
 import React, { useState } from 'react';
 
 const DESTINATIONS = [
-  { id: 'canada', name: 'Canada', flag: '🇨🇦', minIelts: '6.0 overall (min 6.0 in each)', minPte: '60+', psw: 'Up to 3 Years PGWP', intake: 'Sept 2026 / Jan 2027', pr: 'High (Express Entry / PNP)' },
-  { id: 'uk', name: 'United Kingdom', flag: '🇬🇧', minIelts: '6.0 overall (Waiver available for 70%+ in 12th English)', minPte: '58+', psw: '2 Years Graduate Route', intake: 'Sept 2026 / Jan 2027', pr: 'Skilled Worker Visa' },
-  { id: 'australia', name: 'Australia', flag: '🇦🇺', minIelts: '6.0 to 6.5 overall', minPte: '58 to 65+', psw: '2 to 4 Years Post-Study Work', intake: 'July 2026 / Nov 2026 / Feb 2027', pr: 'Points-based Subclass 189/190' },
-  { id: 'usa', name: 'USA', flag: '🇺🇸', minIelts: '6.5 overall / Duolingo accepted', minPte: '60+', psw: 'Up to 3 Years (STEM OPT)', intake: 'Fall 2026 / Spring 2027', pr: 'H-1B & EB pathways' },
-  { id: 'germany', name: 'Germany', flag: '🇩🇪', minIelts: '6.5 overall (Public Univs with zero tuition)', minPte: '60+', psw: '18 Months Job Seeking Visa', intake: 'Winter 2026 (Oct) / Summer 2027', pr: 'EU Blue Card' },
-  { id: 'newzealand', name: 'New Zealand', flag: '🇳🇿', minIelts: '6.0 for Diploma/UG, 6.5 for PG', minPte: '58+', psw: 'Up to 3 Years Post-Study', intake: 'July 2026 / Feb 2027', pr: 'Green List PR pathway' },
+  { id: 'canada', name: 'Canada', flagImg: '/img/flags/ca.svg', minIelts: '6.0 overall (min 6.0 in each)', minPte: '60+', psw: 'Up to 3 Years PGWP', intake: 'Sept 2026 / Jan 2027', pr: 'High (Express Entry / PNP)' },
+  { id: 'uk', name: 'United Kingdom', flagImg: '/img/flags/gb.svg', minIelts: '6.0 overall (Waiver available for 70%+ in 12th English)', minPte: '58+', psw: '2 Years Graduate Route', intake: 'Sept 2026 / Jan 2027', pr: 'Skilled Worker Visa' },
+  { id: 'australia', name: 'Australia', flagImg: '/img/flags/au.svg', minIelts: '6.0 to 6.5 overall', minPte: '58 to 65+', psw: '2 to 4 Years Post-Study Work', intake: 'July 2026 / Nov 2026 / Feb 2027', pr: 'Points-based Subclass 189/190' },
+  { id: 'usa', name: 'USA', flagImg: '/img/flags/us.svg', minIelts: '6.5 overall / Duolingo accepted', minPte: '60+', psw: 'Up to 3 Years (STEM OPT)', intake: 'Fall 2026 / Spring 2027', pr: 'H-1B & EB pathways' },
+  { id: 'germany', name: 'Germany', flagImg: '/img/flags/de.svg', minIelts: '6.5 overall (Public Univs with zero tuition)', minPte: '60+', psw: '18 Months Job Seeking Visa', intake: 'Winter 2026 (Oct) / Summer 2027', pr: 'EU Blue Card' },
+  { id: 'newzealand', name: 'New Zealand', flagImg: '/img/flags/nz.svg', minIelts: '6.0 for Diploma/UG, 6.5 for PG', minPte: '58+', psw: 'Up to 3 Years Post-Study', intake: 'July 2026 / Feb 2027', pr: 'Green List PR pathway' },
 ];
 
 const QUALIFICATIONS = [
@@ -93,7 +93,12 @@ export default function EligibilityCalculator() {
                           : 'border-gray-200 bg-white hover:border-gray-300 text-gray-700 hover:bg-gray-50'
                       }`}
                     >
-                      <span className="text-xl sm:text-2xl shrink-0">{country.flag}</span>
+                      <img
+                        src={country.flagImg}
+                        alt={`${country.name} Flag`}
+                        className="w-6 h-4 sm:w-7 sm:h-5 object-cover rounded shadow-sm border border-gray-200/80 shrink-0"
+                        loading="lazy"
+                      />
                       <span className="text-xs sm:text-sm font-semibold truncate leading-tight">{country.name}</span>
                     </button>
                   );
@@ -172,8 +177,12 @@ export default function EligibilityCalculator() {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-gray-800 pb-5 mb-6">
               <div>
                 <span className="text-xs uppercase tracking-widest text-red-400 font-bold">Preliminary Assessment</span>
-                <h3 className="text-lg sm:text-2xl font-black text-white flex items-center gap-2 mt-1">
-                  <span>{selectedCountry.flag}</span>
+                <h3 className="text-lg sm:text-2xl font-black text-white flex items-center gap-2.5 mt-1">
+                  <img
+                    src={selectedCountry.flagImg}
+                    alt={`${selectedCountry.name} Flag`}
+                    className="w-7 h-5 sm:w-8 sm:h-5.5 object-cover rounded shadow border border-white/20 shrink-0"
+                  />
                   <span>Study in {selectedCountry.name}</span>
                 </h3>
               </div>

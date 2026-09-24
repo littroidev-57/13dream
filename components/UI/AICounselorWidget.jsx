@@ -410,12 +410,12 @@ export default function AICounselorWidget() {
                     onChange={(e) => setCallbackCountry(e.target.value)}
                     className="flex-1 px-2 py-1.5 text-xs bg-slate-800 border border-slate-700 rounded-lg text-white focus:outline-none focus:border-red-500"
                   >
-                    <option value="Canada">Canada 🇨🇦</option>
-                    <option value="UK">United Kingdom 🇬🇧</option>
-                    <option value="Australia">Australia 🇦🇺</option>
-                    <option value="Germany">Germany 🇩🇪</option>
-                    <option value="USA">USA 🇺🇸</option>
-                    <option value="New Zealand">New Zealand 🇳🇿</option>
+                    <option value="Canada">Canada</option>
+                    <option value="UK">United Kingdom</option>
+                    <option value="Australia">Australia</option>
+                    <option value="Germany">Germany</option>
+                    <option value="USA">USA</option>
+                    <option value="New Zealand">New Zealand</option>
                   </select>
                   <button
                     type="submit"

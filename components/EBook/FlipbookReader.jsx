@@ -355,7 +355,15 @@ export default function FlipbookReader({ brochure, onClose }) {
       {/* Top Header Bar */}
       <header className="flex items-center justify-between px-3 sm:px-6 py-2.5 sm:py-3 border-b border-white/10 bg-black/60 backdrop-blur-md z-40">
         <div className="flex items-center gap-3">
-          <span className="text-2xl drop-shadow">{brochure.flag}</span>
+          {brochure.flagImg ? (
+            <img
+              src={brochure.flagImg}
+              alt={brochure.country}
+              className="w-7 h-5 sm:w-8 sm:h-5.5 object-cover rounded shadow border border-white/20 shrink-0"
+            />
+          ) : (
+            <span className="text-2xl drop-shadow">{brochure.flag}</span>
+          )}
           <div>
             <h2 className="text-white text-xs sm:text-base font-bold truncate max-w-[180px] sm:max-w-md">
               {brochure.title}
