@@ -9,14 +9,26 @@ import { destinationsData } from '@/lib/seedData';
 export const metadata = {
   title: 'Study Abroad Consultants | Top Overseas Education Advisory | 13 Dreams',
   description:
-    'Comprehensive guide to studying abroad for Indian students. Learn about university admissions, popular countries, tuition costs, scholarships, and post-study work visas with 13 Dreams Consultants.',
+    'Comprehensive guide to studying abroad for Indian students. Learn about university admissions, popular countries (Canada, UK, Australia, USA, Germany, Malta, Singapore, Netherlands), tuition costs, scholarships, and post-study work visas with 13 Dreams Consultants.',
+  keywords: [
+    'Study Abroad Consultants',
+    'Study in Malta for Indian students',
+    'Study in Singapore universities',
+    'Study in Netherlands Zoekjaar visa',
+    'Study in Germany tuition free',
+    'Study in Canada SDS visa',
+    'Study in UK Russell Group',
+    'Study in Australia Subclass 500',
+    'Overseas Education Consultants Bareilly',
+    'Best Study Abroad Agency India',
+  ],
   alternates: {
     canonical: getCanonicalUrl('/study-abroad'),
   },
   openGraph: {
     title: 'Study Abroad Guide & Overseas Education Consultancy | 13 Dreams',
     description:
-      'Explore top global study destinations, admission criteria, and scholarship opportunities with trusted study abroad advisors in Bareilly & Khatima.',
+      'Explore top global study destinations (Canada, UK, Australia, USA, Germany, Malta, Singapore, Netherlands), admission criteria, and scholarship opportunities with trusted study abroad advisors in Bareilly & Khatima.',
     url: getCanonicalUrl('/study-abroad'),
     siteName: siteConfig.siteName,
     type: 'website',
@@ -27,22 +39,27 @@ const studyAbroadFaqs = [
   {
     question: 'Why should I choose 13 Dreams Consultants for my study abroad journey?',
     answer:
-      'With over 15 years of proven experience, 13 Dreams Consultants provides genuine, student-first guidance. We are official partner agents for leading universities across Canada, the UK, Australia, the USA, and Europe, maintaining a 99% visa success rate and offering 100% free profile evaluations.',
+      'With over 15 years of proven experience, 13 Dreams Consultants provides genuine, student-first guidance. We are official partner agents for leading universities across Canada, the UK, Australia, the USA, Germany, Malta, Singapore, the Netherlands, and Europe, maintaining a 99% visa success rate and offering 100% free profile evaluations.',
   },
   {
     question: 'Which country is best for Indian students to study abroad in 2026/2027?',
     answer:
-      'The best country depends on your budget, degree level, and career goals: Germany offers tuition-free education at public universities; the UK offers fast-track 1-year Master\'s degrees with 2-year Graduate Route visas; Canada and Australia offer generous 2 to 4 year post-study work permits with accessible PR pathways; while the USA is the global leader in STEM research and OPT internships.',
+      'The best country depends on your budget, degree level, and career goals: Germany offers tuition-free education at public universities; the Netherlands offers 2,100+ English-taught programs and a 1-year Zoekjaar post-study visa; Malta provides affordable European education with 27-country Schengen access and 20 hrs/week work rights; Singapore delivers fast-track degrees from world-ranked universities with digital ICA Solar+ visas; the UK offers 1-year Master\'s with Graduate Route visas; and Canada/Australia provide generous post-study work permits with accessible PR pathways.',
+  },
+  {
+    question: 'What are the unique advantages of studying in Malta, Singapore, or the Netherlands?',
+    answer:
+      'Malta offers affordable European tuition (starting from €5,000/yr), 100% English-medium instruction, part-time work rights, and visa-free travel across the Schengen zone. Singapore is Asia’s financial hub offering accelerated 2-year Bachelor’s or 1-year Master’s degrees from Australian/UK branch campuses with no embassy interview. The Netherlands is Europe’s top destination for English-taught degrees, home to world-renowned universities (TU Delft, University of Amsterdam), and provides the 1-year Zoekjaar orientation visa.',
   },
   {
     question: 'What is the average cost of studying abroad?',
     answer:
-      'Tuition fees typically range from €0 - €3,000/year in Germany, CAD 15,000 - CAD 30,000/year in Canada, £12,000 - £25,000/year in the UK, and AUD 22,000 - AUD 45,000/year in Australia. Living costs range between INR 7 Lakhs to 12 Lakhs annually depending on the city.',
+      'Tuition fees typically range from €0 - €3,000/year in Germany, €5,000 - €9,000/year in Malta, CAD 15,000 - CAD 30,000/year in Canada, €8,000 - €18,000/year in the Netherlands, SGD 18,000 - SGD 32,000/year in Singapore, £12,000 - £25,000/year in the UK, and AUD 22,000 - AUD 45,000/year in Australia. Living costs range between INR 7 Lakhs to 12 Lakhs annually depending on the city.',
   },
   {
     question: 'Are scholarships available for international students?',
     answer:
-      'Yes. Many universities offer merit-based scholarships, global diversity bursaries, and faculty fee reductions ranging from 10% to 50% of annual tuition fees. 13 Dreams advisors guide you through identifying and securing applicable scholarships during the application stage.',
+      'Yes. Many universities offer merit-based scholarships, global diversity bursaries, and faculty fee reductions ranging from 10% to 50% of annual tuition fees (including the NL Scholarship in the Netherlands and institutional grants in Malta and Singapore). 13 Dreams advisors guide you through identifying and securing applicable scholarships during the application stage.',
   },
 ];
 

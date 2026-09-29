@@ -87,6 +87,7 @@ export default function Navbar({ onToggleMobileNav, isScrolled }) {
                     <li><Link href="/study/germany">Study in Germany</Link></li>
                     <li><Link href="/study/malta">Study in Malta</Link></li>
                     <li><Link href="/study/singapore">Study in Singapore</Link></li>
+                    <li><Link href="/study/netherlands">Study in Netherlands</Link></li>
                     <li><Link href="/study/ireland">Study in Ireland</Link></li>
                     <li><Link href="/study/switzerland">Study in Switzerland</Link></li>
                   </ul>

@@ -34,6 +34,12 @@ const leftDestinations = [
     image: 'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=800&q=80',
     alt: 'Study in Germany for Indian students',
   },
+  {
+    name: 'Netherlands',
+    slug: 'netherlands',
+    image: 'https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?auto=format&fit=crop&w=800&q=80',
+    alt: 'Study in Netherlands for Indian students',
+  },
 ];
 
 const rightDestinations = [

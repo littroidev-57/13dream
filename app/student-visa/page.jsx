@@ -8,14 +8,26 @@ import { siteConfig, getCanonicalUrl } from '@/lib/siteConfig';
 export const metadata = {
   title: 'Student Visa Consultants | High Success Study Visa Guidance | 13 Dreams',
   description:
-    'Expert student visa consultancy for Canada, UK, USA, Australia, and Europe. 99% visa grant rate, GTE/SOP scrutiny, financial documentation, and embassy mock interviews.',
+    'Expert student visa consultancy for Canada, UK, USA, Australia, Germany, Malta, Singapore, and the Netherlands. 99% visa grant rate, GTE/SOP scrutiny, financial documentation, and embassy mock interviews.',
+  keywords: [
+    'Student Visa Consultants',
+    'Study Visa Bareilly',
+    'Malta Student Visa Schengen',
+    'Singapore ICA Solar Student Pass',
+    'Netherlands MVV VVR Zoekjaar Visa',
+    'Canada SDS Study Permit',
+    'Australia Subclass 500 Visa',
+    'UK Student Route Visa',
+    'Germany Type D Student Visa',
+    'Overseas Education Visa Consultants',
+  ],
   alternates: {
     canonical: getCanonicalUrl('/student-visa'),
   },
   openGraph: {
     title: 'Student Visa Consultants | 99% Visa Grant Rate | 13 Dreams',
     description:
-      'End-to-end student visa processing for Canada SDS, Australia Subclass 500, UK Student Route, and USA F-1 visas with certified advisors.',
+      'End-to-end student visa processing for Canada SDS, Australia Subclass 500, UK Student Route, USA F-1, Malta Schengen, Singapore SOLAR+, and Netherlands MVV/Zoekjaar visas.',
     url: getCanonicalUrl('/student-visa'),
     siteName: siteConfig.siteName,
     type: 'website',
@@ -26,22 +38,32 @@ const visaFaqs = [
   {
     question: 'What is the visa grant rate with 13 Dreams Consultants?',
     answer:
-      '13 Dreams Consultants maintains an industry-leading 99% visa approval rate across Canada, the UK, Australia, the USA, and European nations. Our rigorous pre-submission audit ensures that every financial affidavit, SOP, and academic credential conforms to strict embassy guidelines.',
+      '13 Dreams Consultants maintains an industry-leading 99% visa approval rate across Canada, the UK, Australia, the USA, Germany, Malta, Singapore, and the Netherlands. Our rigorous pre-submission audit ensures that every financial affidavit, SOP, and academic credential conforms to strict embassy guidelines.',
   },
   {
     question: 'How long does a student visa application take to process?',
     answer:
-      'Processing times vary by destination and stream: Canadian SDS applications typically take 20 to 30 days; UK Student Route visas take 3 to 4 weeks (with priority options in 5 days); Australian Subclass 500 visas take 4 to 8 weeks; and US F-1 decisions are rendered immediately at the conclusion of the embassy interview.',
+      'Processing times vary by destination: Singapore SOLAR+ digital visas are approved in 2 to 4 weeks with no embassy interview; Canadian SDS applications take 20 to 30 days; UK Student Route visas take 3 to 4 weeks; Dutch IND visas take 4 to 6 weeks; Malta Schengen Type D visas take 4 to 6 weeks; Australian Subclass 500 visas take 4 to 8 weeks; and US F-1 decisions are rendered immediately at the conclusion of the interview.',
+  },
+  {
+    question: 'How does the Singapore Student Pass (SOLAR+) work?',
+    answer:
+      'Singapore operates a 100% digital student pass application via the Immigration & Checkpoints Authority (ICA) SOLAR+ portal. Once the university files your application, you receive an In-Principle Approval (IPA) letter within 2 to 4 weeks which serves as your pre-approved entry visa—no embassy interview required.',
+  },
+  {
+    question: 'What is the Netherlands Zoekjaar (Orientation Year) visa?',
+    answer:
+      'Upon graduating with an accredited Bachelor\'s or Master\'s degree in the Netherlands, international students can obtain the 1-year "Zoekjaar" (Orientation Year) residence permit. It grants open work rights across the Netherlands with no minimum salary thresholds or employer sponsorship quotas.',
+  },
+  {
+    question: 'What are the visa perks of studying in Malta?',
+    answer:
+      'As an EU and Schengen Zone country, a Maltese National Long Stay (Type D) student visa allows students to travel visa-free across all 27 Schengen nations (including Germany, France, Italy, and Switzerland). Students are also legally permitted to work 20 hours per week under Jobsplus authorization after 90 days of stay.',
   },
   {
     question: 'What is a Blocked Account (Sperrkonto) for Germany?',
     answer:
       'To secure a German National Student Visa, Indian students must deposit mandatory living expenses (currently €11,904 per year) into a government-approved blocked account such as Expatrio, Coracle, or Fintiba. 13 Dreams assists with setting up your blocked account and obtaining the requisite confirmation certificate.',
-  },
-  {
-    question: 'Do I need to attend an embassy interview for my student visa?',
-    answer:
-      'The USA mandates an in-person F-1 interview at a US consulate. The UK conducts occasional credibility interviews, while Canada, Australia, and Germany primarily assess digital filings and biometric data unless specific clarifications are requested. 13 Dreams provides comprehensive 1-on-1 mock interviews for all candidates.',
   },
 ];
 
@@ -80,6 +102,27 @@ const visaStreams = [
     keyFeature: 'Zero Tuition Fees + 18-Month Job Seeker Visa',
     reqs: ['University Admission Letter', 'APS Verification Certificate', 'Blocked Account (€11,904)', 'Statutory Health Cover'],
     badge: 'Tuition-Free Study',
+  },
+  {
+    country: 'Netherlands',
+    visaName: 'MVV & VVR Residence Permit',
+    keyFeature: '1-Year Zoekjaar (Orientation Year) Open Work Visa',
+    reqs: ['Direct IND University Filing', 'Living Funds Proof (~€12,500/yr)', 'IELTS 6.0/6.5 or PTE equivalent', 'Health Insurance Cover'],
+    badge: 'Zoekjaar Work Rights',
+  },
+  {
+    country: 'Singapore',
+    visaName: "Student's Pass (STP via ICA SOLAR+)",
+    keyFeature: 'Fast 2-4 Week Digital Approval + No Embassy Interview',
+    reqs: ['In-Principle Approval (IPA) Letter', 'SOLAR+ Registration & eForm 16', 'Proof of Living Funds', 'Medical Checkup in Singapore'],
+    badge: 'Digital Fast-Track',
+  },
+  {
+    country: 'Malta',
+    visaName: 'National Long Stay Visa (Type D / Schengen)',
+    keyFeature: 'Visa-Free Travel Across 27 Schengen Nations + 20h/wk Work',
+    reqs: ['Acceptance Letter from Maltese College', 'Living Funds (€25-€30/day)', 'Schengen Medical Insurance (€30k)', 'Jobsplus Work Permit'],
+    badge: 'EU Schengen Access',
   },
   {
     country: 'Ireland',

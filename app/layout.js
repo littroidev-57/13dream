@@ -16,7 +16,7 @@ export const metadata = {
     template: '%s',
   },
   description:
-    'Get expert guidance from 13 Dreams Consultants, India\'s trusted overseas education and study visa specialists. Comprehensive guidance for Canada, UK, USA, Australia, and Europe.',
+    'Get expert guidance from 13 Dreams Consultants, India\'s trusted overseas education and study visa specialists. Comprehensive guidance for Canada, UK, USA, Australia, Germany, Malta, Singapore, Netherlands, and Europe.',
   keywords: [
     'Study Abroad Consultants',
     'Overseas Education Consultants',
@@ -30,6 +30,13 @@ export const metadata = {
     'Study in UK Consultants',
     'Study in USA Student Visa',
     'Study in Germany Free Education',
+    'Study in Malta Schengen Student Visa',
+    'Study in Malta Consultants',
+    'Study in Singapore ICA Solar Pass',
+    'Study in Singapore Consultants',
+    'Study in Netherlands Zoekjaar Visa',
+    'Study in Netherlands Consultants',
+    'Study in Europe English Taught Programs',
     'IELTS Coaching in Bareilly',
     'PTE Training Centre Bareilly',
     'Visa Application Assistance Online',
@@ -44,7 +51,7 @@ export const metadata = {
   openGraph: {
     title: '13 Dreams Consultants Private Limited | Study Abroad & Visa Experts',
     description:
-      'Trusted Study Abroad & Student Visa Consultants in Bareilly and Khatima. Assisting Indian students with global admissions to Canada, Australia, UK, USA, and Europe.',
+      'Trusted Study Abroad & Student Visa Consultants in Bareilly and Khatima. Assisting Indian students with global admissions to Canada, Australia, UK, USA, Germany, Malta, Singapore, Netherlands, and Europe.',
     url: siteConfig.siteUrl,
     siteName: siteConfig.siteName,
     images: [
@@ -62,7 +69,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: '13 Dreams Consultants | Study Abroad & Visa Guidance',
     description:
-      'End-to-end university admissions, scholarships, and student visa guidance with a 99% visa success rate.',
+      'End-to-end university admissions, scholarships, and student visa guidance for Canada, UK, Australia, USA, Germany, Malta, Singapore, Netherlands & Europe with 99% visa success.',
     images: [`${siteConfig.siteUrl}/img/13dreamsconsultants-main.webp`],
   },
   icons: {
@@ -100,6 +107,27 @@ export default function RootLayout({ children }) {
       bestRating: '5',
       worstRating: '1',
     },
+    knowsAbout: [
+      'Study Abroad Guidance',
+      'Overseas University Admissions',
+      'Student Visa Consultation',
+      'Study in Canada',
+      'Study in Australia',
+      'Study in United Kingdom',
+      'Study in United States',
+      'Study in Germany',
+      'Study in Malta',
+      'Study in Singapore',
+      'Study in Netherlands',
+      'Study in New Zealand',
+      'Study in Ireland',
+      'Study in Switzerland',
+      'IELTS Preparation',
+      'PTE Coaching',
+      'Zoekjaar Orientation Year Visa',
+      'Schengen Student Visa',
+      'ICA Solar Student Pass',
+    ],
     areaServed: [
       { '@type': 'AdministrativeArea', name: 'Bareilly' },
       { '@type': 'AdministrativeArea', name: 'Khatima' },

@@ -143,7 +143,7 @@ export default function ApplyPage() {
           name: 'Which countries can I apply to for student visas?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'We provide specialized student visa guidance for Australia, Canada, United Kingdom (UK), United States (USA), Germany, New Zealand, Ireland, Singapore, Switzerland, and Malta.',
+            text: 'We provide specialized student visa guidance for Australia, Canada, United Kingdom (UK), United States (USA), Germany, New Zealand, Ireland, Netherlands, Singapore, Switzerland, and Malta.',
           },
         },
         {

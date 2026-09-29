@@ -15,9 +15,12 @@ const COUNTRY_OPTIONS = [
   { value: 'United States', label: 'United States' },
   { value: 'New Zealand', label: 'New Zealand' },
   { value: 'Germany', label: 'Germany' },
+  { value: 'Netherlands', label: 'Netherlands' },
+  { value: 'Malta', label: 'Malta' },
+  { value: 'Singapore', label: 'Singapore' },
+  { value: 'Switzerland', label: 'Switzerland' },
   { value: 'France', label: 'France' },
   { value: 'Italy', label: 'Italy' },
-  { value: 'Singapore', label: 'Singapore' },
   { value: 'Dubai (UAE)', label: 'Dubai (UAE)' },
   { value: 'Malaysia', label: 'Malaysia' },
 ];
@@ -104,7 +107,7 @@ export default function ApplyForm({ defaultCountry = '' }) {
     },
     {
       q: 'Which countries can I apply to for student visas?',
-      a: 'We provide end-to-end student visa guidance for Australia, Canada, United Kingdom (UK), United States (USA), Germany, New Zealand, Ireland, Singapore, Switzerland, and Malta.',
+      a: 'We provide end-to-end student visa guidance for Australia, Canada, United Kingdom (UK), United States (USA), Germany, New Zealand, Ireland, Netherlands, Singapore, Switzerland, and Malta.',
     },
     {
       q: 'What is the visa approval success rate of 13 Dreams Consultants?',

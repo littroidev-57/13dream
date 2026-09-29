@@ -25,6 +25,7 @@ export default function AICounselorWidget() {
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [leadCaptured, setLeadCaptured] = useState(false);
+  const [studentName, setStudentName] = useState('');
   const [showCallbackForm, setShowCallbackForm] = useState(false);
   const [callbackName, setCallbackName] = useState('');
   const [callbackPhone, setCallbackPhone] = useState('');
@@ -105,10 +106,15 @@ export default function AICounselorWidget() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           messages: updatedMessages.map(({ role, content }) => ({ role, content })),
+          userName: studentName || undefined,
         }),
       });
 
       const data = await res.json();
+
+      if (data.detectedName) {
+        setStudentName(data.detectedName);
+      }
 
       if (data.leadSaved) {
         setLeadCaptured(true);
@@ -305,219 +311,219 @@ export default function AICounselorWidget() {
       {/* Chat Window Modal */}
       {isOpen && (
         <div className="fixed bottom-3 right-3 left-3 sm:left-auto sm:right-6 sm:bottom-6 z-[99999] w-auto sm:w-[410px] max-w-[calc(100vw-24px)] sm:max-w-[410px] h-[550px] max-h-[84vh] bg-white rounded-2xl shadow-2xl border border-gray-200/90 flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200">
-            {/* Modal Header */}
-            <div className="bg-gradient-to-r from-slate-900 via-red-950 to-red-900 p-4 text-white flex items-center justify-between shadow-md relative">
-              <div className="flex items-center gap-3">
-                <div className="relative w-10 h-10 rounded-full bg-gradient-to-tr from-red-500 to-rose-400 p-0.5 shadow-md flex-shrink-0">
-                  <div className="w-full h-full rounded-full bg-white text-red-600 flex items-center justify-center text-lg">
-                    👩‍💼
-                  </div>
-                  <span className="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-slate-900 rounded-full"></span>
+          {/* Modal Header */}
+          <div className="bg-gradient-to-r from-slate-900 via-red-950 to-red-900 p-4 text-white flex items-center justify-between shadow-md relative">
+            <div className="flex items-center gap-3">
+              <div className="relative w-10 h-10 rounded-full bg-gradient-to-tr from-red-500 to-rose-400 p-0.5 shadow-md flex-shrink-0">
+                <div className="w-full h-full rounded-full bg-white text-red-600 flex items-center justify-center text-lg">
+                  👩‍💼
                 </div>
-
-                <div>
-                  <div className="flex items-center gap-1.5">
-                    <h3 className="text-sm font-bold text-white leading-tight">Priya</h3>
-                    <span className="text-[11px] font-semibold text-red-200">| 13 Dreams Advisor</span>
-                  </div>
-                  <p className="text-[11px] text-emerald-400 flex items-center gap-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                    Verified Visa &amp; IELTS Intelligence
-                  </p>
-                </div>
+                <span className="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-slate-900 rounded-full"></span>
               </div>
 
-              {/* Action Buttons */}
-              <div className="flex items-center gap-1.5">
-                <button
-                  type="button"
-                  onClick={() => setShowCallbackForm((prev) => !prev)}
-                  className={`px-2.5 py-1 rounded-full text-[11px] font-bold flex items-center gap-1 transition-all shadow-sm ${
-                    showCallbackForm
-                      ? 'bg-white text-red-600'
-                      : 'bg-white/15 hover:bg-white/25 text-white border border-white/20'
-                  }`}
-                  title="Request Free Callback"
-                >
-                  <i className="fa-solid fa-phone text-[10px]"></i>
-                  <span>Callback</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() =>
-                    setMessages([
-                      {
-                        role: 'assistant',
-                        content: 'Chat refreshed! How may I assist your foreign education plans today?',
-                        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-                      },
-                    ])
-                  }
-                  title="Clear Conversation"
-                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white/80 hover:text-white flex items-center justify-center transition-colors text-xs"
-                >
-                  <i className="fa-solid fa-arrow-rotate-right"></i>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setIsOpen(false)}
-                  title="Close Chat"
-                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white/80 hover:text-white flex items-center justify-center transition-colors text-xs"
-                >
-                  <i className="fa-solid fa-xmark text-sm"></i>
-                </button>
+              <div>
+                <div className="flex items-center gap-1.5">
+                  <h3 className="text-sm font-bold text-white leading-tight">Priya</h3>
+                  <span className="text-[11px] font-semibold text-red-200">| 13 Dreams Advisor</span>
+                </div>
+                <p className="text-[11px] text-emerald-400 flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                  Verified Visa &amp; IELTS Intelligence
+                </p>
               </div>
             </div>
 
-            {/* Quick Callback Card Dropdown */}
-            {showCallbackForm && (
-              <form
-                onSubmit={handleCallbackSubmit}
-                className="bg-slate-900 border-b border-red-900/60 p-3 text-white space-y-2 animate-in slide-in-from-top-2 duration-200"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="text-[11px] font-bold text-red-300 flex items-center gap-1.5">
-                    <i className="fa-solid fa-headset text-white"></i> Request Human Counselor Callback
-                  </span>
-                  <button
-                    type="button"
-                    onClick={() => setShowCallbackForm(false)}
-                    className="text-gray-400 hover:text-white text-xs w-5 h-5 flex items-center justify-center"
-                  >
-                    <i className="fa-solid fa-xmark"></i>
-                  </button>
-                </div>
-                <div className="grid grid-cols-2 gap-2">
-                  <input
-                    type="text"
-                    placeholder="Your Name"
-                    value={callbackName}
-                    onChange={(e) => setCallbackName(e.target.value)}
-                    className="px-2.5 py-1.5 text-xs bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-red-500"
-                  />
-                  <input
-                    type="tel"
-                    required
-                    placeholder="Mobile (+91...)"
-                    value={callbackPhone}
-                    onChange={(e) => setCallbackPhone(e.target.value)}
-                    className="px-2.5 py-1.5 text-xs bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-red-500"
-                  />
-                </div>
-                <div className="flex items-center gap-2">
-                  <select
-                    value={callbackCountry}
-                    onChange={(e) => setCallbackCountry(e.target.value)}
-                    className="flex-1 px-2 py-1.5 text-xs bg-slate-800 border border-slate-700 rounded-lg text-white focus:outline-none focus:border-red-500"
-                  >
-                    <option value="Canada">Canada</option>
-                    <option value="UK">United Kingdom</option>
-                    <option value="Australia">Australia</option>
-                    <option value="Germany">Germany</option>
-                    <option value="USA">USA</option>
-                    <option value="New Zealand">New Zealand</option>
-                  </select>
-                  <button
-                    type="submit"
-                    disabled={callbackSubmitting || !callbackPhone.trim()}
-                    className="px-3.5 py-1.5 bg-red-600 hover:bg-red-700 disabled:opacity-50 text-white text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 shadow-sm active:scale-95"
-                  >
-                    {callbackSubmitting ? 'Saving...' : 'Book Call'}
-                  </button>
-                </div>
-              </form>
-            )}
-
-            {/* Lead Captured Alert Banner */}
-            {leadCaptured && (
-              <div className="bg-emerald-50 border-b border-emerald-200 px-4 py-2 flex items-center gap-2 text-xs text-emerald-800 font-semibold animate-in fade-in">
-                <span>🎉</span>
-                <span>Contact noted! Our Bareilly team will reach out within 24 hours.</span>
-              </div>
-            )}
-
-            {/* Messages Scroll Area */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-3.5 bg-slate-50/50">
-              {messages.map((msg, index) => {
-                const isUser = msg.role === 'user';
-                return (
-                  <div key={index} className={`flex flex-col ${isUser ? 'items-end' : 'items-start'}`}>
-                    <div
-                      className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-xs sm:text-sm shadow-sm ${
-                        isUser
-                          ? 'bg-gradient-to-r from-red-600 to-red-700 text-white rounded-br-none'
-                          : 'bg-white text-gray-800 border border-gray-200/80 rounded-bl-none'
-                      }`}
-                    >
-                      {isUser ? <p className="leading-relaxed">{msg.content}</p> : renderFormattedContent(msg.content)}
-                    </div>
-                    <span className="text-[10px] text-gray-400 mt-1 px-1">{msg.time}</span>
-                  </div>
-                );
-              })}
-
-              {/* Typing Loader */}
-              {loading && (
-                <div className="flex items-center gap-2 bg-white border border-gray-200 px-3.5 py-2 rounded-2xl rounded-bl-none w-20 shadow-sm">
-                  <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-bounce"></span>
-                  <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-bounce [animation-delay:0.2s]"></span>
-                  <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-bounce [animation-delay:0.4s]"></span>
-                </div>
-              )}
-
-              <div ref={messagesEndRef} />
-            </div>
-
-            {/* Quick Suggestion Pills */}
-            <div className="p-2.5 bg-white border-t border-gray-100 flex items-center gap-1.5 overflow-x-auto no-scrollbar">
-              {SUGGESTED_PROMPTS.map((prompt, idx) => (
-                <button
-                  key={idx}
-                  type="button"
-                  onClick={() => handleSendMessage(prompt)}
-                  disabled={loading}
-                  className="flex-shrink-0 px-2.5 py-1 rounded-full bg-gray-100 hover:bg-red-50 hover:text-red-600 text-gray-700 text-[11px] font-medium border border-gray-200/80 transition-all duration-200 active:scale-95 whitespace-nowrap"
-                >
-                  {prompt}
-                </button>
-              ))}
-            </div>
-
-            {/* Chat Input Bar */}
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                handleSendMessage();
-              }}
-              className="p-3 bg-white border-t border-gray-200 flex items-center gap-2"
-            >
-              <input
-                ref={inputRef}
-                type="text"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                placeholder="Ask about IELTS, PTE, Visas, Countries..."
-                disabled={loading}
-                className="flex-1 text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:border-red-600 focus:ring-1 focus:ring-red-600 transition-all bg-gray-50/50"
-              />
+            {/* Action Buttons */}
+            <div className="flex items-center gap-1.5">
               <button
-                type="submit"
-                disabled={!input.trim() || loading}
-                className="w-10 h-10 rounded-xl bg-red-600 hover:bg-red-700 disabled:opacity-40 text-white flex items-center justify-center shadow-md transition-all active:scale-95 flex-shrink-0"
-                aria-label="Send message"
+                type="button"
+                onClick={() => setShowCallbackForm((prev) => !prev)}
+                className={`px-2.5 py-1 rounded-full text-[11px] font-bold flex items-center gap-1 transition-all shadow-sm ${showCallbackForm
+                    ? 'bg-white text-red-600'
+                    : 'bg-white/15 hover:bg-white/25 text-white border border-white/20'
+                  }`}
+                title="Request Free Callback"
               >
-                <i className="fa-solid fa-paper-plane text-xs"></i>
+                <i className="fa-solid fa-phone text-[10px]"></i>
+                <span>Callback</span>
               </button>
-            </form>
-
-            {/* Footer Tag */}
-            <div className="py-1 px-3 bg-gray-50 text-center border-t border-gray-100">
-              <p className="text-[10px] text-gray-400">
-                13 Dreams Consultants • 100% Free Initial Assessment
-              </p>
+              <button
+                type="button"
+                onClick={() =>
+                  setMessages([
+                    {
+                      role: 'assistant',
+                      content: 'Chat refreshed! How may I assist your foreign education plans today?',
+                      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+                    },
+                  ])
+                }
+                title="Clear Conversation"
+                className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white/80 hover:text-white flex items-center justify-center transition-colors text-xs"
+              >
+                <i className="fa-solid fa-arrow-rotate-right"></i>
+              </button>
+              <button
+                type="button"
+                onClick={() => setIsOpen(false)}
+                title="Close Chat"
+                className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white/80 hover:text-white flex items-center justify-center transition-colors text-xs"
+              >
+                <i className="fa-solid fa-xmark text-sm"></i>
+              </button>
             </div>
           </div>
-        )}
+
+          {/* Quick Callback Card Dropdown */}
+          {showCallbackForm && (
+            <form
+              onSubmit={handleCallbackSubmit}
+              className="bg-slate-900 border-b border-red-900/60 p-3 text-white space-y-2 animate-in slide-in-from-top-2 duration-200"
+            >
+              <div className="flex items-center justify-between">
+                <span className="text-[11px] font-bold text-red-300 flex items-center gap-1.5">
+                  <i className="fa-solid fa-headset text-white"></i> Request Human Counselor Callback
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setShowCallbackForm(false)}
+                  className="text-gray-400 hover:text-white text-xs w-5 h-5 flex items-center justify-center"
+                >
+                  <i className="fa-solid fa-xmark"></i>
+                </button>
+              </div>
+              <div className="grid grid-cols-2 gap-2">
+                <input
+                  type="text"
+                  placeholder="Your Name"
+                  value={callbackName}
+                  onChange={(e) => setCallbackName(e.target.value)}
+                  className="px-2.5 py-1.5 text-xs bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-red-500"
+                />
+                <input
+                  type="tel"
+                  required
+                  placeholder="Mobile (+91...)"
+                  value={callbackPhone}
+                  onChange={(e) => setCallbackPhone(e.target.value)}
+                  className="px-2.5 py-1.5 text-xs bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-red-500"
+                />
+              </div>
+              <div className="flex items-center gap-2">
+                <select
+                  value={callbackCountry}
+                  onChange={(e) => setCallbackCountry(e.target.value)}
+                  className="flex-1 px-2 py-1.5 text-xs bg-slate-800 border border-slate-700 rounded-lg text-white focus:outline-none focus:border-red-500"
+                >
+                  <option value="Canada">Canada</option>
+                  <option value="UK">United Kingdom</option>
+                  <option value="Australia">Australia</option>
+                  <option value="Germany">Germany</option>
+                  <option value="USA">USA</option>
+                  <option value="New Zealand">New Zealand</option>
+                </select>
+                <button
+                  type="submit"
+                  disabled={callbackSubmitting || !callbackPhone.trim()}
+                  className="px-3.5 py-1.5 bg-red-600 hover:bg-red-700 disabled:opacity-50 text-white text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 shadow-sm active:scale-95"
+                >
+                  {callbackSubmitting ? 'Saving...' : 'Book Call'}
+                </button>
+              </div>
+            </form>
+          )}
+
+          {/* Lead Captured Alert Banner */}
+          {leadCaptured && (
+            <div className="bg-emerald-50 border-b border-emerald-200 px-4 py-2 flex items-center gap-2 text-xs text-emerald-800 font-semibold animate-in fade-in">
+              <span>🎉</span>
+              <span>
+                {studentName ? `Thank you, ${studentName}! Contact noted!` : 'Contact noted!'} Our Bareilly team will reach out within 24 hours.
+              </span>
+            </div>
+          )}
+
+          {/* Messages Scroll Area */}
+          <div className="flex-1 overflow-y-auto p-4 space-y-3.5 bg-slate-50/50">
+            {messages.map((msg, index) => {
+              const isUser = msg.role === 'user';
+              return (
+                <div key={index} className={`flex flex-col ${isUser ? 'items-end' : 'items-start'}`}>
+                  <div
+                    className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-xs sm:text-sm shadow-sm ${isUser
+                        ? 'bg-gradient-to-r from-red-600 to-red-700 text-white rounded-br-none'
+                        : 'bg-white text-gray-800 border border-gray-200/80 rounded-bl-none'
+                      }`}
+                  >
+                    {isUser ? <p className="leading-relaxed">{msg.content}</p> : renderFormattedContent(msg.content)}
+                  </div>
+                  <span className="text-[10px] text-gray-400 mt-1 px-1">{msg.time}</span>
+                </div>
+              );
+            })}
+
+            {/* Typing Loader */}
+            {loading && (
+              <div className="flex items-center gap-2 bg-white border border-gray-200 px-3.5 py-2 rounded-2xl rounded-bl-none w-20 shadow-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-bounce"></span>
+                <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-bounce [animation-delay:0.2s]"></span>
+                <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-bounce [animation-delay:0.4s]"></span>
+              </div>
+            )}
+
+            <div ref={messagesEndRef} />
+          </div>
+
+          {/* Quick Suggestion Pills */}
+          <div className="p-2.5 bg-white border-t border-gray-100 flex items-center gap-1.5 overflow-x-auto no-scrollbar">
+            {SUGGESTED_PROMPTS.map((prompt, idx) => (
+              <button
+                key={idx}
+                type="button"
+                onClick={() => handleSendMessage(prompt)}
+                disabled={loading}
+                className="flex-shrink-0 px-2.5 py-1 rounded-full bg-gray-100 hover:bg-red-50 hover:text-red-600 text-gray-700 text-[11px] font-medium border border-gray-200/80 transition-all duration-200 active:scale-95 whitespace-nowrap"
+              >
+                {prompt}
+              </button>
+            ))}
+          </div>
+
+          {/* Chat Input Bar */}
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleSendMessage();
+            }}
+            className="p-3 bg-white border-t border-gray-200 flex items-center gap-2"
+          >
+            <input
+              ref={inputRef}
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="Ask about IELTS, PTE, Visas, Countries..."
+              disabled={loading}
+              className="flex-1 text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:border-red-600 focus:ring-1 focus:ring-red-600 transition-all bg-gray-50/50"
+            />
+            <button
+              type="submit"
+              disabled={!input.trim() || loading}
+              className="w-10 h-10 rounded-xl bg-red-600 hover:bg-red-700 disabled:opacity-40 text-white flex items-center justify-center shadow-md transition-all active:scale-95 flex-shrink-0"
+              aria-label="Send message"
+            >
+              <i className="fa-solid fa-paper-plane text-xs"></i>
+            </button>
+          </form>
+
+          {/* Footer Tag */}
+          <div className="py-1 px-3 bg-gray-50 text-center border-t border-gray-100">
+            <p className="text-[10px] text-gray-400">
+              13 Dreams Consultants • 100% Free Initial Assessment
+            </p>
+          </div>
+        </div>
+      )}
     </>
   );
 }

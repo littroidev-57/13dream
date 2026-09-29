@@ -19,6 +19,7 @@ const destinationsList = [
   'United States',
   'Germany',
   'New Zealand',
+  'Netherlands',
   'Singapore',
   'Ireland',
   'Switzerland',
