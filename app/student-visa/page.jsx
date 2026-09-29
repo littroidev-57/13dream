@@ -58,7 +58,7 @@ const visaFaqs = [
   {
     question: 'What are the visa perks of studying in Malta?',
     answer:
-      'As an EU and Schengen Zone country, a Maltese National Long Stay (Type D) student visa allows students to travel visa-free across all 27 Schengen nations (including Germany, France, Italy, and Switzerland). Students are also legally permitted to work 20 hours per week under Jobsplus authorization after 90 days of stay.',
+      'As an EU and Schengen Zone country, a Maltese National Long Stay (Type D) student visa allows students to travel visa-free across all 27 Schengen nations (including Germany, France, Italy, and Switzerland). Once students receive their Temporary Residence Card (TRC) and their employer applies for a working license via Jobsplus, they are legally permitted to work 20 hours per week. Graduates are also eligible for a 6-month post-study residence permit to search for employment in Malta.',
   },
   {
     question: 'What is a Blocked Account (Sperrkonto) for Germany?',
@@ -107,21 +107,21 @@ const visaStreams = [
     country: 'Netherlands',
     visaName: 'MVV & VVR Residence Permit',
     keyFeature: '1-Year Zoekjaar (Orientation Year) Open Work Visa',
-    reqs: ['Direct IND University Filing', 'Living Funds Proof (~€12,500/yr)', 'IELTS 6.0/6.5 or PTE equivalent', 'Health Insurance Cover'],
+    reqs: ['Direct IND University Filing', 'Early Deadline (Apr/May)', 'TWV Work Permit Authorization', 'Living Funds Proof (~€12,500/yr)'],
     badge: 'Zoekjaar Work Rights',
   },
   {
     country: 'Singapore',
     visaName: "Student's Pass (STP via ICA SOLAR+)",
     keyFeature: 'Fast 2-4 Week Digital Approval + No Embassy Interview',
-    reqs: ['In-Principle Approval (IPA) Letter', 'SOLAR+ Registration & eForm 16', 'Proof of Living Funds', 'Medical Checkup in Singapore'],
+    reqs: ['In-Principle Approval (IPA) Letter', 'SOLAR+ Registration & eForm 16', 'IHL 16h/wk Work vs PEI Rule', 'LTVP / S-Pass Career Pathways'],
     badge: 'Digital Fast-Track',
   },
   {
     country: 'Malta',
     visaName: 'National Long Stay Visa (Type D / Schengen)',
     keyFeature: 'Visa-Free Travel Across 27 Schengen Nations + 20h/wk Work',
-    reqs: ['Acceptance Letter from Maltese College', 'Living Funds (€25-€30/day)', 'Schengen Medical Insurance (€30k)', 'Jobsplus Work Permit'],
+    reqs: ['50% Tuition Deposit (over €2,500)', 'Jobsplus TRC Work License', '6-Month Post-Study Job Search', 'Living Funds (€25-€30/day)'],
     badge: 'EU Schengen Access',
   },
   {
