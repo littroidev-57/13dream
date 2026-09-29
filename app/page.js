@@ -16,14 +16,29 @@ import { siteConfig, getCanonicalUrl } from '@/lib/siteConfig';
 export const metadata = {
   title: 'Best Study Abroad & Overseas Education Consultants | 13 Dreams',
   description:
-    'Looking for trusted study abroad consultants? 13 Dreams Consultants provides expert university admissions, student visa filing, and IELTS/PTE coaching across Canada, UK, Australia, USA & Germany.',
+    'Looking for trusted study abroad consultants? 13 Dreams Consultants provides expert university admissions, student visa filing, and IELTS/PTE coaching across Canada, UK, Australia, USA, Germany, Malta, Singapore & Netherlands.',
+  keywords: [
+    'Best Study Abroad Consultants in India',
+    'Study Abroad Consultants Bareilly',
+    'Overseas Education Khatima',
+    'Study in Malta',
+    'Study in Singapore',
+    'Study in Netherlands',
+    'Study in Canada',
+    'Study in UK',
+    'Study in Australia',
+    'Study in Germany',
+    'Study in USA',
+    'Student Visa Guidance',
+    'IELTS Coaching Bareilly',
+  ],
   alternates: {
     canonical: getCanonicalUrl('/'),
   },
   openGraph: {
     title: 'Best Study Abroad & Overseas Education Consultants | 13 Dreams',
     description:
-      'Transform your study abroad dreams into reality with 13 Dreams Consultants. 15+ years experience, 150+ partner universities, 99% visa grant rate.',
+      'Transform your study abroad dreams into reality with 13 Dreams Consultants. 15+ years experience, 150+ partner universities across UK, Canada, Australia, USA, Germany, Malta, Singapore & Netherlands. 99% visa grant rate.',
     url: getCanonicalUrl('/'),
     siteName: siteConfig.siteName,
     type: 'website',

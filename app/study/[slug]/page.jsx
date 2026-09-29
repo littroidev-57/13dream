@@ -20,6 +20,13 @@ export async function generateMetadata({ params }) {
   return {
     title: data.metaTitle,
     description: data.metaDesc,
+    keywords: data.keywords || [
+      `Study in ${data.countryName}`,
+      `${data.countryName} student visa`,
+      `Study in ${data.countryName} for Indian students`,
+      `Universities in ${data.countryName}`,
+      `Study abroad ${data.countryName}`,
+    ],
     alternates: {
       canonical,
     },

@@ -397,6 +397,15 @@ export default function MobileMenu({ isOpen, onClose }) {
                     </li>
                     <li>
                       <Link
+                        href="/study/netherlands"
+                        onClick={handleNavClick}
+                        className="block py-1.5 px-2 rounded hover:bg-red-50 hover:text-red-600"
+                      >
+                        Study in Netherlands
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
                         href="/study/switzerland"
                         onClick={handleNavClick}
                         className="block py-1.5 px-2 rounded hover:bg-red-50 hover:text-red-600"

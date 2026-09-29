@@ -14,6 +14,7 @@ const STATIC_SEARCH_ITEMS = [
   { title: 'Study in New Zealand', category: 'Destination', href: '/study/new-zealand', desc: 'High quality of life, green list pathways, post-study work visa' },
   { title: 'Study in Ireland', category: 'Destination', href: '/study/ireland', desc: 'European tech hub, 2-year post-study work permit, top universities' },
   { title: 'Study in Singapore', category: 'Destination', href: '/study/singapore', desc: 'Global financial capital, world-class education & Asian headquarters' },
+  { title: 'Study in Netherlands', category: 'Destination', href: '/study/netherlands', desc: '2,100+ English degrees, Top 100 universities & 1-year Zoekjaar work visa' },
   { title: 'Study in Malta', category: 'Destination', href: '/study/malta', desc: 'Schengen European country, affordable fees, English speaking' },
   { title: 'Study in France', category: 'Destination', href: '/study/france', desc: 'Top business schools, 5-year post-study Schengen visa for masters' },
   { title: 'Study in Italy', category: 'Destination', href: '/study/italy', desc: 'Historic universities, regional government scholarships, English programs' },

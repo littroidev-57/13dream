@@ -94,6 +94,8 @@ const nextConfig = {
       { source: '/study-in-germany', destination: '/study/germany', permanent: true },
       { source: '/study-in-malta', destination: '/study/malta', permanent: true },
       { source: '/study-in-singapore', destination: '/study/singapore', permanent: true },
+      { source: '/study-in-netherlands', destination: '/study/netherlands', permanent: true },
+      { source: '/study-in-holland', destination: '/study/netherlands', permanent: true },
       { source: '/study-in-ireland', destination: '/study/ireland', permanent: true },
       { source: '/study-in-switzerland', destination: '/study/switzerland', permanent: true },
       // ── Old story pages → /story/[type] ──────────────────────────

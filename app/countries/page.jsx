@@ -7,14 +7,28 @@ import { siteConfig, getCanonicalUrl } from '@/lib/siteConfig';
 export const metadata = {
   title: 'Top Study Abroad Countries | 13 Dreams Consultants',
   description:
-    'Explore study abroad destinations worldwide with 13 Dreams Consultants: Canada, Australia, United Kingdom, USA, New Zealand, Germany, Malta, and Singapore.',
+    'Explore study abroad destinations worldwide with 13 Dreams Consultants: Canada, Australia, United Kingdom, USA, New Zealand, Germany, Netherlands, Malta, and Singapore.',
+  keywords: [
+    'Study abroad countries',
+    'Best countries to study abroad for Indian students',
+    'Study in Malta',
+    'Study in Singapore',
+    'Study in Netherlands',
+    'Study in Germany',
+    'Study in Canada',
+    'Study in Australia',
+    'Study in UK',
+    'Study in USA',
+    'European study destinations',
+    'Post study work visa countries',
+  ],
   alternates: {
     canonical: getCanonicalUrl('/countries'),
   },
   openGraph: {
     title: 'Top Study Abroad Countries | 13 Dreams Consultants',
     description:
-      'Compare global overseas education destinations by work permits, university rankings, and tuition costs.',
+      'Compare global overseas education destinations: UK, Canada, Australia, USA, Germany, Netherlands, Malta, and Singapore by post-study work permits, university rankings, and tuition costs.',
     url: getCanonicalUrl('/countries'),
     siteName: siteConfig.siteName,
     type: 'website',

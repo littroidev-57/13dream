@@ -1,7 +1,19 @@
 import React from 'react';
 import Link from 'next/link';
+import { blogsData } from '@/lib/blogsData';
+
+function formatBlogDate(dateStr) {
+  if (!dateStr) return '';
+  const d = new Date(dateStr);
+  const months = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+  return `${months[d.getUTCMonth()]} ${d.getUTCDate()}, ${d.getUTCFullYear()}`;
+}
 
 export default function Footer() {
+  const recentBlogs = Array.isArray(blogsData) ? blogsData.slice(0, 3) : [];
   return (
     <footer className="footer">
       <div className="footer-top">
@@ -62,69 +74,30 @@ export default function Footer() {
 
             {/* 3. Blog Page */}
             <div className="single-widget footer-news">
-              <h3 className="widget-title">Blog Page</h3>
-              <div className="single-f-news">
-                <div className="post-thumb">
-                  <Link href="/blog/germany-the-next-big-study-abroad-destination-heres-the-reason-why">
-                    <img
-                      src="https://13dreamsconsultants.com/img/blog/Germany-The-next-big-study-abroad-destination-here-the-reason-why.webp"
-                      alt="Germany Education"
-                    />
-                  </Link>
-                </div>
-                <div className="content">
-                  <p className="post-meta">
-                    <i className="fa-regular fa-clock"></i> June 14, 2023
-                  </p>
-                  <h4 className="title">
-                    <Link href="/blog/germany-the-next-big-study-abroad-destination-heres-the-reason-why">
-                      Germany! The next big study abroad destination, here's the reason why!
+              <h3 className="widget-title">Latest Blogs</h3>
+              {recentBlogs.map((blog) => (
+                <div key={blog.slug} className="single-f-news">
+                  <div className="post-thumb">
+                    <Link href={`/blog/${blog.slug}`} title={blog.title}>
+                      <img
+                        src={blog.image}
+                        alt={blog.title}
+                        loading="lazy"
+                      />
                     </Link>
-                  </h4>
+                  </div>
+                  <div className="content">
+                    <p className="post-meta">
+                      <i className="fa-regular fa-clock"></i> {formatBlogDate(blog.publishedAt)}
+                    </p>
+                    <h4 className="title">
+                      <Link href={`/blog/${blog.slug}`} title={blog.title}>
+                        {blog.title}
+                      </Link>
+                    </h4>
+                  </div>
                 </div>
-              </div>
-
-              <div className="single-f-news">
-                <div className="post-thumb">
-                  <Link href="/blog/germany-wants-to-make-it-easier-for-Indian-IT-workers-to-get-work-visa">
-                    <img
-                      src="https://13dreamsconsultants.com/img/blog/Germany-wants-to-make-it-easier-for-Indian-IT-workers-to-get-work-visa.webp"
-                      alt="Germany Work Visa"
-                    />
-                  </Link>
-                </div>
-                <div className="content">
-                  <p className="post-meta">
-                    <i className="fa-regular fa-clock"></i> June 20, 2023
-                  </p>
-                  <h4 className="title">
-                    <Link href="/blog/germany-wants-to-make-it-easier-for-Indian-IT-workers-to-get-work-visa">
-                      Germany wants to make it easier for Indian IT workers to get work visa
-                    </Link>
-                  </h4>
-                </div>
-              </div>
-
-              <div className="single-f-news">
-                <div className="post-thumb">
-                  <Link href="/blog/10-things-to-know-before-studying-in-germany">
-                    <img
-                      src="https://13dreamsconsultants.com/img/blog/10-Things-to-Know-Before-Studying-in-Germany.webp"
-                      alt="10 Things Germany"
-                    />
-                  </Link>
-                </div>
-                <div className="content">
-                  <p className="post-meta">
-                    <i className="fa-regular fa-clock"></i> June 22, 2023
-                  </p>
-                  <h4 className="title">
-                    <Link href="/blog/10-things-to-know-before-studying-in-germany">
-                      10 Things to Know Before Studying in Germany
-                    </Link>
-                  </h4>
-                </div>
-              </div>
+              ))}
             </div>
 
             {/* 4. Contact */}

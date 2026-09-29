@@ -5,7 +5,9 @@ import { fileURLToPath } from 'url';
 import Blog from '../models/Blog.js';
 import SuccessStory from '../models/SuccessStory.js';
 import Service from '../models/Service.js';
-import { initialBlogs, initialSuccessStories } from '../lib/seedData.js';
+import Destination from '../models/Destination.js';
+import { initialBlogs, initialSuccessStories, destinationsData } from '../lib/seedData.js';
+import { countryPageData } from '../lib/pageData.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -17,6 +19,41 @@ async function seed() {
     console.log('Connecting to MongoDB:', MONGODB_URI);
     await mongoose.connect(MONGODB_URI);
     console.log('MongoDB connected successfully.');
+
+    // Seed / Sync Destinations (Countries)
+    console.log(`Syncing ${destinationsData.length} study destinations (including Malta, Singapore, Netherlands) to MongoDB...`);
+    let syncedDestCount = 0;
+    for (let i = 0; i < destinationsData.length; i++) {
+      const dest = destinationsData[i];
+      const detail = countryPageData[dest.id] || {};
+      const doc = {
+        id: dest.id,
+        slug: dest.slug,
+        name: dest.name,
+        countryName: detail.countryName || dest.name.replace('Study in ', ''),
+        image: dest.image,
+        bannerImg: detail.bannerImg || dest.image,
+        description: dest.description,
+        tagline: detail.tagline || '',
+        overview: detail.overview || dest.description,
+        whyStudyPoints: detail.whyStudyPoints || [],
+        topUniversities: detail.topUniversities || [],
+        visaFacts: detail.visaFacts || [],
+        metaTitle: detail.metaTitle || `${dest.name} | 13 Dreams Consultants`,
+        metaDesc: detail.metaDesc || dest.description,
+        keywords: detail.keywords || [],
+        order: i + 1,
+      };
+
+      await Destination.findOneAndUpdate(
+        { id: dest.id },
+        { $set: doc },
+        { upsert: true, returnDocument: 'after' }
+      );
+      syncedDestCount++;
+    }
+    const totalDestInDb = await Destination.countDocuments();
+    console.log(`Successfully synced ${syncedDestCount} destinations! Total destinations in database: ${totalDestInDb}.`);
 
     // Seed / Sync Blogs
     console.log(`Syncing ${initialBlogs.length} blogs to MongoDB...`);

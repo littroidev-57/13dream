@@ -11,6 +11,8 @@ const STEP_DESTINATION_OPTIONS = [
   { value: 'United States', label: 'United States' },
   { value: 'Germany', label: 'Germany' },
   { value: 'New Zealand', label: 'New Zealand' },
+  { value: 'Netherlands', label: 'Netherlands' },
+  { value: 'Singapore', label: 'Singapore' },
   { value: 'Ireland', label: 'Ireland' },
   { value: 'Malta', label: 'Malta' },
 ];
