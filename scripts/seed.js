@@ -1,3 +1,10 @@
+import dns from 'dns';
+try {
+  dns.setServers(['8.8.8.8', '1.1.1.1']);
+} catch (e) {
+  // Ignore if not supported in environment
+}
+
 import mongoose from 'mongoose';
 import fs from 'fs';
 import path from 'path';
@@ -12,114 +19,139 @@ import { countryPageData } from '../lib/pageData.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/13dreams';
+const TARGET_URIS = process.env.MONGODB_URI
+  ? [{ name: 'Custom MongoDB', uri: process.env.MONGODB_URI }]
+  : [
+      { name: 'Local MongoDB', uri: 'mongodb://localhost:27017/13dreams' },
+      { name: 'Atlas Live MongoDB', uri: 'mongodb+srv://littroidev_db_user:wU5WwulIPnZql2nu@cluster0.nhy2e6y.mongodb.net/13dreams' },
+    ];
 
-async function seed() {
-  try {
-    console.log('Connecting to MongoDB:', MONGODB_URI);
-    await mongoose.connect(MONGODB_URI);
-    console.log('MongoDB connected successfully.');
+async function seedTarget(target) {
+  console.log(`\n========================================`);
+  console.log(`Connecting to ${target.name}: ${target.uri.replace(/:([^:@]+)@/, ':****@')}`);
+  console.log(`========================================`);
 
-    // Seed / Sync Destinations (Countries)
-    console.log(`Syncing ${destinationsData.length} study destinations (including Malta, Singapore, Netherlands) to MongoDB...`);
-    let syncedDestCount = 0;
-    for (let i = 0; i < destinationsData.length; i++) {
-      const dest = destinationsData[i];
-      const detail = countryPageData[dest.id] || {};
-      const doc = {
-        id: dest.id,
-        slug: dest.slug,
-        name: dest.name,
-        countryName: detail.countryName || dest.name.replace('Study in ', ''),
-        image: dest.image,
-        bannerImg: detail.bannerImg || dest.image,
-        description: dest.description,
-        tagline: detail.tagline || '',
-        overview: detail.overview || dest.description,
-        whyStudyPoints: detail.whyStudyPoints || [],
-        topUniversities: detail.topUniversities || [],
-        visaFacts: detail.visaFacts || [],
-        metaTitle: detail.metaTitle || `${dest.name} | 13 Dreams Consultants`,
-        metaDesc: detail.metaDesc || dest.description,
-        keywords: detail.keywords || [],
+  const conn = await mongoose.createConnection(target.uri, { serverSelectionTimeoutMS: 15000 }).asPromise();
+  console.log(`✓ ${target.name} connected successfully.`);
+
+  const DestinationModel = conn.model('Destination', Destination.schema);
+  const BlogModel = conn.model('Blog', Blog.schema);
+  const StoryModel = conn.model('SuccessStory', SuccessStory.schema);
+  const ServiceModel = conn.model('Service', Service.schema);
+
+  // Seed / Sync Destinations (Countries)
+  console.log(`Syncing ${destinationsData.length} study destinations to ${target.name}...`);
+  let syncedDestCount = 0;
+  for (let i = 0; i < destinationsData.length; i++) {
+    const dest = destinationsData[i];
+    const detail = countryPageData[dest.id] || {};
+    const doc = {
+      id: dest.id,
+      slug: dest.slug,
+      name: dest.name,
+      countryName: detail.countryName || dest.name.replace('Study in ', ''),
+      image: dest.image,
+      bannerImg: detail.bannerImg || dest.image,
+      description: dest.description,
+      tagline: detail.tagline || '',
+      overview: detail.overview || dest.description,
+      whyStudyPoints: detail.whyStudyPoints || [],
+      topUniversities: detail.topUniversities || [],
+      visaFacts: detail.visaFacts || [],
+      metaTitle: detail.metaTitle || `${dest.name} | 13 Dreams Consultants`,
+      metaDesc: detail.metaDesc || dest.description,
+      keywords: detail.keywords || [],
+      order: i + 1,
+    };
+
+    await DestinationModel.findOneAndUpdate(
+      { id: dest.id },
+      { $set: doc },
+      { upsert: true, returnDocument: 'after' }
+    );
+    syncedDestCount++;
+  }
+  const totalDestInDb = await DestinationModel.countDocuments();
+  console.log(`✓ Successfully synced ${syncedDestCount} destinations to ${target.name}! Total: ${totalDestInDb}.`);
+
+  // Seed / Sync Blogs
+  console.log(`Syncing ${initialBlogs.length} blogs to ${target.name}...`);
+  let syncedBlogsCount = 0;
+  for (const item of initialBlogs) {
+    await BlogModel.findOneAndUpdate(
+      { slug: item.slug },
+      { $set: item },
+      { upsert: true, returnDocument: 'after' }
+    );
+    syncedBlogsCount++;
+  }
+  const totalBlogsInDb = await BlogModel.countDocuments();
+  console.log(`✓ Successfully synced ${syncedBlogsCount} blogs to ${target.name}! Total: ${totalBlogsInDb}.`);
+
+  // Seed / Sync Success Stories
+  console.log(`Syncing ${initialSuccessStories.length} authentic success stories to ${target.name}...`);
+  let syncedStoriesCount = 0;
+  for (const item of initialSuccessStories) {
+    await StoryModel.findOneAndUpdate(
+      {
+        $or: [
+          { image: item.image, category: item.category },
+          { studentName: item.studentName, category: item.category },
+        ],
+      },
+      { $set: item },
+      { upsert: true, returnDocument: 'after' }
+    );
+    syncedStoriesCount++;
+  }
+  const totalStoriesInDb = await StoryModel.countDocuments();
+  console.log(`✓ Successfully synced ${syncedStoriesCount} stories to ${target.name}! Total: ${totalStoriesInDb}.`);
+
+  // Seed Services
+  const scrapedServicesPath = path.join(__dirname, '../lib/servicesScraped.json');
+  if (fs.existsSync(scrapedServicesPath)) {
+    const scrapedServices = JSON.parse(fs.readFileSync(scrapedServicesPath, 'utf8'));
+    let seededCount = 0;
+    for (let i = 0; i < scrapedServices.length; i++) {
+      const item = scrapedServices[i];
+      const serviceDoc = {
+        slug: item.slug,
+        title: item.title,
+        subtitle: item.subtitle || '',
+        metaTitle: item.metaTitle || `${item.title} | 13 Dreams Consultants`,
+        metaDesc: item.metaDesc || '',
+        image: item.image || item.localImage || '',
+        content: item.content,
         order: i + 1,
       };
 
-      await Destination.findOneAndUpdate(
-        { id: dest.id },
-        { $set: doc },
-        { upsert: true, returnDocument: 'after' }
-      );
-      syncedDestCount++;
-    }
-    const totalDestInDb = await Destination.countDocuments();
-    console.log(`Successfully synced ${syncedDestCount} destinations! Total destinations in database: ${totalDestInDb}.`);
-
-    // Seed / Sync Blogs
-    console.log(`Syncing ${initialBlogs.length} blogs to MongoDB...`);
-    let syncedBlogsCount = 0;
-    for (const item of initialBlogs) {
-      await Blog.findOneAndUpdate(
+      await ServiceModel.findOneAndUpdate(
         { slug: item.slug },
-        { $set: item },
+        { $set: serviceDoc },
         { upsert: true, returnDocument: 'after' }
       );
-      syncedBlogsCount++;
+      seededCount++;
     }
-    const totalBlogsInDb = await Blog.countDocuments();
-    console.log(`Successfully synced ${syncedBlogsCount} blogs! Total blogs in database: ${totalBlogsInDb}.`);
+    console.log(`✓ Successfully upserted ${seededCount} services into ${target.name}!`);
+  }
 
-    // Seed / Sync Success Stories
-    console.log(`Syncing ${initialSuccessStories.length} authentic success stories to MongoDB...`);
-    let syncedStoriesCount = 0;
-    for (const item of initialSuccessStories) {
-      await SuccessStory.findOneAndUpdate(
-        { image: item.image, category: item.category },
-        { $set: item },
-        { upsert: true, returnDocument: 'after' }
-      );
-      syncedStoriesCount++;
-    }
-    const totalStoriesInDb = await SuccessStory.countDocuments();
-    console.log(`Successfully synced ${syncedStoriesCount} stories! Total stories in database: ${totalStoriesInDb}.`);
+  await conn.close();
+  console.log(`✓ Finished sync for ${target.name}.\n`);
+}
 
-    // Seed Services from servicesScraped.json
-    const scrapedServicesPath = path.join(__dirname, '../lib/servicesScraped.json');
-    if (fs.existsSync(scrapedServicesPath)) {
-      const scrapedServices = JSON.parse(fs.readFileSync(scrapedServicesPath, 'utf8'));
-      console.log(`Found ${scrapedServices.length} scraped services to seed.`);
-
-      let seededCount = 0;
-      for (let i = 0; i < scrapedServices.length; i++) {
-        const item = scrapedServices[i];
-        const serviceDoc = {
-          slug: item.slug,
-          title: item.title,
-          subtitle: item.subtitle || '',
-          metaTitle: item.metaTitle || `${item.title} | 13 Dreams Consultants`,
-          metaDesc: item.metaDesc || '',
-          image: item.image || item.localImage || '',
-          content: item.content,
-          order: i + 1,
-        };
-
-        // Upsert by slug so re-running seed updates or inserts properly
-        await Service.findOneAndUpdate(
-          { slug: item.slug },
-          { $set: serviceDoc },
-          { upsert: true, returnDocument: 'after' }
-        );
-        seededCount++;
+async function seed() {
+  try {
+    for (const target of TARGET_URIS) {
+      try {
+        await seedTarget(target);
+      } catch (targetErr) {
+        console.error(`✗ Error syncing to ${target.name}:`, targetErr.message);
       }
-      console.log(`Successfully upserted ${seededCount} services into MongoDB!`);
-    } else {
-      console.warn('lib/servicesScraped.json not found, skipping service seeding.');
     }
-
-    console.log('All seeding tasks completed.');
+    console.log('All seeding operations completed.');
     process.exit(0);
   } catch (error) {
-    console.error('Error seeding database:', error);
+    console.error('Fatal seeding error:', error);
     process.exit(1);
   }
 }
