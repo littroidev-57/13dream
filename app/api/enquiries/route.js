@@ -46,7 +46,35 @@ export async function POST(request) {
     let savedRecord = null;
     try {
       await dbConnect();
-      savedRecord = await Enquiry.create(formattedData);
+
+      // Check if enquiry already exists by phone or email to prevent duplicate entries
+      const filterConditions = [];
+      if (formattedData.phone) filterConditions.push({ phone: formattedData.phone });
+      if (formattedData.email) filterConditions.push({ email: formattedData.email });
+
+      const existing = filterConditions.length > 0
+        ? await Enquiry.findOne({ $or: filterConditions }).sort({ createdAt: -1 })
+        : null;
+
+      if (existing) {
+        // Update existing enquiry without making a duplicate entry
+        savedRecord = await Enquiry.findByIdAndUpdate(
+          existing._id,
+          {
+            $set: {
+              ...formattedData,
+              interest: formattedData.interest || existing.interest,
+              preferredDestination: formattedData.preferredDestination !== 'General'
+                ? formattedData.preferredDestination
+                : existing.preferredDestination,
+              updatedAt: new Date(),
+            },
+          },
+          { returnDocument: 'after' }
+        );
+      } else {
+        savedRecord = await Enquiry.create(formattedData);
+      }
     } catch (dbError) {
       console.warn('Database write bypassed or local MongoDB not running. Logging submission:', dbError.message);
     }

@@ -36,7 +36,30 @@ export async function POST(request) {
     let savedContact = null;
     try {
       await dbConnect();
-      savedContact = await Contact.create(formattedData);
+
+      // Check if contact already exists by phone or email to prevent duplicate entries
+      const filterConditions = [];
+      if (formattedData.phone) filterConditions.push({ phone: formattedData.phone });
+      if (formattedData.email) filterConditions.push({ email: formattedData.email });
+
+      const existing = filterConditions.length > 0
+        ? await Contact.findOne({ $or: filterConditions }).sort({ createdAt: -1 })
+        : null;
+
+      if (existing) {
+        savedContact = await Contact.findByIdAndUpdate(
+          existing._id,
+          {
+            $set: {
+              ...formattedData,
+              updatedAt: new Date(),
+            },
+          },
+          { returnDocument: 'after' }
+        );
+      } else {
+        savedContact = await Contact.create(formattedData);
+      }
     } catch (dbError) {
       console.warn('Database write fallback:', dbError.message);
     }

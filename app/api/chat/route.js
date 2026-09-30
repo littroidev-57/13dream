@@ -189,10 +189,14 @@ export async function POST(request) {
         await dbConnect();
         const validName = resolvedName && resolvedName !== 'AI Chat Student Lead' ? resolvedName : null;
 
-        // Check if lead already exists by phone
+        // Check if lead already exists by phone or email to prevent duplicate entries
+        const orConditions = [];
+        if (phone && phone !== 'Provided via Chat') orConditions.push({ phone });
+        if (email && !email.endsWith('@chatlead.13dreams.com')) orConditions.push({ email });
+
         let existing = null;
-        if (phone) {
-          existing = await Enquiry.findOne({ phone }).sort({ createdAt: -1 });
+        if (orConditions.length > 0) {
+          existing = await Enquiry.findOne({ $or: orConditions }).sort({ createdAt: -1 });
         }
 
         if (existing) {
@@ -206,6 +210,12 @@ export async function POST(request) {
           }
           if (latestUserMessage) {
             updates.interest = `Student Message: "${latestUserMessage}"`;
+          }
+          if (phone && existing.phone === 'Provided via Chat') {
+            updates.phone = phone;
+          }
+          if (email && existing.email.endsWith('@chatlead.13dreams.com')) {
+            updates.email = email;
           }
 
           if (Object.keys(updates).length > 0) {

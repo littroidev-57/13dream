@@ -49,7 +49,7 @@ export const metadata = {
     locale: 'en_IN',
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80',
+        url: 'https://res.cloudinary.com/eikgki2a/image/upload/v1790672807/13dreams/general/apply_student_application.jpg',
         width: 1200,
         height: 630,
         alt: 'Apply Online for Study Visa Assistance - 13 Dreams Consultants',
@@ -61,7 +61,7 @@ export const metadata = {
     title: 'Apply for Student Visa Online | Free Counselling - 13 Dreams',
     description:
       'Apply online for student visa assistance for Canada, Australia, UK, USA & Europe. 100% Free consultation & profile assessment.',
-    images: ['https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80'],
+    images: ['https://res.cloudinary.com/eikgki2a/image/upload/v1790672807/13dreams/general/apply_student_application.jpg'],
   },
 };
 
