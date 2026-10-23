@@ -40,6 +40,12 @@ export default function AICounselorWidget() {
   };
 
   useEffect(() => {
+    const handleOpen = () => setIsOpen(true);
+    window.addEventListener('open-ai-counselor', handleOpen);
+    return () => window.removeEventListener('open-ai-counselor', handleOpen);
+  }, []);
+
+  useEffect(() => {
     if (isOpen) {
       scrollToBottom();
       setTimeout(() => inputRef.current?.focus(), 200);
@@ -271,7 +277,7 @@ export default function AICounselorWidget() {
     <>
       {/* Floating Chat Launcher Button (Bottom Right - stacked above WhatsApp) */}
       {!isOpen && (
-        <div className="fixed bottom-20 right-4 sm:bottom-[86px] sm:right-6 z-[9995]">
+        <div className="hidden md:block fixed sm:bottom-[86px] sm:right-6 z-[9995]">
           <button
             type="button"
             onClick={() => setIsOpen(true)}

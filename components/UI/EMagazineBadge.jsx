@@ -15,7 +15,7 @@ export default function EMagazineBadge() {
   return (
     <aside
       aria-label="Study Abroad E-Magazine and Brochures"
-      className="fixed right-0 top-[46%] sm:top-1/2 -translate-y-1/2 z-[9980] flex select-none"
+      className="hidden md:flex fixed right-0 top-[46%] sm:top-1/2 -translate-y-1/2 z-[9980] select-none"
     >
       <Link
         href="/e-magazine"

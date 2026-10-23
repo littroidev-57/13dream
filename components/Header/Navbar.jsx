@@ -79,6 +79,7 @@ export default function Navbar({ onToggleMobileNav, isScrolled }) {
                   </Link>
                   <ul className="sub-menu">
                     <li><Link href="/study-abroad">Study Abroad Guide</Link></li>
+                    <li><Link href="/compare-countries" >Compare All Countries</Link></li>
                     <li><Link href="/study/australia">Study in Australia</Link></li>
                     <li><Link href="/study/canada">Study in Canada</Link></li>
                     <li><Link href="/study/uk">Study in UK</Link></li>

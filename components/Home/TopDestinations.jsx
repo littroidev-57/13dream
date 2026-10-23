@@ -75,58 +75,93 @@ const rightDestinations = [
   },
 ];
 
+const allDestinations = [...leftDestinations, ...rightDestinations];
+
 export default function TopDestinations() {
   const sectionRef = useRef(null);
   const leftColRef = useRef(null);
   const rightColRef = useRef(null);
+  const isHoveredRef = useRef(false);
 
   useEffect(() => {
-    let targetProgress = 0;
-    let currentProgress = 0;
     let animationFrameId = null;
     let isRunning = true;
+    let leftY = 0;
+    let rightY = 0;
+    let targetScrollVelocity = 0;
+    let currentScrollVelocity = 0;
+    let lastWindowScrollY = typeof window !== 'undefined' ? window.scrollY : 0;
+    let leftHalfHeight = 0;
+    let rightHalfHeight = 0;
+
+    const measureHeights = () => {
+      if (leftColRef.current) {
+        leftHalfHeight = leftColRef.current.scrollHeight / 2;
+      }
+      if (rightColRef.current) {
+        rightHalfHeight = rightColRef.current.scrollHeight / 2;
+      }
+    };
 
     const onScroll = () => {
-      if (sectionRef.current) {
-        const rect = sectionRef.current.getBoundingClientRect();
-        const winH = window.innerHeight;
-        const totalDist = winH + rect.height;
-        const currentDist = winH - rect.top;
-        const progress = currentDist / totalDist;
-        // Normalized progress: -1 (approaching) to 1 (passed)
-        targetProgress = (progress - 0.5) * 2;
-      }
+      const currentY = window.scrollY;
+      const delta = currentY - lastWindowScrollY;
+      lastWindowScrollY = currentY;
+      // Scroll momentum impulse: adds to the glide speed in the same direction
+      targetScrollVelocity += delta * 0.35;
     };
 
     const renderLoop = () => {
       if (!isRunning) return;
 
-      // Silky smooth lerp damping (0.08 factor for organic inertia)
-      currentProgress += (targetProgress - currentProgress) * 0.08;
+      if (leftHalfHeight === 0 || rightHalfHeight === 0) {
+        measureHeights();
+      }
 
-      if (leftColRef.current && rightColRef.current) {
-        // Left column glides UP on scroll (-Y)
-        const leftShift = currentProgress * -320;
-        // Right column glides DOWN on scroll (+Y)
-        const rightShift = currentProgress * 320;
+      // Smooth decay of scroll velocity with organic lerp
+      currentScrollVelocity += (targetScrollVelocity - currentScrollVelocity) * 0.1;
+      targetScrollVelocity *= 0.88;
 
-        leftColRef.current.style.transform = `translate3d(0px, ${leftShift.toFixed(2)}px, 0px)`;
-        rightColRef.current.style.transform = `translate3d(0px, ${rightShift.toFixed(2)}px, 0px)`;
+      // Base continuous gentle glide speed (pauses on card hover)
+      const baseSpeed = isHoveredRef.current ? 0 : 0.75;
+      const effectiveSpeed = baseSpeed + currentScrollVelocity;
+
+      const leftCol = leftColRef.current;
+      const rightCol = rightColRef.current;
+
+      if (leftCol && rightCol && leftHalfHeight > 0 && rightHalfHeight > 0) {
+        // Left Column glides UP (-Y)
+        leftY += effectiveSpeed;
+        while (leftY >= leftHalfHeight) leftY -= leftHalfHeight;
+        while (leftY < 0) leftY += leftHalfHeight;
+
+        // Right Column glides DOWN (+Y)
+        rightY += effectiveSpeed;
+        while (rightY >= rightHalfHeight) rightY -= rightHalfHeight;
+        while (rightY < 0) rightY += rightHalfHeight;
+
+        leftCol.style.transform = `translate3d(0px, ${(-leftY).toFixed(2)}px, 0px)`;
+        // For right column moving down, wrap seamlessly from -rightHalfHeight to 0
+        const rightYPos = -rightHalfHeight + rightY;
+        rightCol.style.transform = `translate3d(0px, ${rightYPos.toFixed(2)}px, 0px)`;
       }
 
       animationFrameId = requestAnimationFrame(renderLoop);
     };
 
+    measureHeights();
+    const timeoutId = setTimeout(measureHeights, 300);
+
     window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll, { passive: true });
-    onScroll();
+    window.addEventListener('resize', measureHeights, { passive: true });
     renderLoop();
 
     return () => {
       isRunning = false;
+      clearTimeout(timeoutId);
       if (animationFrameId) cancelAnimationFrame(animationFrameId);
       window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onScroll);
+      window.removeEventListener('resize', measureHeights);
     };
   }, []);
 
@@ -148,23 +183,27 @@ export default function TopDestinations() {
 
           {/* ── Desktop & Tablet 3-Column Layout ── */}
           <div className="relative z-10 hidden md:flex items-center justify-between h-[780px] lg:h-[820px] px-6 lg:px-12 gap-6 lg:gap-10">
-            {/* ── Left Column: Moves UP smoothly with momentum lerp ── */}
-            <div className="w-[31%] lg:w-[29%] flex-shrink-0 h-full overflow-hidden flex flex-col justify-center">
+            {/* ── Left Column: Infinite Seamless Glide UP with Scroll Momentum ── */}
+            <div
+              className="w-[31%] lg:w-[29%] flex-shrink-0 h-full overflow-hidden"
+              onMouseEnter={() => { isHoveredRef.current = true; }}
+              onMouseLeave={() => { isHoveredRef.current = false; }}
+            >
               <div
                 ref={leftColRef}
                 className="flex flex-col gap-6 will-change-transform"
                 style={{ transform: 'translate3d(0px, 0px, 0px)' }}
               >
-                {leftDestinations.map((dest, i) => (
+                {[...leftDestinations, ...leftDestinations].map((dest, i) => (
                   <Link
-                    key={i}
+                    key={`left-${i}`}
                     href={`/study/${dest.slug}`}
                     className="group relative block w-full h-[240px] lg:h-[260px] rounded-[30px] overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 flex-shrink-0 border-2 border-white/20 hover:border-red-500/90 bg-slate-900"
                   >
                     <img
                       src={dest.image}
                       alt={dest.alt}
-                      className="w-full h-full object-cover object-center brightness-[0.88]"
+                      className="w-full h-full object-cover object-center brightness-[0.88] group-hover:scale-105 transition-transform duration-500"
                     />
                     {/* Centered Text Only */}
                     <div className="absolute inset-0 flex items-center justify-center p-4 bg-black/20 group-hover:bg-black/10 transition-colors">
@@ -231,23 +270,27 @@ export default function TopDestinations() {
               </div>
             </div>
 
-            {/* ── Right Column: Moves DOWN smoothly with momentum lerp ── */}
-            <div className="w-[31%] lg:w-[29%] flex-shrink-0 h-full overflow-hidden flex flex-col justify-center">
+            {/* ── Right Column: Infinite Seamless Glide DOWN with Scroll Momentum ── */}
+            <div
+              className="w-[31%] lg:w-[29%] flex-shrink-0 h-full overflow-hidden"
+              onMouseEnter={() => { isHoveredRef.current = true; }}
+              onMouseLeave={() => { isHoveredRef.current = false; }}
+            >
               <div
                 ref={rightColRef}
                 className="flex flex-col gap-6 will-change-transform"
                 style={{ transform: 'translate3d(0px, 0px, 0px)' }}
               >
-                {rightDestinations.map((dest, i) => (
+                {[...rightDestinations, ...rightDestinations].map((dest, i) => (
                   <Link
-                    key={i}
+                    key={`right-${i}`}
                     href={`/study/${dest.slug}`}
                     className="group relative block w-full h-[240px] lg:h-[260px] rounded-[30px] overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 flex-shrink-0 border-2 border-white/20 hover:border-red-500/90 bg-slate-900"
                   >
                     <img
                       src={dest.image}
                       alt={dest.alt}
-                      className="w-full h-full object-cover object-center brightness-[0.88]"
+                      className="w-full h-full object-cover object-center brightness-[0.88] group-hover:scale-105 transition-transform duration-500"
                     />
                     {/* Centered Text Only */}
                     <div className="absolute inset-0 flex items-center justify-center p-4 bg-black/20 group-hover:bg-black/10 transition-colors">
@@ -285,21 +328,23 @@ export default function TopDestinations() {
               Awaits
             </h2>
 
-            {/* Mobile Cards Grid */}
+            {/* Mobile Cards Grid - Showing All 11 Countries */}
             <div className="w-full mt-6 grid grid-cols-2 gap-3.5">
-              {[...leftDestinations.slice(0, 2), ...rightDestinations.slice(0, 2)].map((dest, i) => (
+              {allDestinations.map((dest, i) => (
                 <Link
-                  key={i}
+                  key={dest.slug || i}
                   href={`/study/${dest.slug}`}
-                  className="group relative block h-40 rounded-2xl overflow-hidden shadow-md border border-white/20 hover:border-red-500 transition-colors"
+                  className={`group relative block rounded-2xl overflow-hidden shadow-md border border-white/20 hover:border-red-500 transition-all active:scale-[0.98] ${
+                    i === 0 ? 'col-span-2 h-44' : 'h-36 sm:h-40'
+                  }`}
                 >
                   <img
                     src={dest.image}
                     alt={dest.alt}
-                    className="w-full h-full object-cover brightness-[0.88]"
+                    className="w-full h-full object-cover brightness-[0.88] group-hover:scale-105 transition-transform duration-300"
                   />
                   {/* Centered Text Only */}
-                  <div className="absolute inset-0 flex items-center justify-center p-2 bg-black/20">
+                  <div className="absolute inset-0 flex items-center justify-center p-2 bg-black/25 group-hover:bg-black/15 transition-colors">
                     <span className="text-white font-extrabold text-base sm:text-lg tracking-wider uppercase text-center drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] select-none">
                       {dest.name}
                     </span>
