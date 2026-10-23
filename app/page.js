@@ -1,14 +1,16 @@
 import React from 'react';
 import HeroBanner from '@/components/Home/HeroBanner';
 import GloriousSection from '@/components/Home/GloriousSection';
-import EligibilityCalculator from '@/components/Home/EligibilityCalculator';
-import CoachingSection from '@/components/Home/CoachingSection';
-import HomeEnquiryForm from '@/components/Home/HomeEnquiryForm';
 import TopDestinations from '@/components/Home/TopDestinations';
-import StepProcessSection from '@/components/Home/StepProcessSection';
+import EligibilityCalculator from '@/components/Home/EligibilityCalculator';
+import CompareTeaserBanner from '@/components/Home/CompareTeaserBanner';
+import CoachingSection from '@/components/Home/CoachingSection';
+import GoogleReviewsSection from '@/components/Home/GoogleReviewsSection';
 import VideoSuccessStories from '@/components/Home/VideoSuccessStories';
+import StepProcessSection from '@/components/Home/StepProcessSection';
 import VideoFeatureAbout from '@/components/Home/VideoFeatureAbout';
 import ServicesSection from '@/components/Home/ServicesSection';
+import HomeEnquiryForm from '@/components/Home/HomeEnquiryForm';
 import FaqAccordion from '@/components/Home/FaqAccordion';
 import StatisticsCounter from '@/components/Home/StatisticsCounter';
 import { siteConfig, getCanonicalUrl } from '@/lib/siteConfig';
@@ -54,34 +56,40 @@ export default function HomePage() {
       {/* 2. Glorious Experience Highlights (15 Years / Best Agency / Partners) */}
       <GloriousSection />
 
-      {/* 3. Interactive Visa & IELTS Eligibility Calculator (Interactive Engagement) */}
-      <EligibilityCalculator />
-
-      {/* 4. Dedicated IELTS & PTE Coaching Showcase (Score 7.5+ & 65+) */}
-      <CoachingSection />
-
-      {/* 5. Enquiry Form Section */}
-      <HomeEnquiryForm />
-
-      {/* 6. Top Education Destinations */}
+      {/* 3. Top Education Destinations (Parallax 11 Countries Carousel) */}
       <TopDestinations />
 
-      {/* 7. Success Stories (Student Video Reviews) */}
+      {/* 4. Interactive Visa & IELTS Eligibility Calculator */}
+      <EligibilityCalculator />
+
+      {/* 5. Country Quick Comparison Snapshot Teaser (links to /compare-countries) */}
+      <CompareTeaserBanner />
+
+      {/* 6. Dedicated IELTS & PTE Coaching Showcase (Score 7.5+ & 65+) */}
+      <CoachingSection />
+
+      {/* 7. Google 4.9★ Verified Reviews & Real Student Experiences */}
+      <GoogleReviewsSection />
+
+      {/* 8. Success Stories (Student Video Reviews & Instagram Reels) */}
       <VideoSuccessStories />
 
-      {/* 8. 4-Step Overseas Education Process */}
+      {/* 9. 4-Step Overseas Education Process Roadmap */}
       <StepProcessSection />
 
-      {/* 9. Video Feature About 13 Dreams Consultants */}
+      {/* 10. Video Feature About 13 Dreams Consultants */}
       <VideoFeatureAbout />
 
-      {/* 10. Our Services Section */}
+      {/* 11. Our Comprehensive Services Section */}
       <ServicesSection />
 
-      {/* 11. Google FAQ Rich Snippet Accordion with Schema.org */}
+      {/* 12. Free Consultation Enquiry Form */}
+      <HomeEnquiryForm />
+
+      {/* 13. Google FAQ Rich Snippet Accordion with Schema.org */}
       <FaqAccordion />
 
-      {/* 12. Statistics Counterup (50+ Countries / 150+ Univs / 99% Satisfaction) */}
+      {/* 14. Statistics Counterup (50+ Countries / 150+ Univs / 99% Satisfaction) */}
       <StatisticsCounter />
     </>
   );

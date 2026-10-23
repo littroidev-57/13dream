@@ -4,7 +4,7 @@ import React from 'react';
 
 export default function WhatsAppButton() {
   return (
-    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[9990]">
+    <div className="hidden md:block fixed sm:bottom-6 sm:right-6 z-[9990]">
       <a
         id="WhatsApp-button"
         href="https://wa.me/919759053463?text=Hi%2013%20Dreams%2C%20I%20would%20like%20to%20enquire%20about%20study%20visa"

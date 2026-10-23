@@ -1267,6 +1267,36 @@ img {
   }
 }
 
+/* Google Reviews Infinite Marquee */
+.reviews-marquee-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.reviews-marquee-track {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  animation: reviewsMarqueeScroll 72s linear infinite;
+  will-change: transform;
+}
+
+.reviews-marquee-container:hover .reviews-marquee-track,
+.reviews-marquee-track:hover,
+.reviews-marquee-card:hover {
+  animation-play-state: paused !important;
+}
+
+@keyframes reviewsMarqueeScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
 /* Individual Reel Card - Header, Footer, and Side Pillars cropped out (Zero Black Area) */
 .story-reel-card {
   width: 260px;

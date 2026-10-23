@@ -14,6 +14,7 @@ export default function sitemap() {
     { path: '/universities', priority: 0.85, changeFrequency: 'weekly' },
     { path: '/courses', priority: 0.85, changeFrequency: 'weekly' },
     { path: '/countries', priority: 0.85, changeFrequency: 'weekly' },
+    { path: '/compare-countries', priority: 0.9, changeFrequency: 'weekly' },
     { path: '/service', priority: 0.85, changeFrequency: 'weekly' },
     { path: '/about-us', priority: 0.8, changeFrequency: 'monthly' },
     { path: '/contact', priority: 0.8, changeFrequency: 'monthly' },
