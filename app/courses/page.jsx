@@ -6,16 +6,27 @@ import JsonLd from '@/components/SEO/JsonLd';
 import { siteConfig, getCanonicalUrl } from '@/lib/siteConfig';
 
 export const metadata = {
-  title: 'Top Courses & Degrees to Study Abroad | 13 Dreams Consultants',
+  title: 'Top Courses to Study Abroad & Best IELTS Coaching | 13 Dreams',
   description:
-    'Discover high-paying, in-demand courses to study abroad in Canada, UK, Australia, USA, and Germany. Expert course shortlisting in Computer Science, Business, Engineering, Healthcare, and Hospitality.',
+    'Discover high-paying overseas degrees & best IELTS/PTE coaching in Bareilly at 13 Dreams Consultants. Expert preparation and course shortlisting for Canada, UK, Australia, USA & Germany.',
+  keywords: [
+    'Best IELTS Coaching in Bareilly',
+    'Best ILTS Coaching',
+    'PTE Coaching in Bareilly',
+    'Courses to Study Abroad',
+    'Best Degrees to Study Abroad',
+    'Study in Canada Courses',
+    'Study in UK Masters',
+    'Study in Australia Programs',
+    '13 Dreams Consultants Bareilly',
+  ],
   alternates: {
     canonical: getCanonicalUrl('/courses'),
   },
   openGraph: {
-    title: 'Top Overseas Courses & High-Demand Degrees | 13 Dreams',
+    title: 'Top Overseas Courses & Best IELTS Coaching | 13 Dreams',
     description:
-      'Explore in-demand international degrees with excellent global job opportunities and post-study work visa rights.',
+      'Explore in-demand international degrees and certified IELTS/PTE preparation at 13 Dreams Consultants Bareilly.',
     url: getCanonicalUrl('/courses'),
     siteName: siteConfig.siteName,
     type: 'website',
@@ -82,6 +93,13 @@ const courseCategories = [
     desc: 'ACCA-accredited Master\'s in Accounting, Investment Banking, Financial Risk Management, and Blockchain.',
     topDestinations: 'UK, Singapore, Ireland, USA, Canada',
     icon: 'fa-coins',
+  },
+  {
+    title: 'IELTS & PTE Language Coaching',
+    subTitle: 'Target Band 7.5+ & 65+ with Certified Master Trainers in Bareilly',
+    desc: 'Daily 1-on-1 speaking interviews, AI mock scoring labs, and customized study material for British Council & IDP tests.',
+    topDestinations: 'Canada, Australia, UK, USA, Germany, Europe',
+    icon: 'fa-graduation-cap',
   },
 ];
 

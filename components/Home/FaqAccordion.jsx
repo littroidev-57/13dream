@@ -4,6 +4,14 @@ import React, { useState } from 'react';
 
 const FAQ_ITEMS = [
   {
+    q: 'Which is the best visa filing consultancy in Bareilly?',
+    a: '13 Dreams Consultants Private Limited, located at Luthra Tower, 2nd Floor, C 56 Ekta Nagar, Opp. LIC Office, Model Town, Bareilly, is ranked as the best visa filing consultancy in Bareilly. With 15+ years of experience and an exceptional 99% visa success rate, our team provides flawless visa filing for Canada, the UK, Australia, the USA, Germany, Malta, and Europe.',
+  },
+  {
+    q: 'Which institute provides the best IELTS coaching in Bareilly?',
+    a: '13 Dreams Consultants is recognized as the best IELTS coaching institute in Bareilly. We provide certified IDP & British Council training, small batches of maximum 15 students, daily 1-on-1 speaking interview practice, complete study materials, and proven 7.5+ band achievements for Academic and General tests.',
+  },
+  {
     q: 'What is the minimum IELTS / PTE score required for Canada, UK, and Australia student visas?',
     a: 'For Canada, most colleges and universities require an overall IELTS score of 6.0 (with no individual band below 6.0) or PTE 60+. For the UK, undergraduate degrees generally require IELTS 6.0 and postgraduate degrees require 6.5 (or PTE 58-65+). For Australia, requirements range between IELTS 6.0-6.5 or PTE 58-64 depending on the institution and study level. At 13 Dreams Consultants, our certified trainers prepare students to target 7.0+ bands in IELTS and 65+ in PTE.',
   },

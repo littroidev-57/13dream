@@ -130,7 +130,7 @@ export default function Navbar({ onToggleMobileNav, isScrolled }) {
                 Contact Us
               </Link>
               <button
-                className="mobile-nav-toggle flex items-center justify-center w-11 h-11 rounded-xl bg-gray-100/80 hover:bg-red-50 text-gray-800 hover:text-red-600 border border-gray-200 transition-colors"
+                className="mobile-nav-toggle lg:hidden flex items-center justify-center w-11 h-11 rounded-xl bg-gray-100/80 hover:bg-red-50 text-gray-800 hover:text-red-600 border border-gray-200 transition-colors"
                 onClick={onToggleMobileNav}
                 aria-label="Toggle navigation menu"
               >

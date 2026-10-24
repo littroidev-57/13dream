@@ -102,6 +102,14 @@ export default function ApplyForm({ defaultCountry = '' }) {
 
   const studentFaqs = [
     {
+      q: 'Which is the best visa filing consultancy in Bareilly?',
+      a: '13 Dreams Consultants Private Limited, situated at Luthra Tower, 2nd Floor, C 56 Ekta Nagar, Opp. LIC Office, Model Town, Bareilly, is widely recognized as the best visa filing consultancy in Bareilly. Backed by 15+ years of experience and a 99% visa grant rate, we provide dedicated visa filing for Canada, Australia, the UK, the USA, Germany, and Europe.',
+    },
+    {
+      q: 'Where can I find the best IELTS coaching in Bareilly?',
+      a: '13 Dreams Consultants provides the best IELTS coaching in Bareilly (Academic & General training). With certified British Council and IDP trainers, small batches (max 15 students), daily 1-on-1 speaking mock interviews, and official test materials, our students consistently achieve 7.5+ band scores.',
+    },
+    {
       q: 'Is the study abroad counselling at 13 Dreams Consultants really 100% free?',
       a: 'Yes! Our initial profile assessment, university shortlisting, and career counselling sessions are 100% free with no hidden charges. We help you choose the right course and destination tailored to your career goals and budget.',
     },
@@ -364,14 +372,14 @@ export default function ApplyForm({ defaultCountry = '' }) {
               {/* Heading & Red Accent Bar */}
               <div>
                 <span className="inline-block text-xs font-bold uppercase tracking-wider text-red-600 bg-red-50 border border-red-200 px-3 py-1 rounded-full mb-3">
-                  100% Free Consultation • 99% Visa Grant Rate
+                  Ranked #1 for Visa Filing &amp; IELTS Coaching in Bareilly • 99% Visa Rate
                 </span>
                 <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#1f242e] tracking-tight">
-                  Apply Online for Study Visa Assistance &amp; Free Overseas Counselling
+                  Apply Online for Best Visa Filing in Bareilly &amp; Free Overseas Counselling
                 </h1>
                 <span className="block bg-red-600 w-12 h-1.5 rounded-full mt-2.5 mb-3.5"></span>
                 <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
-                  Enter your details to connect with a certified overseas education expert in Bareilly. We provide end-to-end university shortlisting, documentation guidance, and student visa assistance with ₹0 service fee!
+                  Connect with Bareilly’s most trusted overseas education and visa filing experts at Luthra Tower, Ekta Nagar. From certified IELTS/PTE coaching to 100% error-free visa filing for Canada, UK, Australia, USA &amp; Europe with ₹0 service fee!
                 </p>
               </div>
 

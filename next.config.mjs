@@ -27,6 +27,41 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: '/applynow',
+        destination: '/apply',
+        permanent: true,
+      },
+      {
+        source: '/apply-now',
+        destination: '/apply',
+        permanent: true,
+      },
+      {
+        source: '/applynow.php',
+        destination: '/apply',
+        permanent: true,
+      },
+      {
+        source: '/apply-online',
+        destination: '/apply',
+        permanent: true,
+      },
+      {
+        source: '/best-visa-filing-in-bareilly',
+        destination: '/service/study-visa-consultants-bareilly',
+        permanent: true,
+      },
+      {
+        source: '/best-ielts-coaching-in-bareilly',
+        destination: '/story/ielts',
+        permanent: true,
+      },
+      {
+        source: '/best-ilts-coaching',
+        destination: '/story/ielts',
+        permanent: true,
+      },
+      {
         source: '/e-books',
         destination: '/e-magazine',
         permanent: true,

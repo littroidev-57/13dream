@@ -12,35 +12,33 @@ export const viewport = {
 export const metadata = {
   metadataBase: new URL(siteConfig.siteUrl),
   title: {
-    default: 'Best Study Abroad Consultants in India | 13 Dreams Consultants',
-    template: '%s',
+    default: 'Best Visa Filing in Bareilly & Best IELTS Coaching | 13 Dreams Consultants',
+    template: '%s | 13 Dreams Consultants',
   },
   description:
-    'Get expert guidance from 13 Dreams Consultants, India\'s trusted overseas education and study visa specialists. Comprehensive guidance for Canada, UK, USA, Australia, Germany, Malta, Singapore, Netherlands, and Europe.',
+    'Ranked #1 for Best Visa Filing in Bareilly and Best IELTS Coaching. 13 Dreams Consultants at Luthra Tower, Ekta Nagar, Bareilly provides 99% visa grant rate for Canada, UK, Australia, USA, Germany, Malta & Europe with certified IDP/British Council trainers.',
   keywords: [
-    'Study Abroad Consultants',
-    'Overseas Education Consultants',
-    'Student Visa Guidance',
-    'Study Abroad Consultants in Bareilly',
-    'Study Visa Consultants in Bareilly',
-    'Best Study Visa Agency Bareilly',
-    'Overseas Education Consultant Khatima',
-    'Study in Canada Consultant Bareilly',
-    'Study in Australia Student Visa',
-    'Study in UK Consultants',
-    'Study in USA Student Visa',
-    'Study in Germany Free Education',
-    'Study in Malta Schengen Student Visa',
-    'Study in Malta Consultants',
-    'Study in Singapore ICA Solar Pass',
-    'Study in Singapore Consultants',
-    'Study in Netherlands Zoekjaar Visa',
-    'Study in Netherlands Consultants',
-    'Study in Europe English Taught Programs',
+    'Best Visa Filing in Bareilly',
+    'Visa Filing in Bareilly',
+    'Best Study Visa Filing in Bareilly',
+    'Best IELTS Coaching in Bareilly',
+    'Best ILTS Coaching',
+    'Best ILTS Coaching in Bareilly',
     'IELTS Coaching in Bareilly',
-    'PTE Training Centre Bareilly',
-    'Visa Application Assistance Online',
-    '13 Dreams Consultants',
+    'Top IELTS Coaching Institute Bareilly',
+    'Best PTE Coaching in Bareilly',
+    'Study Visa Consultants in Bareilly',
+    'Best Study Abroad Consultants in Bareilly',
+    'Apply for Student Visa Online',
+    'Canada Visa Filing in Bareilly',
+    'Australia Student Visa Filing Bareilly',
+    'UK Student Visa Filing Bareilly',
+    'USA F1 Student Visa Filing Bareilly',
+    'Germany Student Visa Bareilly',
+    'Malta Schengen Student Visa Bareilly',
+    'Overseas Education Consultant Khatima',
+    '13 Dreams Consultants Bareilly',
+    'Best Overseas Education Agency Bareilly',
   ],
   authors: [{ name: siteConfig.siteName, url: siteConfig.siteUrl }],
   creator: siteConfig.siteName,
@@ -49,9 +47,9 @@ export const metadata = {
     canonical: siteConfig.siteUrl,
   },
   openGraph: {
-    title: '13 Dreams Consultants Private Limited | Study Abroad & Visa Experts',
+    title: 'Best Visa Filing in Bareilly & Best IELTS Coaching | 13 Dreams Consultants',
     description:
-      'Trusted Study Abroad & Student Visa Consultants in Bareilly and Khatima. Assisting Indian students with global admissions to Canada, Australia, UK, USA, Germany, Malta, Singapore, Netherlands, and Europe.',
+      'Ranked #1 for Best Visa Filing in Bareilly & Best IELTS Coaching. 15+ years experience, 150+ partner universities across UK, Canada, Australia, USA, Germany & Europe with 99% visa grant rate.',
     url: siteConfig.siteUrl,
     siteName: siteConfig.siteName,
     images: [
@@ -59,7 +57,7 @@ export const metadata = {
         url: `${siteConfig.siteUrl}/img/13dreamsconsultants-main.webp`,
         width: 1200,
         height: 630,
-        alt: '13 Dreams Consultants - Best Study Abroad Advisors',
+        alt: '13 Dreams Consultants - Best Visa Filing in Bareilly & IELTS Coaching',
       },
     ],
     locale: 'en_IN',
@@ -67,9 +65,9 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: '13 Dreams Consultants | Study Abroad & Visa Guidance',
+    title: 'Best Visa Filing in Bareilly & Best IELTS Coaching | 13 Dreams',
     description:
-      'End-to-end university admissions, scholarships, and student visa guidance for Canada, UK, Australia, USA, Germany, Malta, Singapore, Netherlands & Europe with 99% visa success.',
+      'End-to-end university admissions, student visa filing, and certified IELTS coaching in Bareilly with 99% visa success rate.',
     images: [`${siteConfig.siteUrl}/img/13dreamsconsultants-main.webp`],
   },
   icons: {
@@ -108,6 +106,9 @@ export default function RootLayout({ children }) {
       worstRating: '1',
     },
     knowsAbout: [
+      'Best Visa Filing in Bareilly',
+      'Best IELTS Coaching in Bareilly',
+      'Best ILTS Coaching',
       'Study Abroad Guidance',
       'Overseas University Admissions',
       'Student Visa Consultation',
@@ -128,8 +129,49 @@ export default function RootLayout({ children }) {
       'Schengen Student Visa',
       'ICA Solar Student Pass',
     ],
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Visa Filing and Language Coaching Services',
+      itemListElement: [
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Best Visa Filing in Bareilly',
+            description: 'Accredited student visa filing and immigration guidance for Canada, UK, Australia, USA, and Europe with a 99% visa success rate.',
+          },
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Best IELTS Coaching in Bareilly',
+            description: 'British Council & IDP certified master trainers, 1-on-1 speaking mock tests, and band 7.5+ preparation.',
+          },
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'PTE Academic Coaching in Bareilly',
+            description: 'AI-scored computer lab practice, official Pearson material, and rapid 65+ score target preparation.',
+          },
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Free Study Abroad Profile Evaluation & University Admissions',
+            description: 'Zero consultation fee profile assessment with 150+ international partner universities across 50+ countries.',
+          },
+        },
+      ],
+    },
     areaServed: [
       { '@type': 'AdministrativeArea', name: 'Bareilly' },
+      { '@type': 'AdministrativeArea', name: 'Model Town, Bareilly' },
+      { '@type': 'AdministrativeArea', name: 'Ekta Nagar, Bareilly' },
+      { '@type': 'AdministrativeArea', name: 'Civil Lines, Bareilly' },
       { '@type': 'AdministrativeArea', name: 'Khatima' },
       { '@type': 'AdministrativeArea', name: 'Pilibhit' },
       { '@type': 'AdministrativeArea', name: 'Moradabad' },
@@ -195,6 +237,10 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+        <meta name="geo.region" content="IN-UP" />
+        <meta name="geo.placename" content="Bareilly" />
+        <meta name="geo.position" content="28.3670;79.4304" />
+        <meta name="ICBM" content="28.3670, 79.4304" />
         <link rel="icon" type="image/png" href="/icon.png" />
         <link rel="apple-touch-icon" href="/icon.png" />
         <JsonLd data={organizationSchema} />

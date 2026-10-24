@@ -33,7 +33,7 @@ export default function Topbar({ onOpenSidebar, onToggleSearch }) {
         {/* Right Section: Social Icons + Red Slanted Action Box */}
         <div className="flex items-center h-full gap-4 sm:gap-6">
           {/* Social Icons (clean white, no background circle, matching design) */}
-          <ul className="flex items-center gap-4 text-white">
+          <ul className="hidden sm:flex items-center gap-4 text-white">
             <li>
               <a
                 href="https://www.facebook.com/13Dreamsconsultants"
