@@ -9,7 +9,7 @@ export default function JourneyCtaBanner() {
   const isContactPage = pathname === '/contact';
 
   return (
-    <section className="pt-20 sm:pt-28 md:pt-36 pb-12 md:pb-20 bg-white overflow-visible">
+    <section className="pt-20 sm:pt-28 md:pt-36 pb-12 md:pb-20 bg-white overflow-hidden">
       <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
         <div
           className="relative rounded-[32px] md:rounded-[48px] overflow-visible shadow-2xl shadow-red-950/25 px-6 sm:px-10 lg:px-16 pt-10 pb-10 lg:pb-12 border border-red-500/20"
@@ -18,8 +18,8 @@ export default function JourneyCtaBanner() {
           }}
         >
           {/* Ambient Lighting Orbs */}
-          <div className="absolute -top-20 -left-20 w-80 h-80 rounded-full bg-red-600/15 blur-[100px] pointer-events-none" />
-          <div className="absolute -bottom-20 -right-20 w-80 h-80 rounded-full bg-red-500/20 blur-[100px] pointer-events-none" />
+          <div className="absolute -top-20 left-0 w-80 h-80 rounded-full bg-red-600/15 blur-[100px] pointer-events-none" />
+          <div className="absolute -bottom-20 right-0 w-80 h-80 rounded-full bg-red-500/20 blur-[100px] pointer-events-none" />
 
           {/* Background SVG Doodle Art */}
           {/* 2. Location Pin doodle */}

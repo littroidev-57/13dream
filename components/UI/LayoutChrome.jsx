@@ -21,7 +21,7 @@ export default function LayoutChrome({ children }) {
     return (
       <div id="page" className="site min-h-screen bg-[#f6f8fa] pb-14 md:pb-0">
         <ToastProvider />
-        <main>{children}</main>
+        <main className="w-full max-w-full overflow-x-hidden">{children}</main>
         <EMagazineBadge />
         <AICounselorWidget />
         <MobileBottomBar />
@@ -34,7 +34,7 @@ export default function LayoutChrome({ children }) {
       <div id="page" className="site bg-[#f8f9fa] min-h-screen pb-14 md:pb-0">
         <ToastProvider />
         <HeaderWrapper />
-        <main>{children}</main>
+        <main className="w-full max-w-full overflow-x-hidden">{children}</main>
         <Footer />
         <WhatsAppButton />
         <MobileBottomBar />
@@ -46,7 +46,7 @@ export default function LayoutChrome({ children }) {
     <div id="page" className="site pb-14 md:pb-0">
       <ToastProvider />
       <HeaderWrapper />
-      <main>{children}</main>
+      <main className="w-full max-w-full overflow-x-hidden">{children}</main>
       <JourneyCtaBanner />
       <Footer />
       <EMagazineBadge />

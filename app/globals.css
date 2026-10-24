@@ -32,21 +32,31 @@
 
 html {
   font-family: var(--font-main);
-  overflow-x: clip;
+  overflow-x: hidden !important;
+  max-width: 100%;
 }
 
 body {
   font-family: var(--font-main);
   color: var(--dark-text);
   background-color: #ffffff;
-  overflow-x: clip;
+  overflow-x: hidden !important;
+  max-width: 100%;
+  position: relative;
   line-height: 1.6;
   font-size: 14px;
 }
 
 #page, .site {
   width: 100%;
+  max-width: 100%;
   position: relative;
+}
+
+main {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 a {
