@@ -90,7 +90,7 @@ export default function RootLayout({ children }) {
     name: siteConfig.siteName,
     alternateName: siteConfig.shortName,
     url: siteConfig.siteUrl,
-    logo: `${siteConfig.siteUrl}/img/13d-logo.webp`,
+    logo: `${siteConfig.siteUrl}/img/logo.webp`,
     image: `${siteConfig.siteUrl}/img/13dreamsconsultants-main.webp`,
     telephone: siteConfig.phone,
     email: siteConfig.email,

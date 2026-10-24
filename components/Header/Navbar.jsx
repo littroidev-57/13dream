@@ -28,9 +28,13 @@ export default function Navbar({ onToggleMobileNav, isScrolled }) {
           <div className="logo">
             <Link href="/" title="13 Dreams Consultants">
               <img
-                src="https://13dreamsconsultants.com/img/13d-logo.webp"
+                src="/img/logo.webp"
                 alt="13 Dreams Consultants Logo"
                 className="h-10 sm:h-12 lg:h-[58px] w-auto max-w-[170px] sm:max-w-none object-contain transition-all duration-300"
+                onError={(e) => {
+                  e.currentTarget.onerror = null;
+                  e.currentTarget.src = '/img/13d-logo.webp';
+                }}
               />
             </Link>
           </div>
