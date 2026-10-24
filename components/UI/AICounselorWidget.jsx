@@ -316,7 +316,7 @@ export default function AICounselorWidget() {
 
       {/* Chat Window Modal */}
       {isOpen && (
-        <div className="fixed bottom-3 right-3 left-3 sm:left-auto sm:right-6 sm:bottom-6 z-[99999] w-auto sm:w-[410px] max-w-[calc(100vw-36px)] sm:max-w-[410px] h-[550px] max-h-[84vh] bg-white rounded-2xl shadow-2xl border border-gray-200/90 flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+        <div className="fixed bottom-3 right-3 left-3 sm:left-auto sm:right-6 sm:bottom-6 z-[99999] w-auto sm:w-[410px] max-w-[calc(100vw-24px)] sm:max-w-[410px] h-[550px] max-h-[84vh] bg-white rounded-2xl shadow-2xl border border-gray-200/90 flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200">
           {/* Modal Header */}
           <div className="bg-gradient-to-r from-slate-900 via-red-950 to-red-900 p-4 text-white flex items-center justify-between shadow-md relative">
             <div className="flex items-center gap-3">
