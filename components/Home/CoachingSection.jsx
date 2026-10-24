@@ -11,13 +11,13 @@ export default function CoachingSection() {
         <div className="text-center max-w-3xl mx-auto mb-14">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-50 text-red-600 border border-red-200 text-xs font-bold tracking-wider uppercase mb-4 shadow-sm">
             <i className="fa-solid fa-graduation-cap text-red-600"></i>
-            <span>Premier Language Training</span>
+            <span>Best IELTS &amp; PTE Coaching in Bareilly</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight leading-tight">
-            Master <span className="text-red-600">IELTS & PTE</span> with Certified Experts
+            Best <span className="text-red-600">IELTS &amp; PTE Coaching</span> in Bareilly
           </h2>
           <p className="mt-3 text-base sm:text-lg text-gray-600">
-            Achieve your target band score on the first attempt with result-oriented coaching at 13 Dreams Consultants in Bareilly & Khatima.
+            Achieve your target 7.5+ band score on the first attempt with the best IELTS coaching in Bareilly at 13 Dreams Consultants (Ekta Nagar &amp; Khatima). Certified IDP &amp; British Council master faculty.
           </p>
         </div>
 

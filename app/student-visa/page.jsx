@@ -6,28 +6,32 @@ import JsonLd from '@/components/SEO/JsonLd';
 import { siteConfig, getCanonicalUrl } from '@/lib/siteConfig';
 
 export const metadata = {
-  title: 'Student Visa Consultants | High Success Study Visa Guidance | 13 Dreams',
+  title: 'Best Visa Filing in Bareilly & Student Visa Consultants | 13 Dreams',
   description:
-    'Expert student visa consultancy for Canada, UK, USA, Australia, Germany, Malta, Singapore, and the Netherlands. 99% visa grant rate, GTE/SOP scrutiny, financial documentation, and embassy mock interviews.',
+    'Ranked #1 for best visa filing in Bareilly. Expert student visa consultancy for Canada, UK, USA, Australia, Germany, Malta, Singapore, and Europe with a 99% visa grant rate and complete SOP scrutiny.',
   keywords: [
+    'Best Visa Filing in Bareilly',
+    'Visa Filing in Bareilly',
     'Student Visa Consultants',
     'Study Visa Bareilly',
+    'Best Study Visa Agency Bareilly',
+    'Canada SDS Study Permit Bareilly',
+    'Australia Subclass 500 Visa Bareilly',
+    'UK Student Route Visa Bareilly',
+    'USA F1 Student Visa Bareilly',
+    'Germany Type D Student Visa Bareilly',
     'Malta Student Visa Schengen',
     'Singapore ICA Solar Student Pass',
     'Netherlands MVV VVR Zoekjaar Visa',
-    'Canada SDS Study Permit',
-    'Australia Subclass 500 Visa',
-    'UK Student Route Visa',
-    'Germany Type D Student Visa',
     'Overseas Education Visa Consultants',
   ],
   alternates: {
     canonical: getCanonicalUrl('/student-visa'),
   },
   openGraph: {
-    title: 'Student Visa Consultants | 99% Visa Grant Rate | 13 Dreams',
+    title: 'Best Visa Filing in Bareilly & Student Visa Consultants | 13 Dreams',
     description:
-      'End-to-end student visa processing for Canada SDS, Australia Subclass 500, UK Student Route, USA F-1, Malta Schengen, Singapore SOLAR+, and Netherlands MVV/Zoekjaar visas.',
+      'End-to-end student visa filing for Canada, Australia, UK, USA, Germany, Malta, Singapore & Europe with 99% visa success rate at 13 Dreams Bareilly.',
     url: getCanonicalUrl('/student-visa'),
     siteName: siteConfig.siteName,
     type: 'website',

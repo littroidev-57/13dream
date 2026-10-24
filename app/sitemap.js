@@ -19,8 +19,8 @@ export default function sitemap() {
     { path: '/about-us', priority: 0.8, changeFrequency: 'monthly' },
     { path: '/contact', priority: 0.8, changeFrequency: 'monthly' },
     { path: '/story', priority: 0.8, changeFrequency: 'weekly' },
-    { path: '/story/ielts', priority: 0.8, changeFrequency: 'weekly' },
-    { path: '/story/pte', priority: 0.8, changeFrequency: 'weekly' },
+    { path: '/story/ielts', priority: 0.95, changeFrequency: 'daily' },
+    { path: '/story/pte', priority: 0.85, changeFrequency: 'weekly' },
     { path: '/blog', priority: 0.8, changeFrequency: 'daily' },
     { path: '/events', priority: 0.7, changeFrequency: 'monthly' },
     { path: '/privacy-policy', priority: 0.5, changeFrequency: 'monthly' },
@@ -45,7 +45,7 @@ export default function sitemap() {
     url: `${baseUrl}/service/${s.slug}`,
     lastModified: new Date(),
     changeFrequency: 'weekly',
-    priority: 0.8,
+    priority: s.slug === 'study-visa-consultants-bareilly' || s.slug === 'visa-processing' ? 0.95 : 0.8,
   }));
 
   // /blog/[slug]

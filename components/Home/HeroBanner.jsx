@@ -12,17 +12,15 @@ export default function HeroBanner() {
           <div className="lg:col-span-6 flex flex-col items-start space-y-6">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-50 text-red-600 border border-red-200 text-xs font-bold tracking-wider uppercase shadow-sm">
               <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span>
-              <span>100% FREE COUNSELING & VISA GUIDANCE</span>
+              <span>RANKED #1 IN BAREILLY • BEST VISA FILING &amp; IELTS COACHING</span>
             </div>
 
             <h1 className="text-2xl sm:text-4xl lg:text-[42px] font-extrabold text-gray-900 tracking-tight leading-[1.25]">
-              Realise Your <strong className="text-gray-900">Study Abroad Dreams</strong> with Expert{' '}
-              <span className="text-red-600 bg-red-100/60 px-2 py-0.5 rounded-md inline-block">IELTS, PTE & Visa</span>{' '}
-              Filing!
+              Best <span className="text-red-600 bg-red-100/60 px-2 py-0.5 rounded-md inline-block">Visa Filing in Bareilly</span> &amp; Top IELTS Coaching Institute
             </h1>
 
             <p className="text-sm sm:text-base text-gray-600 leading-relaxed max-w-2xl">
-              Get end-to-end guidance from India’s trusted overseas education consultancy. From score-boosting <strong className="text-gray-800">IELTS & PTE coaching</strong> to university admissions and hassle-free <strong className="text-gray-800">Student Visa Filing</strong> for UK, Canada, Australia, USA, Germany, New Zealand & Singapore.
+              Get trusted guidance from 13 Dreams Consultants in Bareilly. From score-boosting <strong className="text-gray-800">IELTS &amp; PTE coaching</strong> (Target 7.5+ band) to 99% success <strong className="text-gray-800">Student Visa Filing</strong> for UK, Canada, Australia, USA, Germany, Malta &amp; Europe.
             </p>
 
             {/* Feature Chips */}

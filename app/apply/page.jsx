@@ -4,26 +4,28 @@ import JsonLd from '@/components/SEO/JsonLd';
 import { siteConfig, getCanonicalUrl } from '@/lib/siteConfig';
 
 export const metadata = {
-  title: 'Apply for Student Visa Online | Free Study Abroad Counselling - 13 Dreams Bareilly',
+  title: 'Apply Online | Best Visa Filing in Bareilly & Best IELTS Coaching | 13 Dreams',
   description:
-    'Apply online for 100% free study visa application assistance, university shortlisting, and expert career counselling with 13 Dreams Consultants Bareilly. 99% visa success rate for Canada, Australia, UK, USA & Europe.',
+    'Apply online for the best visa filing in Bareilly and top-rated IELTS coaching. 100% free profile evaluation, 150+ partner universities, 99% visa grant rate for Canada, Australia, UK, USA & Europe at 13 Dreams Bareilly.',
   keywords: [
+    'best visa filing in bareilly',
+    'visa filing in bareilly',
+    'best study visa filing in bareilly',
+    'best ielts coaching in bareilly',
+    'best ilts coaching',
+    'best ilts coaching in bareilly',
+    'ielts coaching in bareilly',
     'apply for student visa online',
+    'apply online visa filing',
     'study abroad counselling bareilly',
     'visa application assistance bareilly',
     'study visa consultants in bareilly',
-    'best overseas education consultants in bareilly',
-    'study abroad consultants khatima',
     'canada student visa apply online',
     'australia subclass 500 visa application',
     'uk student route visa process',
     'usa f1 student visa filing bareilly',
-    'free foreign education profile evaluation',
-    '13 dreams consultants apply online',
-    'ielts pte coaching bareilly',
-    'student visa with education gap',
     'top visa consultants near me',
-    'study abroad application form',
+    '13 dreams consultants apply online',
   ],
   alternates: {
     canonical: getCanonicalUrl('/apply'),
@@ -40,9 +42,9 @@ export const metadata = {
     },
   },
   openGraph: {
-    title: 'Apply for Student Visa Online | Free Study Abroad Counselling | 13 Dreams',
+    title: 'Apply Online | Best Visa Filing in Bareilly & IELTS Coaching | 13 Dreams',
     description:
-      'Fast-track your global university admission and student visa. 100% free profile evaluation, 150+ partner universities, 99% visa grant rate. Apply today!',
+      'Fast-track your global university admission and student visa filing. 100% free profile evaluation, certified IELTS coaching, and 99% visa grant rate.',
     url: getCanonicalUrl('/apply'),
     siteName: siteConfig.siteName,
     type: 'website',
@@ -52,15 +54,15 @@ export const metadata = {
         url: 'https://res.cloudinary.com/eikgki2a/image/upload/v1790672807/13dreams/general/apply_student_application.jpg',
         width: 1200,
         height: 630,
-        alt: 'Apply Online for Study Visa Assistance - 13 Dreams Consultants',
+        alt: 'Apply Online for Best Visa Filing in Bareilly & IELTS Coaching',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Apply for Student Visa Online | Free Counselling - 13 Dreams',
+    title: 'Apply Online | Best Visa Filing in Bareilly & IELTS Coaching',
     description:
-      'Apply online for student visa assistance for Canada, Australia, UK, USA & Europe. 100% Free consultation & profile assessment.',
+      'Apply online for best visa filing in Bareilly and certified IELTS coaching. 100% Free consultation & profile assessment.',
     images: ['https://res.cloudinary.com/eikgki2a/image/upload/v1790672807/13dreams/general/apply_student_application.jpg'],
   },
 };
@@ -71,10 +73,10 @@ export default function ApplyPage() {
       '@context': 'https://schema.org',
       '@type': ['Service', 'ContactPage'],
       '@id': `${getCanonicalUrl('/apply')}#service`,
-      name: 'Visa Application Assistance & Free Study Abroad Counselling',
-      serviceType: 'Overseas Education & Student Visa Consulting',
+      name: 'Best Visa Filing in Bareilly & Free Study Abroad Counselling',
+      serviceType: 'Student Visa Filing & Overseas Education Consulting',
       description:
-        'Comprehensive student visa application guidance, university shortlisting, documentation verification, and interview prep for Australia, Canada, UK, USA, and Europe.',
+        'Ranked #1 for best visa filing in Bareilly. Comprehensive student visa documentation scrutiny, university shortlisting, GTE/SOP preparation, and interview prep for Australia, Canada, UK, USA, and Europe.',
       provider: {
         '@type': ['EducationalOrganization', 'LocalBusiness'],
         name: siteConfig.siteName,
@@ -110,8 +112,10 @@ export default function ApplyPage() {
         description: '100% Free Initial Profile Evaluation & Course Counseling',
       },
       areaServed: [
-        'India',
         'Bareilly',
+        'Model Town, Bareilly',
+        'Ekta Nagar, Bareilly',
+        'Civil Lines, Bareilly',
         'Khatima',
         'Pilibhit',
         'Moradabad',
@@ -119,17 +123,50 @@ export default function ApplyPage() {
         'Haldwani',
         'Uttarakhand',
         'Uttar Pradesh',
+        'India',
       ],
       potentialAction: {
         '@type': 'ApplyAction',
         target: getCanonicalUrl('/apply'),
-        name: 'Apply for Free Study Abroad Counselling',
+        name: 'Apply for Best Visa Filing in Bareilly',
+      },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Course',
+      name: 'Best IELTS Coaching in Bareilly',
+      description: 'Comprehensive IELTS Academic & General test preparation by British Council & IDP certified trainers with daily speaking interviews and mock exams.',
+      provider: {
+        '@type': 'EducationalOrganization',
+        name: siteConfig.siteName,
+        url: siteConfig.siteUrl,
+      },
+      hasCourseInstance: {
+        '@type': 'CourseInstance',
+        courseMode: ['Blended', 'Onsite', 'Online'],
+        location: 'Luthra Tower 2nd Floor C 56 Ekta Nagar, Opp. LIC Office, Model Town, Bareilly',
       },
     },
     {
       '@context': 'https://schema.org',
       '@type': 'FAQPage',
       mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'Which is the best visa filing consultancy in Bareilly?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: '13 Dreams Consultants Private Limited, located at Luthra Tower, 2nd Floor, C 56 Ekta Nagar, Opp. LIC Office, Model Town, Bareilly, is widely recognized as the best visa filing consultancy in Bareilly. With 15+ years of operational experience and a 99% visa approval rate, they provide unmatched visa filing expertise for Canada, UK, Australia, USA, Germany, and Europe.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Where can I find the best IELTS coaching in Bareilly?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: '13 Dreams Consultants provides the best IELTS coaching in Bareilly with IDP and British Council certified trainers, dedicated computer labs, 1-on-1 daily speaking practice, authentic test materials, and guaranteed 7.5+ band preparation.',
+          },
+        },
         {
           '@type': 'Question',
           name: 'Is the study abroad counselling at 13 Dreams Consultants really 100% free?',

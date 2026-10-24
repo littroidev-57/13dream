@@ -176,7 +176,7 @@ export default function JourneyCtaBanner() {
 
             {/* Right Column: Girl's Head and Airplane Clearly Popping OUT of the Box */}
             <div className="lg:col-span-5 flex justify-center lg:justify-end items-end relative overflow-visible">
-              <div className="relative w-[280px] sm:w-[350px] lg:w-[410px] -mt-24 sm:-mt-36 lg:-mt-56 -mb-10 lg:-mb-12 z-30 pointer-events-none">
+              <div className="relative w-[280px] sm:w-[350px] lg:w-[410px] max-w-full -mt-24 sm:-mt-36 lg:-mt-56 -mb-10 lg:-mb-12 z-30 pointer-events-none">
                 <img
                   src="/img/about/study.png"
                   alt="Indian study abroad student holding blue airplane and globe"
