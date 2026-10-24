@@ -101,7 +101,7 @@ export default async function BlogPostPage({ params }) {
       '@type': 'EducationalOrganization',
       name: siteConfig.siteName,
       url: siteConfig.siteUrl,
-      logo: `${siteConfig.siteUrl}/img/13d-logo.webp`,
+      logo: `${siteConfig.siteUrl}/img/logo.webp`,
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
