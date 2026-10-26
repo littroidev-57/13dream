@@ -24,9 +24,10 @@ export default function Footer() {
               <div className="footer-logo">
                 <Link href="/" title="13 Dreams Consultants">
                   <img
-                    src="/img/13d-logo-white.webp"
+
+                    src="/img/logo.webp"
                     alt="13 Dreams Consultants Logo White"
-                    style={{ width: '220px', maxWidth: '100%', height: 'auto' }}
+                    style={{ width: '220px', maxWidth: '100%', height: 'auto', backgroundColor: 'white', padding: '10px', borderRadius: '10px' }}
                     onError={(e) => {
                       e.currentTarget.onerror = null;
                       e.currentTarget.src = '/img/logo.webp';
