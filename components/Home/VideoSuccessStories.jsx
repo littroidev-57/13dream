@@ -6,6 +6,31 @@ import Link from 'next/link';
 // Curated Instagram Reels from 13 Dreams Consultants
 export const instagramReels = [
   {
+    id: 'DdRFiKuKJ2H',
+    url: 'https://www.instagram.com/reel/DdRFiKuKJ2H/?psln=Z2RxNHEzczd2YWNl',
+    title: 'Congratulations Taranveer: 7.5 Bands in IELTS',
+  },
+  {
+    id: 'DeyRrFpxsqa',
+    url: 'https://www.instagram.com/reel/DeyRrFpxsqa/',
+    title: 'Germany Study Visa Grant - Jaskaran',
+  },
+  {
+    id: 'DebJhpRxbwO',
+    url: 'https://www.instagram.com/reel/DebJhpRxbwO/',
+    title: 'Hard Work Turned Into Dream Band Score',
+  },
+  {
+    id: 'DeGX5-zxxYS',
+    url: 'https://www.instagram.com/reel/DeGX5-zxxYS/',
+    title: 'From Hope to Reality: Band Score Achieved',
+  },
+  {
+    id: 'DdlxMijKXWc',
+    url: 'https://www.instagram.com/reel/DdlxMijKXWc/',
+    title: 'Congratulations Saurabh: 7.5 Bands in IELTS',
+  },
+  {
     id: 'DWBle0XiZmj',
     url: 'https://www.instagram.com/13dreamsconsultants/reel/DWBle0XiZmj/',
     title: 'Surprise Australia Study Visa Grant',

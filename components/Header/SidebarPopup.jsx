@@ -130,7 +130,7 @@ export default function SidebarPopup({ isOpen, onClose }) {
                 <div>
                   <p className="font-bold text-gray-900">Bareilly Office:</p>
                   <p className="text-[11px] text-gray-600 leading-snug">
-                    Luthra Tower 2nd Floor C 56 Ekta Nagar, Opp. LIC Office, Model Town, Bareilly
+                    Luthra Tower 2nd Floor C 56, Opp. LIC Office, Ekta Nagar, Bareilly
                   </p>
                 </div>
                 <div>

@@ -113,7 +113,6 @@ export default function ApplyPage() {
       },
       areaServed: [
         'Bareilly',
-        'Model Town, Bareilly',
         'Ekta Nagar, Bareilly',
         'Civil Lines, Bareilly',
         'Khatima',
@@ -144,7 +143,7 @@ export default function ApplyPage() {
       hasCourseInstance: {
         '@type': 'CourseInstance',
         courseMode: ['Blended', 'Onsite', 'Online'],
-        location: 'Luthra Tower 2nd Floor C 56 Ekta Nagar, Opp. LIC Office, Model Town, Bareilly',
+        location: 'Luthra Tower 2nd Floor C 56, Opp. LIC Office, Ekta Nagar, Bareilly',
       },
     },
     {
@@ -156,7 +155,7 @@ export default function ApplyPage() {
           name: 'Which is the best visa filing consultancy in Bareilly?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: '13 Dreams Consultants Private Limited, located at Luthra Tower, 2nd Floor, C 56 Ekta Nagar, Opp. LIC Office, Model Town, Bareilly, is widely recognized as the best visa filing consultancy in Bareilly. With 15+ years of operational experience and a 99% visa approval rate, they provide unmatched visa filing expertise for Canada, UK, Australia, USA, Germany, and Europe.',
+            text: '13 Dreams Consultants Private Limited, located at Luthra Tower, 2nd Floor, C 56, Opp. LIC Office, Ekta Nagar, Bareilly, is widely recognized as the best visa filing consultancy in Bareilly. With 15+ years of operational experience and a 99% visa approval rate, they provide unmatched visa filing expertise for Canada, UK, Australia, USA, Germany, and Europe.',
           },
         },
         {
