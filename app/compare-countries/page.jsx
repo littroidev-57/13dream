@@ -1,6 +1,7 @@
 import React from 'react';
 import PageBanner from '@/components/UI/PageBanner';
 import CountryComparison from '@/components/Home/CountryComparison';
+import EligibilityCalculator from '@/components/Home/EligibilityCalculator';
 import JsonLd from '@/components/SEO/JsonLd';
 import { siteConfig, getCanonicalUrl } from '@/lib/siteConfig';
 
@@ -89,6 +90,7 @@ export default function CompareCountriesPage() {
         ]}
       />
       <CountryComparison />
+      <EligibilityCalculator />
     </>
   );
 }

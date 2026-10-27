@@ -103,7 +103,7 @@ export default function ApplyForm({ defaultCountry = '' }) {
   const studentFaqs = [
     {
       q: 'Which is the best visa filing consultancy in Bareilly?',
-      a: '13 Dreams Consultants Private Limited, situated at Luthra Tower, 2nd Floor, C 56 Ekta Nagar, Opp. LIC Office, Model Town, Bareilly, is widely recognized as the best visa filing consultancy in Bareilly. Backed by 15+ years of experience and a 99% visa grant rate, we provide dedicated visa filing for Canada, Australia, the UK, the USA, Germany, and Europe.',
+      a: '13 Dreams Consultants Private Limited, situated at Luthra Tower, 2nd Floor, C 56, Opp. LIC Office, Ekta Nagar, Bareilly, is widely recognized as the best visa filing consultancy in Bareilly. Backed by 15+ years of experience and a 99% visa grant rate, we provide dedicated visa filing for Canada, Australia, the UK, the USA, Germany, and Europe.',
     },
     {
       q: 'Where can I find the best IELTS coaching in Bareilly?',
@@ -1007,7 +1007,7 @@ export default function ApplyForm({ defaultCountry = '' }) {
                     <i className="fa-solid fa-location-dot text-red-400"></i> Bareilly Head Office
                   </h4>
                   <p className="text-gray-300 text-xs sm:text-sm mt-1">
-                    Luthra Tower 2nd Floor C 56 Ekta Nagar, Opp. LIC Office, Model Town, Bareilly, UP 243005
+                    Luthra Tower 2nd Floor C 56, Opp. LIC Office, Ekta Nagar, Bareilly, UP 243005
                   </p>
                 </div>
 

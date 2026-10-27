@@ -130,7 +130,7 @@ export default function Footer() {
                 </li>
                 <li>
                   <i className="fa-solid fa-location-dot"></i>
-                  <span>Luthra Tower 2nd Floor C 56 Ekta Nagar, Opp. LIC Office, Model Town, Bareilly</span>
+                  <span>Luthra Tower 2nd Floor C 56, Opp. LIC Office, Ekta Nagar, Bareilly</span>
                 </li>
               </ul>
             </div>

@@ -134,7 +134,7 @@ export default function ContactPage() {
                   <div>
                     <h5 style={{ fontSize: '16px', fontWeight: '700', color: '#222' }}>Bareilly Office</h5>
                     <p style={{ fontSize: '13.5px', color: '#555', marginTop: '4px', lineHeight: '1.6' }}>
-                      Luthra Tower 2nd Floor C 56 Ekta Nagar, Opp. LIC Office, Model Town, Bareilly, UP
+                      Luthra Tower 2nd Floor C 56, Opp. LIC Office, Ekta Nagar, Bareilly, UP
                     </p>
                   </div>
                 </div>

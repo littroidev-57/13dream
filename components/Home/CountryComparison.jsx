@@ -317,7 +317,16 @@ export default function CountryComparison() {
 
           <a
             href="#eligibility-calculator"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs sm:text-sm shadow-md shadow-red-600/30 transition-all flex-shrink-0"
+            onClick={(e) => {
+              const el = document.getElementById('eligibility-calculator');
+              if (el) {
+                e.preventDefault();
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              } else {
+                window.location.href = '/#eligibility-calculator';
+              }
+            }}
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs sm:text-sm shadow-md shadow-red-600/30 transition-all flex-shrink-0 cursor-pointer"
           >
             <span>Check My Profile Now</span>
             <i className="fa-solid fa-arrow-down text-xs"></i>

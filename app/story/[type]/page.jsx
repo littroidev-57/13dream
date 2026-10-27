@@ -110,7 +110,7 @@ export default async function StoryTypePage({ params }) {
       url: siteConfig.siteUrl,
       address: {
         '@type': 'PostalAddress',
-        streetAddress: 'Luthra Tower 2nd Floor C 56 Ekta Nagar, Opp. LIC Office, Model Town',
+        streetAddress: 'Luthra Tower 2nd Floor C 56, Opp. LIC Office, Ekta Nagar',
         addressLocality: 'Bareilly',
         addressRegion: 'Uttar Pradesh',
         postalCode: '243005',

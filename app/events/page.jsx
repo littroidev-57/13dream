@@ -1,55 +1,11 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PageBanner from '@/components/UI/PageBanner';
-import { eventsGallery } from '@/lib/eventsData';
+import { latestEventsInstagram } from '@/lib/eventsData';
 
 export default function EventsPage() {
-  const [activePhotoIdx, setActivePhotoIdx] = useState(null);
-
-  // Keyboard navigation for lightbox
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape') {
-        setActivePhotoIdx(null);
-      }
-      if (activePhotoIdx !== null) {
-        if (e.key === 'ArrowRight') {
-          setActivePhotoIdx((prev) => (prev + 1) % eventsGallery.length);
-        } else if (e.key === 'ArrowLeft') {
-          setActivePhotoIdx((prev) => (prev - 1 + eventsGallery.length) % eventsGallery.length);
-        }
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [activePhotoIdx]);
-
-  // Prevent background scroll when lightbox is open
-  useEffect(() => {
-    if (activePhotoIdx !== null) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [activePhotoIdx]);
-
-  const handlePrev = (e) => {
-    e?.stopPropagation();
-    if (activePhotoIdx !== null) {
-      setActivePhotoIdx((prev) => (prev - 1 + eventsGallery.length) % eventsGallery.length);
-    }
-  };
-
-  const handleNext = (e) => {
-    e?.stopPropagation();
-    if (activePhotoIdx !== null) {
-      setActivePhotoIdx((prev) => (prev + 1) % eventsGallery.length);
-    }
-  };
+  const [playingId, setPlayingId] = useState(null);
 
   return (
     <>
@@ -58,106 +14,151 @@ export default function EventsPage() {
         breadcrumbs={[{ label: 'Our Events', href: null }]}
       />
 
-      <section className="shu-university">
-        <div className="container">
-          <div className="section-title default text-center" style={{ marginBottom: '45px' }}>
+      <section className="shu-university bg-white py-12 md:py-16">
+        <div className="container mx-auto px-4 max-w-7xl">
+          {/* Main Title */}
+          <div className="section-title default text-center mb-10">
             <div className="section-top">
               <h2>
-                <span>Our </span>
-                <b>Events</b>
+                <span className="text-gray-900">Our </span>
+                <b className="text-red-600">Events</b>
               </h2>
             </div>
           </div>
 
-          <div className="gallery-grid-events">
-            {eventsGallery.map((item, idx) => (
-              <div
-                key={idx}
-                className="gallery-shu group"
-                onClick={() => setActivePhotoIdx(idx)}
-                title={item.title || item.alt || '13 Dreams Consultants Event'}
-              >
-                <img
-                  src={item.src}
-                  alt={item.alt || '13 Dreams Consultants Event'}
-                  title={item.title || item.alt}
-                  loading="lazy"
-                />
-                <div className="gallery-shu-overlay">
-                  <div className="gallery-shu-zoom-icon">
-                    <i className="fa-solid fa-magnifying-glass-plus"></i>
+          {/* Videos & Photos - Pure In-Card Media with Full Uncropped Images on Clean White Background */}
+          {latestEventsInstagram && latestEventsInstagram.length > 0 && (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 justify-items-center">
+              {latestEventsInstagram.map((event) => {
+                const isPlaying = playingId === event.id;
+
+                return (
+                  <div
+                    key={event.id}
+                    className="w-full max-w-[400px] h-[300px] sm:h-[340px] md:h-[360px] rounded-2xl overflow-hidden bg-white border border-gray-200 shadow-md hover:shadow-xl relative group transition-all duration-300 hover:border-red-500/60 flex items-center justify-center"
+                  >
+                    {/* Event: Native HTML5 Video */}
+                    {event.videoSrc ? (
+                      isPlaying ? (
+                        <div className="relative z-20 w-full h-full bg-black flex items-center justify-center">
+                          <video
+                            src={event.videoSrc}
+                            controls
+                            autoPlay
+                            playsInline
+                            className="w-full h-full object-contain"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => setPlayingId(null)}
+                            className="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/80 hover:bg-red-600 text-white flex items-center justify-center text-xs transition-colors z-30 cursor-pointer shadow-lg"
+                            title="Stop"
+                          >
+                            <i className="fa-solid fa-xmark"></i>
+                          </button>
+                        </div>
+                      ) : (
+                        <div
+                          className="w-full h-full relative cursor-pointer flex items-center justify-center bg-gray-50/70"
+                          onClick={() => setPlayingId(event.id)}
+                        >
+                          {/* Ambient background blur */}
+                          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                            <img
+                              src={event.image}
+                              alt=""
+                              className="w-full h-full object-cover blur-2xl opacity-15 scale-110"
+                              aria-hidden="true"
+                            />
+                          </div>
+                          {/* Full uncropped thumbnail */}
+                          <img
+                            src={event.image}
+                            alt={event.title}
+                            className="relative z-10 w-full h-full object-contain p-2 transition-transform duration-300 group-hover:scale-[1.02]"
+                            loading="lazy"
+                          />
+                          {/* Play Button Overlay */}
+                          <div className="absolute inset-0 z-20 bg-black/15 group-hover:bg-black/25 transition-colors flex items-center justify-center">
+                            <div className="w-16 h-16 rounded-full bg-red-600 text-white flex items-center justify-center text-2xl shadow-xl group-hover:scale-110 transition-transform">
+                              <i className="fa-solid fa-play ml-1"></i>
+                            </div>
+                          </div>
+                        </div>
+                      )
+                    ) : event.type === 'video' ? (
+                      /* Event: Reel / Embed - Plays directly inside the card when clicked */
+                      isPlaying ? (
+                        <div className="relative z-20 w-full h-full bg-black flex items-center justify-center">
+                          <iframe
+                            src={event.embedUrl}
+                            className="w-full h-full border-0"
+                            allow="autoplay; encrypted-media; picture-in-picture; web-share"
+                            allowFullScreen
+                            title={event.title}
+                          />
+                          <button
+                            type="button"
+                            onClick={() => setPlayingId(null)}
+                            className="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/80 hover:bg-red-600 text-white flex items-center justify-center text-xs transition-colors z-30 cursor-pointer shadow-lg"
+                            title="Close"
+                          >
+                            <i className="fa-solid fa-xmark"></i>
+                          </button>
+                        </div>
+                      ) : (
+                        <div
+                          className="w-full h-full relative cursor-pointer flex items-center justify-center bg-gray-50/70"
+                          onClick={() => setPlayingId(event.id)}
+                        >
+                          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                            <img
+                              src={event.image}
+                              alt=""
+                              className="w-full h-full object-cover blur-2xl opacity-15 scale-110"
+                              aria-hidden="true"
+                            />
+                          </div>
+                          <img
+                            src={event.image}
+                            alt={event.title}
+                            className="relative z-10 w-full h-full object-contain p-2 transition-transform duration-300 group-hover:scale-[1.02]"
+                            loading="lazy"
+                          />
+                          {/* Play Button Overlay */}
+                          <div className="absolute inset-0 z-20 bg-black/15 group-hover:bg-black/25 transition-colors flex items-center justify-center">
+                            <div className="w-16 h-16 rounded-full bg-red-600 text-white flex items-center justify-center text-2xl shadow-xl group-hover:scale-110 transition-transform">
+                              <i className="fa-solid fa-play ml-1"></i>
+                            </div>
+                          </div>
+                        </div>
+                      )
+                    ) : (
+                      /* Event: Pure Photo (Full image displayed in the box proper without cropping) */
+                      <div className="w-full h-full relative flex items-center justify-center bg-gray-50/70">
+                        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                          <img
+                            src={event.image}
+                            alt=""
+                            className="w-full h-full object-cover blur-2xl opacity-15 scale-110"
+                            aria-hidden="true"
+                          />
+                        </div>
+                        <img
+                          src={event.image}
+                          alt={event.title}
+                          className="relative z-10 w-full h-full object-contain p-2 transition-transform duration-300 group-hover:scale-[1.02]"
+                          loading="lazy"
+                        />
+                      </div>
+                    )}
                   </div>
-                </div>
-              </div>
-            ))}
-          </div>
+                );
+              })}
+            </div>
+          )}
         </div>
       </section>
-
-      {/* Fullscreen Lightbox Modal */}
-      {activePhotoIdx !== null && (
-        <div
-          className="fixed inset-0 z-[99999] bg-black/90 backdrop-blur-md flex items-center justify-center p-4 animate-fadeIn"
-          onClick={() => setActivePhotoIdx(null)}
-          role="dialog"
-          aria-modal="true"
-        >
-          {/* Previous Button */}
-          <button
-            type="button"
-            className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-red-600 text-white flex items-center justify-center text-xl transition-all z-10"
-            onClick={handlePrev}
-            title="Previous (Left Arrow)"
-            aria-label="Previous Photo"
-          >
-            <i className="fa-solid fa-chevron-left"></i>
-          </button>
-
-          {/* Lightbox Content */}
-          <div
-            className="relative max-w-4xl max-h-[85vh] flex flex-col items-center justify-center"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Close Button */}
-            <button
-              type="button"
-              className="absolute -top-12 right-0 w-10 h-10 rounded-full bg-white/10 hover:bg-red-600 text-white flex items-center justify-center text-lg transition-all"
-              onClick={() => setActivePhotoIdx(null)}
-              title="Close (Esc)"
-              aria-label="Close"
-            >
-              <i className="fa-solid fa-xmark"></i>
-            </button>
-
-            <img
-              src={eventsGallery[activePhotoIdx].src}
-              alt={eventsGallery[activePhotoIdx].alt}
-              className="max-w-full max-h-[75vh] object-contain rounded-xl shadow-2xl"
-            />
-
-            {(eventsGallery[activePhotoIdx].title || eventsGallery[activePhotoIdx].alt) && (
-              <p className="text-white/80 text-center text-sm md:text-base mt-4 max-w-2xl px-4 font-medium">
-                {eventsGallery[activePhotoIdx].title || eventsGallery[activePhotoIdx].alt}
-              </p>
-            )}
-
-            <span className="text-white/50 text-xs mt-2 font-mono">
-              {activePhotoIdx + 1} / {eventsGallery.length}
-            </span>
-          </div>
-
-          {/* Next Button */}
-          <button
-            type="button"
-            className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-red-600 text-white flex items-center justify-center text-xl transition-all z-10"
-            onClick={handleNext}
-            title="Next (Right Arrow)"
-            aria-label="Next Photo"
-          >
-            <i className="fa-solid fa-chevron-right"></i>
-          </button>
-        </div>
-      )}
     </>
   );
 }

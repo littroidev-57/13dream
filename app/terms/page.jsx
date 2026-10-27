@@ -118,7 +118,7 @@ export default function TermsPage() {
                 </p>
                 <div className="mt-3 text-sm space-y-1 text-gray-800 font-medium">
                   <p><strong>13 Dreams Consultants Private Limited</strong></p>
-                  <p>Luthra Tower 2nd Floor C 56 Ekta Nagar, Opp. LIC Office, Model Town, Bareilly, UP 243005</p>
+                  <p>Luthra Tower 2nd Floor C 56, Opp. LIC Office, Ekta Nagar, Bareilly, UP 243005</p>
                   <p>Email: <a href={`mailto:${siteConfig.email}`} className="text-red-600 underline">{siteConfig.email}</a></p>
                   <p>Phone: <a href="tel:+919634777761" className="text-red-600 underline">+91 96347 77761</a></p>
                 </div>

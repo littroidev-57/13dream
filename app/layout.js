@@ -169,7 +169,6 @@ export default function RootLayout({ children }) {
     },
     areaServed: [
       { '@type': 'AdministrativeArea', name: 'Bareilly' },
-      { '@type': 'AdministrativeArea', name: 'Model Town, Bareilly' },
       { '@type': 'AdministrativeArea', name: 'Ekta Nagar, Bareilly' },
       { '@type': 'AdministrativeArea', name: 'Civil Lines, Bareilly' },
       { '@type': 'AdministrativeArea', name: 'Khatima' },
