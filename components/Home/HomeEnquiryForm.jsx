@@ -3,6 +3,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import toast from 'react-hot-toast';
 import ResponsiveSelectField from '@/components/UI/ResponsiveSelectField';
+import GoogleRecaptcha from '@/components/UI/GoogleRecaptcha';
+
 
 const INTAKE_OPTIONS = [
   { value: 'Immediately', label: 'Immediately' },
@@ -63,6 +65,15 @@ export default function HomeEnquiryForm({ defaultDestination = '' }) {
 
   const [loading, setLoading] = useState(false);
   const [statusMsg, setStatusMsg] = useState({ text: '', type: '' });
+  const [recaptchaToken, setRecaptchaToken] = useState('');
+  const [hpWebsite, setHpWebsite] = useState('');
+  const [formLoadedAt, setFormLoadedAt] = useState(null);
+  const recaptchaRef = useRef(null);
+
+  useEffect(() => {
+    setFormLoadedAt(Date.now());
+  }, []);
+
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -107,6 +118,15 @@ export default function HomeEnquiryForm({ defaultDestination = '' }) {
       return;
     }
 
+    // If Google reCAPTCHA is active on site, ensure user verified it
+    const hasSiteKey = Boolean(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY);
+    if (hasSiteKey && !recaptchaToken) {
+      const msg = 'Please check the "I am not a robot" box';
+      toast.error(msg);
+      setStatusMsg({ text: msg, type: 'error' });
+      return;
+    }
+
     setLoading(true);
     setStatusMsg({ text: '', type: '' });
 
@@ -114,7 +134,12 @@ export default function HomeEnquiryForm({ defaultDestination = '' }) {
       const res = await fetch('/api/enquiries', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          hp_website: hpWebsite,
+          _form_loaded_at: formLoadedAt,
+          recaptchaToken,
+        }),
       });
 
       const data = await res.json();
@@ -132,6 +157,9 @@ export default function HomeEnquiryForm({ defaultDestination = '' }) {
           preferredintake: '',
           check: true,
         });
+        setHpWebsite('');
+        setRecaptchaToken('');
+        recaptchaRef.current?.reset();
       } else {
         const errorText = data.error || 'Something went wrong';
         toast.error(errorText);
@@ -423,7 +451,28 @@ export default function HomeEnquiryForm({ defaultDestination = '' }) {
                   </div>
                 </div>
 
-                <div className="full-col" style={{ marginTop: '10px' }}>
+                {/* Invisible honeypot for bot detection */}
+                <div style={{ display: 'none', position: 'absolute', left: '-9999px' }} aria-hidden="true">
+                  <input
+                    type="text"
+                    name="hp_website"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={hpWebsite}
+                    onChange={(e) => setHpWebsite(e.target.value)}
+                  />
+                </div>
+
+                {/* Google reCAPTCHA / Security verification */}
+                <div className="full-col">
+                  <GoogleRecaptcha
+                    ref={recaptchaRef}
+                    onChange={setRecaptchaToken}
+                    onExpired={() => setRecaptchaToken('')}
+                  />
+                </div>
+
+                <div className="full-col" style={{ marginTop: '4px' }}>
                   <button type="submit" className="shubtn" disabled={loading}>
                     {loading ? 'Submitting...' : 'Submit'}{' '}
                     <i className="fa-solid fa-arrow-right"></i>

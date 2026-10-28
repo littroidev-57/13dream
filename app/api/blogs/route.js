@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/dbConnect';
 import Blog from '@/models/Blog';
 import { initialBlogs } from '@/lib/seedData';
+import { verifyAdminAuth } from '@/lib/auth';
 
 export async function GET() {
   try {
@@ -22,7 +23,13 @@ export async function GET() {
 
 export async function POST(request) {
   try {
+    const auth = verifyAdminAuth(request);
+    if (!auth.authorized) {
+      return NextResponse.json({ success: false, error: auth.error }, { status: 401 });
+    }
+
     const body = await request.json();
+
     const { title, slug, excerpt, content, image, category } = body;
 
     if (!title || !content) {

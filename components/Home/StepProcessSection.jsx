@@ -84,6 +84,8 @@ export default function StepProcessSection() {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedStepTitle, setSelectedStepTitle] = useState('Education Counseling');
+  const [hpWebsite, setHpWebsite] = useState('');
+  const [formLoadedAt, setFormLoadedAt] = useState(null);
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -160,6 +162,8 @@ export default function StepProcessSection() {
 
   const handleOpenModal = (stepTitle) => {
     setSelectedStepTitle(stepTitle);
+    setFormLoadedAt(Date.now());
+    setHpWebsite('');
     setIsModalOpen(true);
   };
 
@@ -189,6 +193,8 @@ export default function StepProcessSection() {
           preferred_destination: formData.country,
           qualification: `Consultation for ${selectedStepTitle}`,
           preferredintake: 'Upcoming Intake',
+          hp_website: hpWebsite,
+          _form_loaded_at: formLoadedAt,
         }),
       });
       const data = await res.json();
@@ -567,6 +573,18 @@ export default function StepProcessSection() {
                 selectClassName="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 text-sm text-gray-900 bg-white focus:outline-none focus:border-red-600 focus:ring-2 focus:ring-red-100 transition-all cursor-pointer"
                 buttonClassName="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 text-sm text-gray-900 bg-white flex items-center justify-between text-left transition-all cursor-pointer active:bg-gray-50"
               />
+
+              {/* Invisible honeypot for bot detection */}
+              <div style={{ display: 'none', position: 'absolute', left: '-9999px' }} aria-hidden="true">
+                <input
+                  type="text"
+                  name="hp_website"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={hpWebsite}
+                  onChange={(e) => setHpWebsite(e.target.value)}
+                />
+              </div>
 
               <button
                 type="submit"

@@ -4,6 +4,7 @@ import { getRelevantRagKnowledge, RAG_KNOWLEDGE_BASE } from '@/lib/ragKnowledge'
 import dbConnect from '@/lib/dbConnect';
 import Enquiry from '@/models/Enquiry';
 import { sendEnquiryNotification, sendStudentEnquiryGreeting } from '@/lib/email';
+import { getClientIp, checkRateLimit } from '@/lib/rateLimit';
 
 // Helper to extract phone number (supports spaces, hyphens, +91, 0, or international formats)
 function extractPhoneNumber(text) {
@@ -144,6 +145,20 @@ function extractCountry(text) {
 
 export async function POST(request) {
   try {
+    const clientIp = getClientIp(request);
+    const rateLimit = checkRateLimit(`chat_${clientIp}`, {
+      maxRequests: 25,
+      windowSeconds: 600,
+      minIntervalSeconds: 1,
+    });
+
+    if (!rateLimit.allowed) {
+      return NextResponse.json(
+        { error: 'Too many messages sent. Please slow down and try again shortly.' },
+        { status: 429 }
+      );
+    }
+
     const body = await request.json();
     const { messages = [] } = body;
 
