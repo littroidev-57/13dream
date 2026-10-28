@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/dbConnect';
 import SuccessStory from '@/models/SuccessStory';
 import { initialSuccessStories } from '@/lib/seedData';
+import { verifyAdminAuth } from '@/lib/auth';
 
 export async function GET(request) {
   try {
@@ -28,6 +29,11 @@ export async function GET(request) {
 
 export async function POST(request) {
   try {
+    const auth = verifyAdminAuth(request);
+    if (!auth.authorized) {
+      return NextResponse.json({ success: false, error: auth.error }, { status: 401 });
+    }
+
     const body = await request.json();
     await dbConnect();
     const story = await SuccessStory.create(body);
@@ -36,3 +42,4 @@ export async function POST(request) {
     return NextResponse.json({ success: false, error: error.message }, { status: 500 });
   }
 }
+

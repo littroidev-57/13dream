@@ -1,8 +1,10 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PageBanner from '@/components/UI/PageBanner';
 import toast from 'react-hot-toast';
+import GoogleRecaptcha from '@/components/UI/GoogleRecaptcha';
+
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -15,6 +17,15 @@ export default function ContactPage() {
 
   const [loading, setLoading] = useState(false);
   const [feedback, setFeedback] = useState({ text: '', type: '' });
+  const [recaptchaToken, setRecaptchaToken] = useState('');
+  const [hpWebsite, setHpWebsite] = useState('');
+  const [formLoadedAt, setFormLoadedAt] = useState(null);
+  const recaptchaRef = useRef(null);
+
+  useEffect(() => {
+    setFormLoadedAt(Date.now());
+  }, []);
+
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -49,6 +60,15 @@ export default function ContactPage() {
       return;
     }
 
+    // If Google reCAPTCHA is active on site, ensure user verified it
+    const hasSiteKey = Boolean(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY);
+    if (hasSiteKey && !recaptchaToken) {
+      const msg = 'Please check the "I am not a robot" box';
+      toast.error(msg);
+      setFeedback({ text: msg, type: 'error' });
+      return;
+    }
+
     setLoading(true);
     setFeedback({ text: '', type: '' });
 
@@ -56,7 +76,12 @@ export default function ContactPage() {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          hp_website: hpWebsite,
+          _form_loaded_at: formLoadedAt,
+          recaptchaToken,
+        }),
       });
       const data = await res.json();
 
@@ -65,6 +90,9 @@ export default function ContactPage() {
         toast.success(apiReturnText, { duration: 6000 });
         setFeedback({ text: apiReturnText, type: 'success' });
         setFormData({ name: '', phone: '', email: '', subject: '', message: '' });
+        setHpWebsite('');
+        setRecaptchaToken('');
+        recaptchaRef.current?.reset();
       } else {
         const apiError = data.error || 'Something went wrong';
         toast.error(apiError);
@@ -213,6 +241,27 @@ export default function ContactPage() {
                     value={formData.message}
                     onChange={handleChange}
                   ></textarea>
+                </div>
+
+                {/* Invisible honeypot for bot detection */}
+                <div style={{ display: 'none', position: 'absolute', left: '-9999px' }} aria-hidden="true">
+                  <input
+                    type="text"
+                    name="hp_website"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={hpWebsite}
+                    onChange={(e) => setHpWebsite(e.target.value)}
+                  />
+                </div>
+
+                {/* Google reCAPTCHA / Security verification */}
+                <div>
+                  <GoogleRecaptcha
+                    ref={recaptchaRef}
+                    onChange={setRecaptchaToken}
+                    onExpired={() => setRecaptchaToken('')}
+                  />
                 </div>
 
                 <div>

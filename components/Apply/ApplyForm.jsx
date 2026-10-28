@@ -1,10 +1,12 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
 import ResponsiveSelectField from '@/components/UI/ResponsiveSelectField';
+import GoogleRecaptcha from '@/components/UI/GoogleRecaptcha';
+
 
 const COUNTRY_OPTIONS = [
   { value: '', label: 'Select' },
@@ -95,6 +97,15 @@ export default function ApplyForm({ defaultCountry = '' }) {
   const [loading, setLoading] = useState(false);
   const [statusMsg, setStatusMsg] = useState({ text: '', type: '' });
   const [openFaq, setOpenFaq] = useState(null);
+  const [recaptchaToken, setRecaptchaToken] = useState('');
+  const [hpWebsite, setHpWebsite] = useState('');
+  const [formLoadedAt, setFormLoadedAt] = useState(null);
+  const recaptchaRef = useRef(null);
+
+  useEffect(() => {
+    setFormLoadedAt(Date.now());
+  }, []);
+
 
   const toggleFaq = (idx) => {
     setOpenFaq((prev) => (prev === idx ? null : idx));
@@ -221,6 +232,15 @@ export default function ApplyForm({ defaultCountry = '' }) {
       return;
     }
 
+    // If Google reCAPTCHA is active on site, ensure user verified it
+    const hasSiteKey = Boolean(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY);
+    if (hasSiteKey && !recaptchaToken) {
+      const msg = 'Please check the "I am not a robot" box';
+      toast.error(msg);
+      setStatusMsg({ text: msg, type: 'error' });
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -239,8 +259,12 @@ export default function ApplyForm({ defaultCountry = '' }) {
           interest: `Funding: ${formData.primaryFinancialSource} | Mode: ${formData.modeOfCounselling}`,
           source: 'Apply Page (IDP Style)',
           check: formData.termsAndConditionsAcceptance && formData.contactMeBy,
+          hp_website: hpWebsite,
+          _form_loaded_at: formLoadedAt,
+          recaptchaToken,
         }),
       });
+
 
       const data = await res.json();
 
@@ -270,6 +294,9 @@ export default function ApplyForm({ defaultCountry = '' }) {
           marketing_acceptance_flag: false,
         });
         setErrors({});
+        setHpWebsite('');
+        setRecaptchaToken('');
+        recaptchaRef.current?.reset();
       } else {
         const apiError = data.error || 'Something went wrong. Please check your details and try again.';
         toast.error(apiError);
@@ -616,6 +643,27 @@ export default function ApplyForm({ defaultCountry = '' }) {
                       I would like to receive updates and offers from 13 Dreams
                     </span>
                   </label>
+                </div>
+
+                {/* Invisible honeypot for bot detection */}
+                <div style={{ display: 'none', position: 'absolute', left: '-9999px' }} aria-hidden="true">
+                  <input
+                    type="text"
+                    name="hp_website"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={hpWebsite}
+                    onChange={(e) => setHpWebsite(e.target.value)}
+                  />
+                </div>
+
+                {/* Google reCAPTCHA / Security verification */}
+                <div className="sm:col-span-2">
+                  <GoogleRecaptcha
+                    ref={recaptchaRef}
+                    onChange={setRecaptchaToken}
+                    onExpired={() => setRecaptchaToken('')}
+                  />
                 </div>
 
                 {/* Submit Button */}

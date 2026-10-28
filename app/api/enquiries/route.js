@@ -2,9 +2,23 @@ import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/dbConnect';
 import Enquiry from '@/models/Enquiry';
 import { sendEnquiryNotification, sendStudentEnquiryGreeting } from '@/lib/email';
+import { getClientIp, checkRateLimit } from '@/lib/rateLimit';
+import { validateFormSpam } from '@/lib/spamFilter';
+import { verifyRecaptcha } from '@/lib/recaptcha';
+import { verifyAdminAuth } from '@/lib/auth';
 
-export async function GET() {
+export async function GET(request) {
   try {
+    // Restrict access so anonymous visitors cannot scrape student personal data
+    const auth = verifyAdminAuth(request);
+    if (!auth.authorized) {
+      return NextResponse.json(
+        { success: false, error: auth.error },
+        { status: 401 }
+      );
+    }
+
+
     await dbConnect();
     const enquiries = await Enquiry.find({}).sort({ createdAt: -1 });
     return NextResponse.json({ success: true, count: enquiries.length, data: enquiries });
@@ -14,9 +28,60 @@ export async function GET() {
   }
 }
 
+
 export async function POST(request) {
   try {
+    const clientIp = getClientIp(request);
+
+    // 1. Check IP rate limit (max 5 requests per 10 minutes, min 3s burst interval)
+    const rateLimit = checkRateLimit(clientIp, {
+      maxRequests: 5,
+      windowSeconds: 600,
+      minIntervalSeconds: 3,
+    });
+
+    if (!rateLimit.allowed) {
+      console.warn(`[Security] Rate limit exceeded for IP: ${clientIp} (${rateLimit.reason})`);
+      return NextResponse.json(
+        {
+          success: false,
+          msg: false,
+          error: rateLimit.message,
+          retryAfter: rateLimit.retryAfter,
+        },
+        { status: 429 }
+      );
+    }
+
     const body = await request.json();
+
+    // 2. Anti-Spam Bot Heuristic Filter (Honeypot, Gibberish Name, Fast Submission)
+    const spamCheck = validateFormSpam(body);
+    if (spamCheck.isSpam) {
+      console.warn(`[AntiSpam] Blocked bot enquiry from IP: ${clientIp}. Reason: ${spamCheck.reason} (${spamCheck.details})`);
+      // Return fake success to bots so they don't retry or mutate their scripts
+      return NextResponse.json({
+        success: true,
+        msg: true,
+        message: 'We will get back to you shortly',
+        data: { blocked: true },
+      });
+    }
+
+    // 3. Google reCAPTCHA Verification (if configured)
+    const recaptchaToken = body.recaptchaToken || body['g-recaptcha-response'];
+    const recaptchaResult = await verifyRecaptcha(recaptchaToken, clientIp);
+    if (!recaptchaResult.success) {
+      return NextResponse.json(
+        {
+          success: false,
+          msg: false,
+          error: recaptchaResult.error || 'reCAPTCHA verification failed. Please try again.',
+        },
+        { status: 400 }
+      );
+    }
+
     const { name, phone, email, qualification, preferred_destination, preferredintake, check } = body;
 
     // Support both frontend camelCase and original PHP snake_case input fields
