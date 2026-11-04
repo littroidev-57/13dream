@@ -30,7 +30,7 @@ const stepsData = [
       'Country, University & Program Best-Fit Matching',
       'Cost Estimation & Personalized Application Roadmap',
     ],
-    badge: '15,000+ Students Guided',
+    badge: '25,000+ Students Guided',
   },
   {
     step: 2,
@@ -66,13 +66,13 @@ const stepsData = [
     phase: 'PHASE 04 • VISA & TRAVEL',
     title: 'Visa Processing',
     description:
-      'Hassle-free visa filing backed by an industry-leading 99% approval track record. Complete end-to-end preparation from document compilation to mock interviews.',
+      'Hassle-free visa filing backed by a proven track record of 5,000+ approvals. Complete end-to-end preparation from document compilation to mock interviews.',
     highlights: [
       'High-Precision Visa Filing & Strict Document Checklist Audit',
       'Rigorous One-on-One Mock Visa Interview Preparation',
       'Pre-Departure Briefings, Forex Support & Accommodation Help',
     ],
-    badge: '99% Proven Visa Approval Rate',
+    badge: '5,000+ Successful Visa Holders',
   },
 ];
 
@@ -333,8 +333,8 @@ export default function StepProcessSection() {
                   <i className="fa-solid fa-passport"></i>
                 </div>
                 <div>
-                  <div className="text-sm font-extrabold text-gray-900 leading-none mb-1">99% Success</div>
-                  <div className="text-[11px] text-gray-500 font-medium leading-tight">Visa Approvals for 150+ Universities</div>
+                  <div className="text-sm font-extrabold text-gray-900 leading-none mb-1">5,000+ Visas</div>
+                  <div className="text-[11px] text-gray-500 font-medium leading-tight">Visa Approvals for 300+ Universities</div>
                 </div>
               </div>
             </div>
@@ -471,8 +471,8 @@ export default function StepProcessSection() {
                         <i className="fa-solid fa-passport"></i>
                       </div>
                       <div>
-                        <div className="text-sm font-extrabold text-gray-900 leading-none mb-1">99% Success</div>
-                        <div className="text-[11px] text-gray-500 font-medium leading-tight">Visa Approvals</div>
+                        <div className="text-sm font-extrabold text-gray-900 leading-none mb-1">5,000+ Visas</div>
+                        <div className="text-[11px] text-gray-500 font-medium leading-tight">Visa Holders</div>
                       </div>
                     </div>
                   </div>

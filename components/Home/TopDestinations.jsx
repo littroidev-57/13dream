@@ -244,10 +244,10 @@ export default function TopDestinations() {
               {/* Feature Highlights Pills */}
               <div className="flex flex-wrap items-center justify-center gap-2.5 mt-6 max-w-md">
                 <span className="text-xs font-semibold px-3 py-1.5 rounded-lg bg-white/10 text-white border border-white/15 flex items-center gap-1.5">
-                  <i className="fa-solid fa-check text-red-500"></i> 150+ Partner Universities
+                  <i className="fa-solid fa-check text-red-500"></i> 300+ Partner Universities
                 </span>
                 <span className="text-xs font-semibold px-3 py-1.5 rounded-lg bg-white/10 text-white border border-white/15 flex items-center gap-1.5">
-                  <i className="fa-solid fa-check text-red-500"></i> 99% Visa Grant Rate
+                  <i className="fa-solid fa-check text-red-500"></i> 5,000+ Visa Holders
                 </span>
                 <span className="text-xs font-semibold px-3 py-1.5 rounded-lg bg-white/10 text-white border border-white/15 flex items-center gap-1.5">
                   <i className="fa-solid fa-check text-red-500"></i> 100% Free Guidance

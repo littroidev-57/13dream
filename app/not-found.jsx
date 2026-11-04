@@ -41,7 +41,7 @@ export default function NotFound() {
           >
             <i className="fa-solid fa-passport text-red-600 text-lg mb-2 block"></i>
             <span className="font-bold text-sm text-gray-900 block group-hover:text-red-600">Student Visa</span>
-            <span className="text-[11px] text-gray-500">99% grant rate</span>
+            <span className="text-[11px] text-gray-500">5,000+ visas</span>
           </Link>
 
           <Link
@@ -50,7 +50,7 @@ export default function NotFound() {
           >
             <i className="fa-solid fa-building-columns text-red-600 text-lg mb-2 block"></i>
             <span className="font-bold text-sm text-gray-900 block group-hover:text-red-600">Universities</span>
-            <span className="text-[11px] text-gray-500">150+ partners</span>
+            <span className="text-[11px] text-gray-500">300+ partners</span>
           </Link>
         </div>
 

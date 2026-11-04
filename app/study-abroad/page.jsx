@@ -39,7 +39,7 @@ const studyAbroadFaqs = [
   {
     question: 'Why should I choose 13 Dreams Consultants for my study abroad journey?',
     answer:
-      'With over 15 years of proven experience, 13 Dreams Consultants provides genuine, student-first guidance. We are official partner agents for leading universities across Canada, the UK, Australia, the USA, Germany, Malta, Singapore, the Netherlands, and Europe, maintaining a 99% visa success rate and offering 100% free profile evaluations.',
+      'With over 15 years of proven experience, 13 Dreams Consultants provides genuine, student-first guidance. We are official partner agents for leading universities across Canada, the UK, Australia, the USA, Germany, Malta, Singapore, the Netherlands, and Europe, maintaining over 5,000+ successful visa approvals and offering 100% free profile evaluations.',
   },
   {
     question: 'Which country is best for Indian students to study abroad in 2026/2027?',

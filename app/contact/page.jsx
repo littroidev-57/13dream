@@ -162,7 +162,7 @@ export default function ContactPage() {
                   <div>
                     <h5 style={{ fontSize: '16px', fontWeight: '700', color: '#222' }}>Bareilly Office</h5>
                     <p style={{ fontSize: '13.5px', color: '#555', marginTop: '4px', lineHeight: '1.6' }}>
-                      Luthra Tower 2nd Floor C 56, Opp. LIC Office, Ekta Nagar, Bareilly, UP
+                      Luthra Tower 2nd Floor C 56, Opp. LIC Office, Ekta Nagar, Bareilly, UP - 243122
                     </p>
                   </div>
                 </div>
@@ -174,7 +174,7 @@ export default function ContactPage() {
                   <div>
                     <h5 style={{ fontSize: '16px', fontWeight: '700', color: '#222' }}>Khatima Office</h5>
                     <p style={{ fontSize: '13.5px', color: '#555', marginTop: '4px', lineHeight: '1.6' }}>
-                      Near Jhankat (Banusi) Khatima Nanakmatta Road, U S Nagar, Uttarakhand - 262308
+                      Near Jhankat, Nanakmatta–Khatima Road, Banusi, Khatima, Uttarakhand – 262308
                     </p>
                   </div>
                 </div>

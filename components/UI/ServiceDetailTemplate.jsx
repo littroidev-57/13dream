@@ -262,11 +262,11 @@ export default function ServiceDetailTemplate({
                         Book Free Consultation
                       </Link>
                       <a
-                        href="tel:+919105533013"
+                        href="tel:+919759053463"
                         className="bizwheel-btn theme-2"
                         style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}
                       >
-                        <i className="fa-solid fa-phone"></i> +91 91055 33013
+                        <i className="fa-solid fa-phone"></i> +91 97590 53463
                       </a>
                     </div>
                   </div>
@@ -463,7 +463,7 @@ export default function ServiceDetailTemplate({
                     marginBottom: '14px',
                   }}
                 >
-                  Luthra Tower, Opp. Income Tax Office, Ekta Nagar, Bareilly, Uttar Pradesh - 243005
+                  Luthra Tower, Opp. LIC Office, Ekta Nagar, Bareilly, Uttar Pradesh - 243122
                 </p>
                 <div style={{ fontSize: '13px', color: '#334155', fontWeight: '600' }}>
                   <i className="fa-regular fa-clock" style={{ marginRight: '6px', color: '#94a3b8' }}></i>
