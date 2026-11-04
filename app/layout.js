@@ -16,7 +16,7 @@ export const metadata = {
     template: '%s | 13 Dreams Consultants',
   },
   description:
-    'Ranked #1 for Best Visa Filing in Bareilly and Best IELTS Coaching. 13 Dreams Consultants at Luthra Tower, Ekta Nagar, Bareilly provides 99% visa grant rate for Canada, UK, Australia, USA, Germany, Malta & Europe with certified IDP/British Council trainers.',
+    'Ranked #1 for Best Visa Filing in Bareilly and Best IELTS Coaching. 13 Dreams Consultants at Luthra Tower, Ekta Nagar, Bareilly provides proven high visa success with 5,000+ visa holders for Canada, UK, Australia, USA, Germany, Malta & Europe with certified IDP/British Council trainers.',
   keywords: [
     'Best Visa Filing in Bareilly',
     'Visa Filing in Bareilly',
@@ -49,7 +49,7 @@ export const metadata = {
   openGraph: {
     title: 'Best Visa Filing in Bareilly & Best IELTS Coaching | 13 Dreams Consultants',
     description:
-      'Ranked #1 for Best Visa Filing in Bareilly & Best IELTS Coaching. 15+ years experience, 150+ partner universities across UK, Canada, Australia, USA, Germany & Europe with 99% visa grant rate.',
+      'Ranked #1 for Best Visa Filing in Bareilly & Best IELTS Coaching. 15+ years experience, 300+ partner universities across UK, Canada, Australia, USA, Germany & Europe with 5,000+ visa holders.',
     url: siteConfig.siteUrl,
     siteName: siteConfig.siteName,
     images: [
@@ -67,7 +67,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Best Visa Filing in Bareilly & Best IELTS Coaching | 13 Dreams',
     description:
-      'End-to-end university admissions, student visa filing, and certified IELTS coaching in Bareilly with 99% visa success rate.',
+      'End-to-end university admissions, student visa filing, and certified IELTS coaching in Bareilly with 5,000+ successful visa holders.',
     images: [`${siteConfig.siteUrl}/img/13dreamsconsultants-main.webp`],
   },
   icons: {
@@ -138,7 +138,7 @@ export default function RootLayout({ children }) {
           itemOffered: {
             '@type': 'Service',
             name: 'Best Visa Filing in Bareilly',
-            description: 'Accredited student visa filing and immigration guidance for Canada, UK, Australia, USA, and Europe with a 99% visa success rate.',
+            description: 'Accredited student visa filing and immigration guidance for Canada, UK, Australia, USA, and Europe with over 5,000+ successful visa approvals.',
           },
         },
         {
@@ -162,7 +162,7 @@ export default function RootLayout({ children }) {
           itemOffered: {
             '@type': 'Service',
             name: 'Free Study Abroad Profile Evaluation & University Admissions',
-            description: 'Zero consultation fee profile assessment with 150+ international partner universities across 50+ countries.',
+            description: 'Zero consultation fee profile assessment with 300+ international partner universities across 50+ countries.',
           },
         },
       ],

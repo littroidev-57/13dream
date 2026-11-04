@@ -40,7 +40,7 @@ const TIMELINE_OPTIONS = [
 const OFFICE_OPTIONS = [
   { value: '', label: 'Select' },
   { value: 'Bareilly Office', label: 'Bareilly (Ekta Nagar)' },
-  { value: 'Khatima Office', label: 'Khatima (Tanakpur Road)' },
+  { value: 'Khatima Office', label: 'Khatima (Nanakmatta Road)' },
   { value: 'Virtual / Online', label: 'Virtual / Online (Pan India)' },
 ];
 
@@ -114,7 +114,7 @@ export default function ApplyForm({ defaultCountry = '' }) {
   const studentFaqs = [
     {
       q: 'Which is the best visa filing consultancy in Bareilly?',
-      a: '13 Dreams Consultants Private Limited, situated at Luthra Tower, 2nd Floor, C 56, Opp. LIC Office, Ekta Nagar, Bareilly, is widely recognized as the best visa filing consultancy in Bareilly. Backed by 15+ years of experience and a 99% visa grant rate, we provide dedicated visa filing for Canada, Australia, the UK, the USA, Germany, and Europe.',
+      a: '13 Dreams Consultants Private Limited, situated at Luthra Tower, 2nd Floor, C 56, Opp. LIC Office, Ekta Nagar, Bareilly, is widely recognized as the best visa filing consultancy in Bareilly. Backed by 15+ years of experience and 5,000+ successful visa approvals, we provide dedicated visa filing for Canada, Australia, the UK, the USA, Germany, and Europe.',
     },
     {
       q: 'Where can I find the best IELTS coaching in Bareilly?',
@@ -130,7 +130,7 @@ export default function ApplyForm({ defaultCountry = '' }) {
     },
     {
       q: 'What is the visa approval success rate of 13 Dreams Consultants?',
-      a: '13 Dreams Consultants maintains an industry-leading 99% student visa grant rate backed by 15+ years of operational excellence, rigorous documentation audits, and dedicated mock embassy interview prep.',
+      a: '13 Dreams Consultants maintains an industry-leading track record with over 5,000+ successful student visa holders, backed by 15+ years of operational excellence, rigorous documentation audits, and dedicated mock embassy interview prep.',
     },
     {
       q: 'Do you help with IELTS / PTE coaching and test preparation?',
@@ -383,7 +383,7 @@ export default function ApplyForm({ defaultCountry = '' }) {
                     </div>
                     <div>
                       <span className="block text-xs font-black text-gray-900">100% Free Guidance</span>
-                      <span className="block text-[11px] text-gray-500 font-medium">99% Visa Approval Rate</span>
+                      <span className="block text-[11px] text-gray-500 font-medium">5,000+ Visa Holders</span>
                     </div>
                   </div>
                   <span className="text-[11px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded-full">
@@ -399,7 +399,7 @@ export default function ApplyForm({ defaultCountry = '' }) {
               {/* Heading & Red Accent Bar */}
               <div>
                 <span className="inline-block text-xs font-bold uppercase tracking-wider text-red-600 bg-red-50 border border-red-200 px-3 py-1 rounded-full mb-3">
-                  Ranked #1 for Visa Filing &amp; IELTS Coaching in Bareilly • 99% Visa Rate
+                  Ranked #1 for Visa Filing &amp; IELTS Coaching in Bareilly • 5,000+ Visas Granted
                 </span>
                 <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#1f242e] tracking-tight">
                   Apply Online for Best Visa Filing in Bareilly &amp; Free Overseas Counselling
@@ -698,12 +698,12 @@ export default function ApplyForm({ defaultCountry = '' }) {
               <p className="text-[11px] sm:text-xs text-gray-500 mt-0.5">Trusted by thousands of students</p>
             </div>
             <div className="p-2 border-l border-gray-100">
-              <div className="text-2xl sm:text-3xl font-black text-red-600 mb-1">99%</div>
-              <div className="text-xs sm:text-sm font-bold text-gray-900">Visa Grant Rate</div>
+              <div className="text-2xl sm:text-3xl font-black text-red-600 mb-1">5,000+</div>
+              <div className="text-xs sm:text-sm font-bold text-gray-900">Visa Holders</div>
               <p className="text-[11px] sm:text-xs text-gray-500 mt-0.5">Meticulous file auditing</p>
             </div>
             <div className="p-2 md:border-l border-gray-100">
-              <div className="text-2xl sm:text-3xl font-black text-red-600 mb-1">150+</div>
+              <div className="text-2xl sm:text-3xl font-black text-red-600 mb-1">300+</div>
               <div className="text-xs sm:text-sm font-bold text-gray-900">Global Partners</div>
               <p className="text-[11px] sm:text-xs text-gray-500 mt-0.5">Top universities &amp; colleges</p>
             </div>
@@ -751,7 +751,7 @@ export default function ApplyForm({ defaultCountry = '' }) {
                 </div>
                 <h3 className="text-base font-bold text-gray-900 mb-2">Course &amp; University Shortlisting</h3>
                 <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-                  Select from 150+ accredited global institutions offering scholarships, high employability, and post-study work rights.
+                  Select from 300+ accredited global institutions offering scholarships, high employability, and post-study work rights.
                 </p>
               </div>
 
@@ -1055,7 +1055,7 @@ export default function ApplyForm({ defaultCountry = '' }) {
                     <i className="fa-solid fa-location-dot text-red-400"></i> Bareilly Head Office
                   </h4>
                   <p className="text-gray-300 text-xs sm:text-sm mt-1">
-                    Luthra Tower 2nd Floor C 56, Opp. LIC Office, Ekta Nagar, Bareilly, UP 243005
+                    Luthra Tower 2nd Floor C 56, Opp. LIC Office, Ekta Nagar, Bareilly, UP 243122
                   </p>
                 </div>
 
@@ -1064,7 +1064,7 @@ export default function ApplyForm({ defaultCountry = '' }) {
                     <i className="fa-solid fa-location-dot text-red-400"></i> Khatima Branch Office
                   </h4>
                   <p className="text-gray-300 text-xs sm:text-sm mt-1">
-                    Tanakpur Road, Opp. Canara Bank, Khatima, Uttarakhand 262308
+                    Near Jhankat, Nanakmatta–Khatima Road, Banusi, Khatima, Uttarakhand – 262308
                   </p>
                 </div>
               </div>

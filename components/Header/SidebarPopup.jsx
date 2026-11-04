@@ -130,13 +130,13 @@ export default function SidebarPopup({ isOpen, onClose }) {
                 <div>
                   <p className="font-bold text-gray-900">Bareilly Office:</p>
                   <p className="text-[11px] text-gray-600 leading-snug">
-                    Luthra Tower 2nd Floor C 56, Opp. LIC Office, Ekta Nagar, Bareilly
+                    Luthra Tower 2nd Floor C 56, Opp. LIC Office, Ekta Nagar, Bareilly, UP - 243122
                   </p>
                 </div>
                 <div>
                   <p className="font-bold text-gray-900">Khatima Office:</p>
                   <p className="text-[11px] text-gray-600 leading-snug">
-                    Near Jhankat (Banusi) Khatima Nanakmatta Road, U S Nagar, Uttarakhand - 262308
+                    Near Jhankat, Nanakmatta–Khatima Road, Banusi, Khatima, Uttarakhand – 262308
                   </p>
                 </div>
               </div>

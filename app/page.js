@@ -18,7 +18,7 @@ import { siteConfig, getCanonicalUrl } from '@/lib/siteConfig';
 export const metadata = {
   title: 'Best Visa Filing in Bareilly & Best IELTS Coaching | 13 Dreams Consultants',
   description:
-    'Looking for the best visa filing in Bareilly or top IELTS coaching? 13 Dreams Consultants at Luthra Tower, Ekta Nagar offers 99% visa success rate, certified IDP/British Council IELTS & PTE training, and free foreign admissions.',
+    'Looking for the best visa filing in Bareilly or top IELTS coaching? 13 Dreams Consultants at Luthra Tower, Ekta Nagar offers 5,000+ successful visa track record, certified IDP/British Council IELTS & PTE training, and free foreign admissions.',
   keywords: [
     'Best Visa Filing in Bareilly',
     'Visa Filing in Bareilly',
@@ -45,7 +45,7 @@ export const metadata = {
   openGraph: {
     title: 'Best Visa Filing in Bareilly & Best IELTS Coaching | 13 Dreams Consultants',
     description:
-      'Transform your study abroad dreams with 13 Dreams Consultants. 15+ years experience, 150+ partner universities across UK, Canada, Australia, USA, Germany, Malta & Europe with 99% visa grant rate.',
+      'Transform your study abroad dreams with 13 Dreams Consultants. 15+ years experience, 300+ partner universities across UK, Canada, Australia, USA, Germany, Malta & Europe with 5,000+ successful visa holders.',
     url: getCanonicalUrl('/'),
     siteName: siteConfig.siteName,
     type: 'website',
@@ -94,7 +94,7 @@ export default function HomePage() {
       {/* 13. Google FAQ Rich Snippet Accordion with Schema.org */}
       <FaqAccordion />
 
-      {/* 14. Statistics Counterup (50+ Countries / 150+ Univs / 99% Satisfaction) */}
+      {/* 14. Statistics Counterup (50+ Countries / 300+ Univs / 5,000+ Visa Holders) */}
       <StatisticsCounter />
     </>
   );

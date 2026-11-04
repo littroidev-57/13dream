@@ -20,7 +20,7 @@ export default function HeroBanner() {
             </h1>
 
             <p className="text-sm sm:text-base text-gray-600 leading-relaxed max-w-2xl">
-              Get trusted guidance from 13 Dreams Consultants in Bareilly. From score-boosting <strong className="text-gray-800">IELTS &amp; PTE coaching</strong> (Target 7.5+ band) to 99% success <strong className="text-gray-800">Student Visa Filing</strong> for UK, Canada, Australia, USA, Germany, Malta &amp; Europe.
+              Get trusted guidance from 13 Dreams Consultants in Bareilly. From score-boosting <strong className="text-gray-800">IELTS &amp; PTE coaching</strong> (Target 7.5+ band) to high-success <strong className="text-gray-800">Student Visa Filing</strong> for UK, Canada, Australia, USA, Germany, Malta &amp; Europe.
             </p>
 
             {/* Feature Chips */}
@@ -86,8 +86,8 @@ export default function HeroBanner() {
 
               <div className="text-xs sm:text-sm text-gray-500 flex items-center gap-1.5 flex-wrap">
                 <strong className="text-gray-900 font-semibold">15+ Years Experience</strong>
-                <span>• 150+ Partner Universities</span>
-                <span>• 99% Visa Approval</span>
+                <span>• 300+ Partner Universities</span>
+                <span>• 5,000+ Visa Holders</span>
               </div>
             </div>
           </div>

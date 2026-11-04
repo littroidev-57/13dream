@@ -8,7 +8,7 @@ import { siteConfig, getCanonicalUrl } from '@/lib/siteConfig';
 export const metadata = {
   title: 'Best Visa Filing in Bareilly & Student Visa Consultants | 13 Dreams',
   description:
-    'Ranked #1 for best visa filing in Bareilly. Expert student visa consultancy for Canada, UK, USA, Australia, Germany, Malta, Singapore, and Europe with a 99% visa grant rate and complete SOP scrutiny.',
+    'Ranked #1 for best visa filing in Bareilly. Expert student visa consultancy for Canada, UK, USA, Australia, Germany, Malta, Singapore, and Europe with over 5,000+ visa approvals and complete SOP scrutiny.',
   keywords: [
     'Best Visa Filing in Bareilly',
     'Visa Filing in Bareilly',
@@ -31,7 +31,7 @@ export const metadata = {
   openGraph: {
     title: 'Best Visa Filing in Bareilly & Student Visa Consultants | 13 Dreams',
     description:
-      'End-to-end student visa filing for Canada, Australia, UK, USA, Germany, Malta, Singapore & Europe with 99% visa success rate at 13 Dreams Bareilly.',
+      'End-to-end student visa filing for Canada, Australia, UK, USA, Germany, Malta, Singapore & Europe with 5,000+ successful visa holders at 13 Dreams Bareilly.',
     url: getCanonicalUrl('/student-visa'),
     siteName: siteConfig.siteName,
     type: 'website',
@@ -40,9 +40,9 @@ export const metadata = {
 
 const visaFaqs = [
   {
-    question: 'What is the visa grant rate with 13 Dreams Consultants?',
+    question: 'What is the visa grant track record of 13 Dreams Consultants?',
     answer:
-      '13 Dreams Consultants maintains an industry-leading 99% visa approval rate across Canada, the UK, Australia, the USA, Germany, Malta, Singapore, and the Netherlands. Our rigorous pre-submission audit ensures that every financial affidavit, SOP, and academic credential conforms to strict embassy guidelines.',
+      '13 Dreams Consultants has successfully secured over 5,000+ student visa approvals across Canada, the UK, Australia, the USA, Germany, Malta, Singapore, and the Netherlands. Our rigorous pre-submission audit ensures that every financial affidavit, SOP, and academic credential conforms to strict embassy guidelines.',
   },
   {
     question: 'How long does a student visa application take to process?',

@@ -6,7 +6,7 @@ import { siteConfig, getCanonicalUrl } from '@/lib/siteConfig';
 export const metadata = {
   title: 'Apply Online | Best Visa Filing in Bareilly & Best IELTS Coaching | 13 Dreams',
   description:
-    'Apply online for the best visa filing in Bareilly and top-rated IELTS coaching. 100% free profile evaluation, 150+ partner universities, 99% visa grant rate for Canada, Australia, UK, USA & Europe at 13 Dreams Bareilly.',
+    'Apply online for the best visa filing in Bareilly and top-rated IELTS coaching. 100% free profile evaluation, 300+ partner universities, 5,000+ successful visa holders for Canada, Australia, UK, USA & Europe at 13 Dreams Bareilly.',
   keywords: [
     'best visa filing in bareilly',
     'visa filing in bareilly',
@@ -44,7 +44,7 @@ export const metadata = {
   openGraph: {
     title: 'Apply Online | Best Visa Filing in Bareilly & IELTS Coaching | 13 Dreams',
     description:
-      'Fast-track your global university admission and student visa filing. 100% free profile evaluation, certified IELTS coaching, and 99% visa grant rate.',
+      'Fast-track your global university admission and student visa filing. 100% free profile evaluation, certified IELTS coaching, and over 5,000+ successful visa holders.',
     url: getCanonicalUrl('/apply'),
     siteName: siteConfig.siteName,
     type: 'website',
@@ -155,7 +155,7 @@ export default function ApplyPage() {
           name: 'Which is the best visa filing consultancy in Bareilly?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: '13 Dreams Consultants Private Limited, located at Luthra Tower, 2nd Floor, C 56, Opp. LIC Office, Ekta Nagar, Bareilly, is widely recognized as the best visa filing consultancy in Bareilly. With 15+ years of operational experience and a 99% visa approval rate, they provide unmatched visa filing expertise for Canada, UK, Australia, USA, Germany, and Europe.',
+            text: '13 Dreams Consultants Private Limited, located at Luthra Tower, 2nd Floor, C 56, Opp. LIC Office, Ekta Nagar, Bareilly, is widely recognized as the best visa filing consultancy in Bareilly. With 15+ years of operational experience and 5,000+ visa approvals, they provide unmatched visa filing expertise for Canada, UK, Australia, USA, Germany, and Europe.',
           },
         },
         {
@@ -187,7 +187,7 @@ export default function ApplyPage() {
           name: 'What is the visa approval success rate of 13 Dreams Consultants?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: '13 Dreams Consultants maintains an industry-leading 99% student visa grant rate with over 15 years of operational excellence.',
+            text: '13 Dreams Consultants has successfully guided over 25,000+ students and secured 5,000+ visa approvals with over 15 years of operational excellence.',
           },
         },
         {

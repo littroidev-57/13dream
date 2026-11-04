@@ -113,7 +113,7 @@ export default async function StoryTypePage({ params }) {
         streetAddress: 'Luthra Tower 2nd Floor C 56, Opp. LIC Office, Ekta Nagar',
         addressLocality: 'Bareilly',
         addressRegion: 'Uttar Pradesh',
-        postalCode: '243005',
+        postalCode: '243122',
         addressCountry: 'IN',
       },
     },

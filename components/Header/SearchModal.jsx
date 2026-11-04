@@ -27,7 +27,7 @@ const STATIC_SEARCH_ITEMS = [
   { title: 'Advice on Selection of Programs', category: 'Service', href: '/service/advice-on-program-selection', desc: 'Curated course matching tailored to your academics and career goals' },
   { title: 'University Shortlisting', category: 'Service', href: '/service/university-shortlisting', desc: 'Finding the right university based on rankings, budget, and location' },
   { title: 'Statement of Purpose (SOP) Assistance', category: 'Service', href: '/service/statement-of-purpose', desc: 'Professional SOP, LOR, and resume drafting support' },
-  { title: 'Student Visa Assistance', category: 'Service', href: '/service/student-visa-assistance', desc: '99% visa grant rate, file preparation, financial audits and mock interviews' },
+  { title: 'Student Visa Assistance', category: 'Service', href: '/service/student-visa-assistance', desc: '5,000+ visa holders, file preparation, financial audits and mock interviews' },
   { title: 'Scholarship Guidance', category: 'Service', href: '/service/scholarship-guidance', desc: 'Merit and need-based international scholarship identification' },
   { title: 'Education Loan Assistance', category: 'Service', href: '/service/education-loan-assistance', desc: 'Collateral and non-collateral overseas education loan partnerships' },
   { title: 'Pre-Departure Briefing', category: 'Service', href: '/service/pre-departure-briefing', desc: 'Accommodation, forex, travel packing, and culture transition briefing' },
@@ -38,10 +38,10 @@ const STATIC_SEARCH_ITEMS = [
 
   // Key Pages
   { title: 'Avail Free Counselling (Apply Online)', category: 'Quick Action', href: '/apply', desc: '100% Free profile assessment and visa application assistance' },
-  { title: 'About 13 Dreams Consultants', category: 'About', href: '/about-us', desc: '15+ years experience, 150+ partner universities, certified team' },
+  { title: 'About 13 Dreams Consultants', category: 'About', href: '/about-us', desc: '15+ years experience, 300+ partner universities, certified team' },
   { title: 'Success Stories & Visa Approvals', category: 'Story', href: '/story', desc: 'Real student visa grants, high IELTS & PTE scorecards' },
   { title: 'Contact Our Offices', category: 'Contact', href: '/contact', desc: 'Bareilly & Khatima branch locations, phone numbers & enquiry forms' },
-  { title: 'Partner Universities', category: 'Explore', href: '/universities', desc: 'Explore 150+ global universities across Canada, UK, Australia & USA' },
+  { title: 'Partner Universities', category: 'Explore', href: '/universities', desc: 'Explore 300+ global universities across Canada, UK, Australia & USA' },
   { title: 'Courses & Degree Finder', category: 'Explore', href: '/courses', desc: 'Explore Bachelor, Master, and Diploma programs abroad' },
   { title: 'Education Fairs & Events', category: 'Explore', href: '/events', desc: 'Upcoming university seminars, spot assessments, and webinars' },
   { title: 'Student Visa Guide', category: 'Visa', href: '/student-visa', desc: 'Complete country-by-country student visa requirements and checklist' },

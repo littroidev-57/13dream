@@ -8,7 +8,7 @@ import { siteConfig, getCanonicalUrl } from '@/lib/siteConfig';
 export const metadata = {
   title: 'Partner Universities & Global Colleges | 13 Dreams Consultants',
   description:
-    'Explore 150+ accredited partner universities across Canada, UK, Australia, USA, Germany, and New Zealand. Get fast-track admissions and scholarship guidance with 13 Dreams Consultants.',
+    'Explore 300+ accredited partner universities across Canada, UK, Australia, USA, Germany, and New Zealand. Get fast-track admissions and scholarship guidance with 13 Dreams Consultants.',
   alternates: {
     canonical: getCanonicalUrl('/universities'),
   },

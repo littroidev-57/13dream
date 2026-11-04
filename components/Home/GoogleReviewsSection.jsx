@@ -405,7 +405,7 @@ export default function GoogleReviewsSection() {
                 <i className="fa-solid fa-shield-halved"></i>
               </div>
               <div>
-                <h4 className="text-sm font-bold text-white">Join 1,000+ Successful Visa Holders</h4>
+                <h4 className="text-sm font-bold text-white">Join 5,000+ Successful Visa Holders</h4>
                 <p className="text-xs text-gray-400">100% Free profile assessment with Bareilly &amp; Khatima counselors.</p>
               </div>
             </div>

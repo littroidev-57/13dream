@@ -126,11 +126,11 @@ export default function Footer() {
                 </li>
                 <li>
                   <i className="fa-solid fa-location-dot"></i>
-                  <span>Near Jhankat (Banusi) Khatima Nanakmatta Road, U S Nagar, Uttrakhand - 262308</span>
+                  <span>Near Jhankat, Nanakmatta–Khatima Road, Banusi, Khatima, Uttarakhand – 262308</span>
                 </li>
                 <li>
                   <i className="fa-solid fa-location-dot"></i>
-                  <span>Luthra Tower 2nd Floor C 56, Opp. LIC Office, Ekta Nagar, Bareilly</span>
+                  <span>Luthra Tower 2nd Floor C 56, Opp. LIC Office, Ekta Nagar, Bareilly, UP - 243122</span>
                 </li>
               </ul>
             </div>

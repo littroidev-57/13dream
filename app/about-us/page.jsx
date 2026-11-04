@@ -6,7 +6,7 @@ import { siteConfig, getCanonicalUrl } from '@/lib/siteConfig';
 export const metadata = {
   title: 'About 13 Dreams Consultants | 15+ Years Overseas Education Legacy',
   description:
-    'Learn about 13 Dreams Consultants, led by Mr. Harpreet Singh. 15+ years of excellence, 150+ partner universities, and a 99% visa success rate for Indian students.',
+    'Learn about 13 Dreams Consultants, led by Mr. Harpreet Singh. 15+ years of excellence, 300+ partner universities, and over 5,000+ successful visa holders.',
   alternates: {
     canonical: getCanonicalUrl('/about-us'),
   },
