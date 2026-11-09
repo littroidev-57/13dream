@@ -27,6 +27,11 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: '/index.php',
+        destination: '/',
+        permanent: true,
+      },
+      {
         source: '/applynow',
         destination: '/apply',
         permanent: true,
